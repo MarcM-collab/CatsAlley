@@ -58,6 +58,8 @@ public class Character : Entity
             }
         }
     }
+
+ 
     public static bool operator ==(Character e1, Character e2)
     {
         var positionE1 = e1.gameObject.transform.position;

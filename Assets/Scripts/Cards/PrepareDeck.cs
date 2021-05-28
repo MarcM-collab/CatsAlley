@@ -40,7 +40,7 @@ public class PrepareDeck : MonoBehaviour
 
     }
 
-    public void CardDisplayChoosen(Image cardDisplay, Card card)
+    public void CardDisplayChoosen(Image cardDisplay, Card card, GameObject displayCard)
     {
   
         if(index < Slots.Length)
@@ -51,11 +51,15 @@ public class PrepareDeck : MonoBehaviour
             currentCards.Add(card);
             if (index >= Slots.Length)
                 index = 0;
+            displayCard.gameObject.SetActive(false);
    
             index++;
-            
+
         }
+        
     }
+
+    
 
     public void RemoveChosenCard(int _index)
     {

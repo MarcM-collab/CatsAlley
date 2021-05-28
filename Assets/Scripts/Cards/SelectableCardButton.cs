@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SelectableCardButton : MonoBehaviour
 {
-    public delegate void DisplayCard(Image gameObject, Card card);
+    public delegate void DisplayCard(Image gameObject, Card card, GameObject displayCard);
     public static DisplayCard displayCard;
     private Image image;
     public Card card;
@@ -16,9 +16,9 @@ public class SelectableCardButton : MonoBehaviour
     }
     public void CardChosen()
     {
-        gameObject.SetActive(false);
-
-        displayCard?.Invoke(image, card);
+        displayCard?.Invoke(image, card, gameObject);
+        
+        
         
     }
 
