@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public struct Clip
@@ -9,16 +10,57 @@ public struct Clip
     public AudioClip playerTurnClip;
     public AudioClip IATurnClip;
 }
+public enum MeowType
+{
+    women,
+    men
+}
 public class AudioManager : MonoBehaviour
 {
     public float transitionWait = 1;
     public Clip[] musicClips;
+
+    public static AudioManager audioManager;
 
     private AudioSource music;
     public AudioSource transition;
     private bool playerTurn = false;
     private float prevVolume;
     private bool transitioning;
+
+    public AudioClip[] meowWomen;
+    public AudioClip[] meowMen;
+
+    private AudioClip prevMeow;
+    public AudioClip GetAudioClip(MeowType m)
+    {
+        if (m == MeowType.women)
+            return GetRandomClip(meowWomen);
+
+        return GetRandomClip(meowMen);
+    }
+
+    private AudioClip GetRandomClip(AudioClip[] meowArray)
+    {
+        AudioClip currentMeow;
+        do
+            currentMeow = meowArray[Random.Range(0, meowArray.Length)];
+        while (currentMeow == prevMeow);
+
+        prevMeow = currentMeow;
+        return currentMeow;
+    }
+    private void Awake()
+    {
+        if (audioManager != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            audioManager = this;
+        }
+    }
     private void Start()
     {
         music = GetComponent<AudioSource>();

@@ -10,6 +10,8 @@ public class Hit : StateMachineBehaviour
         Debug.Log("Executor: " + EntityManager.ExecutorCharacter.name + " // Target: " + EntityManager.TargetCharacter);
 
         HealthSystem.TakeDamage(EntityManager.ExecutorCharacter.currentAttack);
+
+        EntityManager.TargetCharacter.GetComponent<MeowAudio>().PlayAudioMew();
         animator.GetComponent<Entity>().ChangeHealth();
 
         SpriteRenderer[] r = animator.GetComponentsInChildren<SpriteRenderer>();
