@@ -67,7 +67,7 @@ public class PrepareDeck : MonoBehaviour
         }
         for (int i = 0; i < cardDisplays.Count; i++)
         {
-            //print(cardDisplays[i].name + " " + currentCards[_index].name);
+            print(cardDisplays[i].name + " " + currentCards[_index].name);
             if (cardDisplays[i].GetComponent<SelectableCardButton>().card.name == currentCards[_index].name)
                 cardDisplays[i].gameObject.SetActive(true);
         }
