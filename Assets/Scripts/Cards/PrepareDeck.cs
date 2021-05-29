@@ -18,6 +18,12 @@ public class PrepareDeck : MonoBehaviour
 
     private Sprite emptyImage;
     private CanvasGroup canvas;
+
+    private int slot;
+    private GameObject displayC;
+    private Vector3 backDesplacement;
+    private bool desplace = false;
+    public float desplaceTime = 0.5f;
     private void Start()
     {
         emptyImage = Slots[0].sprite;
@@ -30,6 +36,28 @@ public class PrepareDeck : MonoBehaviour
 
         canvas = GetComponent<CanvasGroup>();
         cardDisplays = FindObjectsOfType<SelectableCardButton>().ToList();
+
+    }
+
+    private void Update()
+    {
+        DesplaceCard();
+    }
+
+    private void DesplaceCard()
+    {
+        if (desplace)
+        {
+            //displayC es la carta q se ha seleccionado.
+            displayC.transform.position = Vector2.Lerp(displayC.transform.position, Slots[slot].transform.position, desplaceTime);
+
+            if (displayC.transform.position == Slots[slot].transform.position)
+            {
+                desplace = false;
+                displayC.gameObject.SetActive(false);
+                displayC.transform.position = backDesplacement;
+            }
+        }
     }
 
     private void OnDisable()
@@ -45,21 +73,24 @@ public class PrepareDeck : MonoBehaviour
 
     public void CardDisplayChoosen(Image cardDisplay, Card card, GameObject displayCard)
     {
-  
-        if(index < Slots.Length)
+        
+
+        if (index < Slots.Length)
         {
-         
+            
             Slots[index].sprite = cardDisplay.sprite;
             Slots[index].color = new Color(Slots[index].color.r, Slots[index].color.g, Slots[index].color.b, 1);
             currentCards.Add(card);
             if (index >= Slots.Length)
                 index = 0;
-            displayCard.gameObject.SetActive(false);
-   
-            index++;
 
+            slot = index;
+            displayC = displayCard;
+            backDesplacement = displayCard.transform.position; //guardamos su posicion inicial
+            desplace = true;
+
+            index++; 
         }
-        
     }
 
     
@@ -74,7 +105,7 @@ public class PrepareDeck : MonoBehaviour
         }
         for (int i = 0; i < cardDisplays.Count; i++)
         {
-            print(cardDisplays[i].name + " " + currentCards[_index].name);
+           
             if (cardDisplays[i].GetComponent<SelectableCardButton>().card.name == currentCards[_index].name)
                 cardDisplays[i].gameObject.SetActive(true);
         }
