@@ -9,18 +9,14 @@ public class SelectableCardButton : MonoBehaviour
     public static DisplayCard displayCard;
     private Image image;
     public Card card;
+
     private void Start()
     {
-        image = GetComponent<Image>();
+         image = GetComponent<Image>();
         
     }
     public void CardChosen()
     {
-        displayCard?.Invoke(image, card, gameObject);
-        
-        
-        
+        displayCard?.Invoke(image, card, gameObject); 
     }
-
-    
 }
