@@ -32,6 +32,7 @@ public class CustomSceneManager : MonoBehaviour
     } 
     private void Init()
     {
-
+        EntityManager.InitEntities();
+        TurnManager.NextTurn();
     }
 }
