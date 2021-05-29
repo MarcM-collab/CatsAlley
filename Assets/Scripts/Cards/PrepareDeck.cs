@@ -16,13 +16,16 @@ public class PrepareDeck : MonoBehaviour
     [SerializeField]
     private List<SelectableCardButton> cardDisplays;
 
-
+    private Sprite emptyImage;
     private CanvasGroup canvas;
     private void Start()
     {
+        emptyImage = Slots[0].sprite;
+
         for (int i = index; i < Slots.Length; i++)
         {
-            Slots[i].color = new Color(Slots[i].color.r, Slots[i].color.g, Slots[i].color.b, 0);
+           // Slots[i].color = new Color(Slots[i.color.r, Slots[i].color.g, Slots[i].color.b, 0);
+            Slots[i].sprite = emptyImage;
         }
 
         canvas = GetComponent<CanvasGroup>();
@@ -76,7 +79,8 @@ public class PrepareDeck : MonoBehaviour
                 cardDisplays[i].gameObject.SetActive(true);
         }
 
-        Slots[Slots.Length-1].color = new Color(Slots[_index].color.r, Slots[_index].color.g, Slots[_index].color.b, 0);
+        //Slots[Slots.Length-1].color = new Color(Slots[_index].color.r, Slots[_index].color.g, Slots[_index].color.b, 0);
+        Slots[Slots.Length-1].sprite = emptyImage; ;
         currentCards.RemoveAt(_index);
         index--; 
     }
