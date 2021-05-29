@@ -20,9 +20,17 @@ public class DebilitySpell : Spell
                     tileManager.UITilemap.SetTile(prevPos, null);
                     prevPos = mouseIntPos;
                     tileManager.UITilemap.SetTile(mouseIntPos, tileManager.PointingTile);
+
                 }
             }
         }
+
+        print(activated);
+    }
+
+    private void OnDestroy()
+    {
+        activated = false;
     }
     public override void ExecuteSpell()
     {
