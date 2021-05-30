@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class CustomSceneManager : MonoBehaviour
 {
     public static CustomSceneManager SceneManagerCustom;
+    public bool test = false;
     private int levelsUnlocked = 0;
-    public int GetLevelsUnlocked
+    public int GetLevelsUnlocked()
     {
-        get { return levelsUnlocked; }
+        return levelsUnlocked;
     }
     private void Awake()
     {
@@ -21,6 +22,10 @@ public class CustomSceneManager : MonoBehaviour
         {
             SceneManagerCustom = this;
             DontDestroyOnLoad(gameObject);
+        }
+        if(test)
+        {
+            Init();
         }
     }
     public void LoadScene(int buildIndex)
@@ -35,7 +40,7 @@ public class CustomSceneManager : MonoBehaviour
             Init();
         }
     } 
-    private void Init()
+    public void Init()
     {
         EntityManager.InitEntities();
         TurnManager.NextTurn();

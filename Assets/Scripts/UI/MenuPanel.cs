@@ -11,6 +11,12 @@ public class MenuPanel : MonoBehaviour
     {
         _canvasGroup = GetComponent<CanvasGroup>();
         _animator = GetComponent<Animator>();
+
+        if(startShown)
+        {
+            _canvasGroup.alpha = 1;
+            Show();
+        }
     }
 
     public virtual void Show()
@@ -23,8 +29,8 @@ public class MenuPanel : MonoBehaviour
     {
         StopInteract();
         _animator.SetBool("Show", false);
-
     }
+
     private void Interact()
     {
         _canvasGroup.interactable = true;
@@ -35,5 +41,18 @@ public class MenuPanel : MonoBehaviour
     {
         _canvasGroup.interactable = false;
         _canvasGroup.blocksRaycasts = false;
+    }
+
+    public void VariantHide(bool discard)
+    {
+        Hide();
+        if (discard)
+        {
+            _animator.SetBool("Discard", true);
+        }
+        else
+        {
+            _animator.SetBool("Discard", false);
+        }
     }
 }

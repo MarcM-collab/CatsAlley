@@ -24,6 +24,7 @@ public class PrepareDeck : MonoBehaviour
     private Vector3 backDesplacement;
     private bool desplace = false;
     public float desplaceTime = 0.5f;
+    public MenuPanel[] toShow;
     private void Start()
     {
         emptyImage = Slots[0].sprite;
@@ -36,14 +37,12 @@ public class PrepareDeck : MonoBehaviour
 
         canvas = GetComponent<CanvasGroup>();
         cardDisplays = FindObjectsOfType<SelectableCardButton>().ToList();
-
     }
 
     private void Update()
     {
         DesplaceCard();
     }
-
     private void DesplaceCard()
     {
         if (desplace)
@@ -59,7 +58,6 @@ public class PrepareDeck : MonoBehaviour
             }
         }
     }
-
     private void OnDisable()
     {
         SelectableCardButton.displayCard -= CardDisplayChoosen;
@@ -68,13 +66,10 @@ public class PrepareDeck : MonoBehaviour
     private void OnEnable()
     {
         SelectableCardButton.displayCard += CardDisplayChoosen;
-
     }
 
     public void CardDisplayChoosen(Image cardDisplay, Card card, GameObject displayCard)
     {
-        
-
         if (index < Slots.Length)
         {
             
@@ -134,7 +129,13 @@ public class PrepareDeck : MonoBehaviour
             canvas.blocksRaycasts = false;
 
             gameObject.SetActive(true);
-            TurnManager.NextTurn();
+            GetComponent<MenuPanel>().Hide();
+            //TurnManager.NextTurn();
+
+            for (int i = 0; i < toShow.Length; i++)
+            {
+                toShow[i].Show();
+            }
         }
     }
 }

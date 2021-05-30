@@ -10,7 +10,7 @@ public class CheckUnlocked : MonoBehaviour
 
         for (int i = 0; i < levels.Length; i++)
         {
-            SetLevelActive(levels[i], i <= CustomSceneManager.SceneManagerCustom.GetLevelsUnlocked);
+            SetLevelActive(levels[i], i <= CustomSceneManager.SceneManagerCustom.GetLevelsUnlocked());
         }
     }
     private void SetLevelActive(LevelChecker l, bool active)

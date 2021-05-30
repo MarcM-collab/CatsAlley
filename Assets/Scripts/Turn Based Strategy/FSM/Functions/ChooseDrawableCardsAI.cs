@@ -17,6 +17,7 @@ public class ChooseDrawableCardsAI : CardAIBehaviour
     [Header("Display settings")]
     public Sprite cardSprites;
     public Image[] selectableStartCards;
+    private MenuPanel[] selectableCardsPanel = new MenuPanel[2];
     public float selectWait = 2;
     [Range(0, 1)] public float selectWaitRandomicity = 0.25f;
     private float currentWaitSelect = 0;
@@ -26,6 +27,8 @@ public class ChooseDrawableCardsAI : CardAIBehaviour
     public float cardUsageWait = 2;
     [Range(0, 1)] public float cardUsageRandomicity = 0.25f;
     public float scale = 1f;
+
+    private int currentSelectIndex = 1;
 
     public static bool StartAI;
     private void OnEnable()
@@ -42,6 +45,11 @@ public class ChooseDrawableCardsAI : CardAIBehaviour
     private void Start()
     {
         IADeck = _deckAI.IADeck;
+
+        for (int i = 0; i < selectableStartCards.Length; i++)
+        {
+            selectableCardsPanel[i] = selectableStartCards[i].GetComponent<MenuPanel>();
+        }
     }
 
     private void ChooseDrawableCardsEnter(Animator animator)
@@ -52,7 +60,7 @@ public class ChooseDrawableCardsAI : CardAIBehaviour
     {
         for (int i = 0; i < selectableStartCards.Length; i++)
         {
-            selectableStartCards[i].gameObject.SetActive(true);
+            selectableCardsPanel[i].Show();
             selectableStartCards[i].sprite = cardSprites;
         }
     }
@@ -85,7 +93,12 @@ public class ChooseDrawableCardsAI : CardAIBehaviour
     {
         SetSelectedInitialCard(-1);
         for (int i = 0; i < selectableStartCards.Length; i++)
-            selectableStartCards[i].gameObject.SetActive(false); //hide cards
+        {
+            if (i == currentSelectIndex)
+                selectableCardsPanel[i].VariantHide(false);
+            else
+                selectableCardsPanel[i].VariantHide(true);
+        }
     }
     private void SetSelectedInitialCard(int v)
     {
@@ -95,7 +108,11 @@ public class ChooseDrawableCardsAI : CardAIBehaviour
         }
 
         if (v != -1) //reset colors
+        {
+            currentSelectIndex = v;
             selectableStartCards[v].color = selectCardColor;
+        }
+
     }
     private void RandomCardChosen()
     {
