@@ -97,23 +97,27 @@ public class PrepareDeck : MonoBehaviour
 
     public void RemoveChosenCard(int _index)
     {
-        for (int i = _index; i < Slots.Length-1; i++)
+        if(Slots[_index].sprite != emptyImage)
         {
-            if(Slots[i + 1].sprite != null)
-                Slots[i].sprite = Slots[i + 1].sprite;
-            
-        }
-        for (int i = 0; i < cardDisplays.Count; i++)
-        {
-           
-            if (cardDisplays[i].GetComponent<SelectableCardButton>().card.name == currentCards[_index].name)
-                cardDisplays[i].gameObject.SetActive(true);
-        }
+            for (int i = _index; i < Slots.Length - 1; i++)
+            {
+                if (Slots[i + 1].sprite != null)
+                    Slots[i].sprite = Slots[i + 1].sprite;
 
-        //Slots[Slots.Length-1].color = new Color(Slots[_index].color.r, Slots[_index].color.g, Slots[_index].color.b, 0);
-        Slots[Slots.Length-1].sprite = emptyImage; ;
-        currentCards.RemoveAt(_index);
-        index--; 
+            }
+            for (int i = 0; i < cardDisplays.Count; i++)
+            {
+
+                if (cardDisplays[i].GetComponent<SelectableCardButton>().card.name == currentCards[_index].name)
+                    cardDisplays[i].gameObject.SetActive(true);
+            }
+
+            //Slots[Slots.Length-1].color = new Color(Slots[_index].color.r, Slots[_index].color.g, Slots[_index].color.b, 0);
+            Slots[Slots.Length - 1].sprite = emptyImage; ;
+            currentCards.RemoveAt(_index);
+            index--;
+        }
+        
     }
 
     public void DeckIsFinished()
