@@ -9,6 +9,7 @@ public class MeowAudio : MonoBehaviour
     private void Awake()
     {
         a = GetComponent<AudioSource>();
+        a.outputAudioMixerGroup = AudioManager.audioManager.sfxMixer;
     }
     public void PlayAudioMew()
     {
