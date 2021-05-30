@@ -9,10 +9,6 @@ public class Settings : MonoBehaviour
     Resolution[] resolutions;
     public TMP_Dropdown resolutionsDropdown;
     public Toggle t;
-    private void Update()
-    {
-        //PlayerPrefs.DeleteAll();
-    }
     private void Start()
     {
         resolutions = Screen.resolutions;
