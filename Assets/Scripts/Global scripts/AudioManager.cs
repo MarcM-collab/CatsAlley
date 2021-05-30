@@ -27,6 +27,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager audioManager;
 
     private AudioSource music;
+    private AudioLowPassFilter passFilter;
     public AudioSource transition;
     private bool playerTurn = false;
     private float prevVolume;
@@ -79,6 +80,8 @@ public class AudioManager : MonoBehaviour
             ChangeVolume(PlayerPrefs.GetFloat("musicVol"), soundType.music);
             ChangeVolume(PlayerPrefs.GetFloat("globalVol"), soundType.global);
         }
+
+        passFilter = GetComponent<AudioLowPassFilter>();
     }
     private void Start()
     {
@@ -183,5 +186,14 @@ public class AudioManager : MonoBehaviour
         }
 
         mixer.SetFloat(parameter, Mathf.Log10(value) * 20);
+    }
+
+    public void ApplyFilter()
+    {
+        passFilter.enabled = true;
+    }
+    public void StopFilter()
+    {
+        passFilter.enabled = false;
     }
 }
