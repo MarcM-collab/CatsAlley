@@ -24,8 +24,6 @@ public class DebilitySpell : Spell
                 }
             }
         }
-
-        print(activated);
     }
 
     private void OnDestroy()

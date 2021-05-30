@@ -5,30 +5,32 @@ using UnityEngine;
 public class MenuPanel : MonoBehaviour
 {
     private CanvasGroup _canvasGroup;
-    //Future anim usage//private Animator _animator;
-
+    private Animator _animator;
+    public bool startShown = false;
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
-        //Future anim usage// _animator = GetComponent<Animator>();
-        Hide();
+        _animator = GetComponent<Animator>();
+
+        if(startShown)
+        {
+            _canvasGroup.alpha = 1;
+            Show();
+        }
     }
 
     public virtual void Show()
     {
         Interact();
-        _canvasGroup.alpha = 1;
-        //Future anim usage//_animator.SetBool("Show", true);
+        _animator.SetBool("Show", true);
     }
 
     public void Hide()
     {
         StopInteract();
-        _canvasGroup.alpha = 0;
-
-        //Future anim usage//_animator.SetBool("Show", false);
-
+        _animator.SetBool("Show", false);
     }
+
     private void Interact()
     {
         _canvasGroup.interactable = true;
@@ -39,5 +41,18 @@ public class MenuPanel : MonoBehaviour
     {
         _canvasGroup.interactable = false;
         _canvasGroup.blocksRaycasts = false;
+    }
+
+    public void VariantHide(bool discard)
+    {
+        Hide();
+        if (discard)
+        {
+            _animator.SetBool("Discard", true);
+        }
+        else
+        {
+            _animator.SetBool("Discard", false);
+        }
     }
 }

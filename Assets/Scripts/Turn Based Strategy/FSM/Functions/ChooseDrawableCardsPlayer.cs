@@ -11,9 +11,9 @@ public class ChooseDrawableCardsPlayer : MonoBehaviour
     private DeckPlayer _deckPlayer;
 
     Card[] twoCardsRandom = new Card[2]; //lista para las dos cartas aleatorias.
-    private List<Card> randomControl = new List<Card>();
     [SerializeField]
     private Image[] buttons;
+    private MenuPanel[] buttonsPanel = new MenuPanel[2];
     private RectTransform[] cardInstancePos = new RectTransform[2];
     private GameObject[] cardsGO = new GameObject[2];
 
@@ -42,6 +42,7 @@ public class ChooseDrawableCardsPlayer : MonoBehaviour
         for (int i = 0; i < buttons.Length; i++)
         {
             cardInstancePos[i] = buttons[i].GetComponentInChildren<RectTransform>();
+            buttonsPanel[i] = buttons[i].GetComponent<MenuPanel>();
         }
     }
     private void Start()
@@ -56,7 +57,6 @@ public class ChooseDrawableCardsPlayer : MonoBehaviour
             ChooseRandom();
             ShowRandomCards();
         }
-
         else
         {
             animator.SetBool("ChooseCard", false);
@@ -87,9 +87,7 @@ public class ChooseDrawableCardsPlayer : MonoBehaviour
     {
         for (int i = 0; i < twoCardsRandom.Length; i++) 
         {
-            buttons[i].gameObject.SetActive(true);
-
-            cardsGO[i] = Instantiate(twoCardsRandom[i].gameObject, buttons[i].transform);
+            cardsGO[i] = Instantiate(twoCardsRandom[i].gameObject, buttons[i].transform.Find("Parent"));
 
             cardsGO[i].GetComponent<ScriptButton>().enabled = false;
             cardsGO[i].GetComponent<Button>().enabled = false;
@@ -100,7 +98,9 @@ public class ChooseDrawableCardsPlayer : MonoBehaviour
 
             RectTransform rt = cardsGO[i].GetComponent<RectTransform>();
             rt.position = cardInstancePos[i].position;
-            rt.localScale = cardInstancePos[i].localScale; 
+            rt.localScale = cardInstancePos[i].localScale;
+
+            buttonsPanel[i].Show();
         }
 
     }
@@ -122,7 +122,10 @@ public class ChooseDrawableCardsPlayer : MonoBehaviour
 
         for (int i = 0; i < buttons.Length; i++)
         {
-            buttons[i].gameObject.SetActive(false);
+            if (i == number)
+                buttonsPanel[i].VariantHide(false);
+            else
+                buttonsPanel[i].VariantHide(true);
         }
         cardSelected = true;
     }
