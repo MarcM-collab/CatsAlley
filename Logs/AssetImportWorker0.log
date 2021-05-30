@@ -298,3 +298,30 @@ Received Import Request.
 Start importing Assets/Prefabs/Cards/Card_LifeStealSpell.prefab using Guid(7f6194ab0b5c6294db12286a82a204ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '99d8cb95576319920467ac099eaea691') in 0.020903 seconds
   Import took 0.024085 seconds .
 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001052 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.30 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.008 seconds
+Platform modules already initialized, skipping
+OnLevelWasLoaded was found on CustomSceneManager
+This message has been deprecated and will be removed in a later version of Unity.
+Add a delegate to SceneManager.sceneLoaded instead to get notifications after scene loading has completed
+
+Refreshing native plugins compatible for Editor in 0.33 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1292 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 67.4 MB.
+System memory in use after: 67.5 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1773.
+Total: 2.588400 ms (FindLiveObjects: 0.309800 ms CreateObjectMapping: 0.084200 ms MarkObjects: 2.158900 ms  DeleteObjects: 0.033000 ms)
+
