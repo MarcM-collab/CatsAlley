@@ -1,24 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using System;
 using Random = UnityEngine.Random;
-
-[Serializable]
-public struct Clip
-{
-    public AudioClip playerTurnClip;
-    public AudioClip IATurnClip;
-}
 public enum MeowType
 {
     women,
     men
 }
+public enum soundType
+{
+    SFX,
+    music,
+    global
+}
 public class AudioManager : MonoBehaviour
 {
+    public AudioMixer mixer;
+    public AudioMixerGroup musicMixer;
+    public AudioMixerGroup sfxMixer;
+
     public float transitionWait = 1;
-    public Clip[] musicClips;
+    public AudioClip[] musicClips;
 
     public static AudioManager audioManager;
 
@@ -32,6 +36,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] meowMen;
 
     private AudioClip prevMeow;
+
+    public float sfxVolume = 0.5f, musicVolume = 0.5f, globalVolume = 0.5f; //This is needed to initialitzate the value of the sliders
     public AudioClip GetAudioClip(MeowType m)
     {
         if (m == MeowType.women)
@@ -60,11 +66,27 @@ public class AudioManager : MonoBehaviour
         {
             audioManager = this;
         }
+
+        if (!PlayerPrefs.HasKey("sfxVol"))
+        {
+            ChangeVolume(sfxVolume, soundType.SFX);
+            ChangeVolume(musicVolume, soundType.music);
+            ChangeVolume(globalVolume, soundType.global);
+        }
+        else
+        {
+            ChangeVolume(PlayerPrefs.GetFloat("sfxVol"), soundType.SFX);
+            ChangeVolume(PlayerPrefs.GetFloat("musicVol"), soundType.music);
+            ChangeVolume(PlayerPrefs.GetFloat("globalVol"), soundType.global);
+        }
     }
     private void Start()
     {
         music = GetComponent<AudioSource>();
+        music.outputAudioMixerGroup = musicMixer;
         music.loop = true;
+        music.clip = musicClips[0];
+        music.Play();
     }
 
     private void Update()
@@ -92,11 +114,11 @@ public class AudioManager : MonoBehaviour
 
         if (playerTurn)
         {
-            music.clip = musicClips[0].playerTurnClip;
+            //music.clip = musicClips[0].playerTurnClip;
         }
         else
         {
-            music.clip = musicClips[0].IATurnClip;
+            //music.clip = musicClips[0].IATurnClip;
         }
         music.Play();
         StartCoroutine(FadeIn(transitionWait, prevVolume));
@@ -130,8 +152,36 @@ public class AudioManager : MonoBehaviour
         }
         yield break;
     }
-    private void ChageVolume(float value)
+    public void ChangeVolume(float value, soundType s)
     {
-        
+        switch (s)
+        {
+            case soundType.SFX:
+                PlayerPrefs.SetFloat("sfxVol", value);
+                sfxVolume = value;
+                SetVolume("SFXVol", value);
+                break;
+            case soundType.music:
+                PlayerPrefs.SetFloat("musicVol", value);
+                musicVolume = value;
+                SetVolume("MusicVol", value);
+                break;
+            case soundType.global:
+                PlayerPrefs.SetFloat("globalVol", value);
+                globalVolume = value;
+                SetVolume("MasterVol", value);
+                break;
+        }
+        PlayerPrefs.Save();
+    }
+    private void SetVolume(string parameter, float value)
+    {
+        if (value < 0.1f)
+        {
+            mixer.SetFloat(parameter, -80); //avoids errors that when 0 log10 is 0 and should be -80 to mute.
+            return;
+        }
+
+        mixer.SetFloat(parameter, Mathf.Log10(value) * 20);
     }
 }
