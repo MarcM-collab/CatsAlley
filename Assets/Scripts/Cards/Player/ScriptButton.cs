@@ -29,6 +29,7 @@ public class ScriptButton : MonoBehaviour, IPointerExitHandler, IPointerEnterHan
     private Explanation explanation;
     private bool isIn = false;
     private Image im;
+    private Sprite unitSprite;
     [Range(0, 1)] private float transparencyOnDrag = 0.5f;
     public GameObject displayer;
     private GameObject currentDisplayer;
@@ -40,6 +41,7 @@ public class ScriptButton : MonoBehaviour, IPointerExitHandler, IPointerEnterHan
     private void Start()
     {
         im = GetComponent<Image>();
+        
         explanation = GetComponentInChildren<Explanation>();
         if (explanation)
             explanation.gameObject.SetActive(false);
@@ -51,6 +53,11 @@ public class ScriptButton : MonoBehaviour, IPointerExitHandler, IPointerEnterHan
         startY = rect.position.y;
         startScale = rect.localScale;
         selfCard = GetComponent<Card>();
+
+        if (selfCard is Unit)
+        {
+            unitSprite = GetComponent<Unit>().character.transform.Find("Displayer").GetComponent<SpriteRenderer>().sprite;
+        }
     }
     private void SpawnClick()
     {
@@ -226,8 +233,10 @@ public class ScriptButton : MonoBehaviour, IPointerExitHandler, IPointerEnterHan
     {
         im.color = new Color(im.color.r, im.color.g, im.color.b, transparencyOnDrag);
         SpawnClick();
-        currentDisplayer = Instantiate(displayer, Input.mousePosition, Quaternion.identity);
-        currentDisplayer.GetComponent<Image>().sprite = im.sprite;
+        currentDisplayer = Instantiate(displayer, Input.mousePosition, Quaternion.identity, newParent);
+        currentDisplayer.transform.eulerAngles = new Vector3(0, 180, 0);
+        currentDisplayer.GetComponent<Image>().sprite = unitSprite;
+        currentDisplayer.transform.localScale *= 2;
     }
     private void Dragging()
     {

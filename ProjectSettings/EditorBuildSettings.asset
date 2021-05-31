@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Marc.unity
+    path: Assets/Scenes/Ricard.unity
     guid: 216bb97ca5ac68446bc0e6e8e652c663
   m_configObjects: {}
