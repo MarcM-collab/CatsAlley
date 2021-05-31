@@ -306,6 +306,7 @@ MonoBehaviour:
   executed: 0
   Priority: 1
   GasSpellPrefab: {fileID: 2758618109334501071, guid: 05548e4b8d8ceb443b7c7021c151a2f1, type: 3}
+  GasSpellTile: {fileID: 11400000, guid: a264d5177b90f764082e351eb7a9ba44, type: 2}
   damage: 2
 --- !u!1 &5713441574064518238
 GameObject:

@@ -17,16 +17,32 @@ public class GasSpell : Spell
 
             if (tileManager.FloorTilemap.HasTile(mouseIntPos))
             {
-                if (prevPos != mouseIntPos)
+
+                if (prevPos != mouseIntPos && !executed )
                 {
+
                     tileManager.UITilemap.SetTile(prevPos, null);
+                    tileManager.UITilemap.SetTile(prevPos + new Vector3Int(0, -1, 0), null);
+                    tileManager.UITilemap.SetTile(prevPos + new Vector3Int(-1, 0, 0), null);
+                    tileManager.UITilemap.SetTile(prevPos + new Vector3Int(-1, -1, 0), null);
                     prevPos = mouseIntPos;
+
                     tileManager.UITilemap.SetTile(mouseIntPos, tileManager.PointingTile);
+                    tileManager.UITilemap.SetTile(mouseIntPos + new Vector3Int(0, -1, 0), tileManager.PointingTile);
+                    tileManager.UITilemap.SetTile(mouseIntPos + new Vector3Int(-1, 0, 0), tileManager.PointingTile);
+                    tileManager.UITilemap.SetTile(mouseIntPos + new Vector3Int(-1, -1, 0), tileManager.PointingTile);
+
                 }
+                
             }
         }
+
     }
 
+    private void OnDestroy()
+    {
+        activated = false;
+    }
     public override void ExecuteSpell()
     {
         base.ExecuteSpell();
@@ -38,9 +54,14 @@ public class GasSpell : Spell
             executed = true;
         }
         tileManager.UITilemap.SetTile(prevPos, null);
+        tileManager.UITilemap.SetTile(prevPos + new Vector3Int(0, -1, 0), null);
+        tileManager.UITilemap.SetTile(prevPos + new Vector3Int(-1, 0, 0), null);
+        tileManager.UITilemap.SetTile(prevPos + new Vector3Int(-1, -1, 0), null);
     }
     public override void IAUse()
     {
 
     }
 }
+   
+
