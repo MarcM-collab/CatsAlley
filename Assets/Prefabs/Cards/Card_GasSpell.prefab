@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cde27b4390ad7f4d9496cab5f7da083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Canvas: {fileID: 8927148082092869621, guid: 8a90c243c0dc94945a28f0a045ffac77, type: 3}
   offsetY: 125
   scale: {x: 2.5, y: 2.5, z: 2.5}
   displayer: {fileID: 2249963350747922903, guid: 80ba08dda44985149bd71e1993271b8d, type: 3}
@@ -306,6 +307,7 @@ MonoBehaviour:
   executed: 0
   Priority: 1
   GasSpellPrefab: {fileID: 2758618109334501071, guid: 05548e4b8d8ceb443b7c7021c151a2f1, type: 3}
+  GasSpellTile: {fileID: 11400000, guid: a264d5177b90f764082e351eb7a9ba44, type: 2}
   damage: 2
 --- !u!1 &5713441574064518238
 GameObject:

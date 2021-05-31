@@ -19,6 +19,9 @@ public class MovingToTile : CombatBehaviour
         if (_tileChosenGridPosition != _executorGridPosition)
         {
             var cellSize = TileManager.CellSize;
+
+            _executorCharacter.Turn = true;
+
             _executorCharacter.TeleportPoint = _tileChosenGridPosition + cellSize;
 
             _executorCharacter.Teleporting = true;

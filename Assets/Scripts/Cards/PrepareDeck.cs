@@ -21,7 +21,7 @@ public class PrepareDeck : MonoBehaviour
 
     private int slot;
     private GameObject displayC;
-    private Vector3 backDesplacement;
+    //private Vector3 backDesplacement;
     private bool desplace = false;
     public float desplaceTime = 0.5f;
     public MenuPanel[] toShow;
@@ -54,7 +54,7 @@ public class PrepareDeck : MonoBehaviour
             {
                 desplace = false;
                 displayC.gameObject.SetActive(false);
-                displayC.transform.position = backDesplacement;
+                //displayC.transform.position = backDesplacement;
             }
         }
     }
@@ -79,9 +79,10 @@ public class PrepareDeck : MonoBehaviour
             if (index >= Slots.Length)
                 index = 0;
 
+            cardDisplay.gameObject.SetActive(false);
             slot = index;
             displayC = displayCard;
-            backDesplacement = displayCard.transform.position; //guardamos su posicion inicial
+            //backDesplacement = displayCard.transform.position; //guardamos su posicion inicial
             desplace = true;
 
             index++; 
@@ -108,7 +109,7 @@ public class PrepareDeck : MonoBehaviour
             }
 
             //Slots[Slots.Length-1].color = new Color(Slots[_index].color.r, Slots[_index].color.g, Slots[_index].color.b, 0);
-            Slots[Slots.Length - 1].sprite = emptyImage; ;
+            Slots[Slots.Length - 1].sprite = emptyImage;
             currentCards.RemoveAt(_index);
             index--;
         }
