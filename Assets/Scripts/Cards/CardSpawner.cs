@@ -23,7 +23,10 @@ public class CardSpawner : MonoBehaviour
         GameObject theTile = Instantiate(toSpawn.GetComponent<Unit>().character.gameObject, pos, Quaternion.identity);
         theTile.transform.position = new Vector3(pos.x + (FloorTileMap.cellSize.x / 2), pos.y + (FloorTileMap.cellSize.y / 2), 0);
 
-        theTile.GetComponent<Character>().Team = team;
+        var character = theTile.GetComponent<Character>();
+        character.Team = team;
+        character.Exhausted = true;
+
 
         if (team == Team.TeamPlayer)
         {

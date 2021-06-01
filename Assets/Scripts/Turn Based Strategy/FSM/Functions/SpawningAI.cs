@@ -111,7 +111,7 @@ public class SpawningAI : CardAIBehaviour
     {
         IAHand.Remove(cardToRemove);
         TurnManager.SubstractMana(cardToRemove.Whiskas);
-        Destroy(cardToRemove.gameObject); //To make it visible that a card has been used.
+        DestroyImmediate(cardToRemove.gameObject, true); //To make it visible that a card has been used.
     }
     private List<Unit> CombinationCard(List<Card> list)
     {

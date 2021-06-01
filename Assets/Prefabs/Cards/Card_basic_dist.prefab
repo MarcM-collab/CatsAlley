@@ -1234,7 +1234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offsetY: 125
   scale: {x: 2.5, y: 2.5, z: 2.5}
-  displayer: {fileID: 2249963350747922903, guid: 80ba08dda44985149bd71e1993271b8d, type: 3}
+  displayer: {fileID: 3566453777543803025, guid: 811a42b6ea2517048b3ee1b59abccc73, type: 3}
 --- !u!114 &4526846348483723782
 MonoBehaviour:
   m_ObjectHideFlags: 0
