@@ -826,6 +826,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1362762382464593, guid: 9e4176f8a343d054cb3e3a5089dc52b6, type: 3}
+      propertyPath: GasSpellTile
+      value: 
+      objectReference: {fileID: 11400000, guid: a264d5177b90f764082e351eb7a9ba44, type: 2}
+    - target: {fileID: 5964836482744359551, guid: 9e4176f8a343d054cb3e3a5089dc52b6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.5031738
+      objectReference: {fileID: 0}
     - target: {fileID: 5964836482748073396, guid: 9e4176f8a343d054cb3e3a5089dc52b6, type: 3}
       propertyPath: m_Name
       value: PrepareYourDeck
@@ -4560,6 +4568,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map
       objectReference: {fileID: 0}
+    - target: {fileID: 804958840143935206, guid: 006225af0c6b1d648bbd669a4cda83e2, type: 3}
+      propertyPath: GasTile
+      value: 
+      objectReference: {fileID: 11400000, guid: a264d5177b90f764082e351eb7a9ba44, type: 2}
     - target: {fileID: 804958840143935206, guid: 006225af0c6b1d648bbd669a4cda83e2, type: 3}
       propertyPath: AIHeroTile
       value: 
@@ -8585,6 +8597,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1801886109, guid: 8a90c243c0dc94945a28f0a045ffac77, type: 3}
+      propertyPath: necessaryWhiskas
+      value: 
+      objectReference: {fileID: 4900161137185132709, guid: c4765603e3d2d6041928ec2c9d88e7dc, type: 3}
+    - target: {fileID: 926862745950333406, guid: 8a90c243c0dc94945a28f0a045ffac77, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6cb9bb8ded3e2a5418d3bc3f3603b282, type: 3}
     - target: {fileID: 952361337504223052, guid: 8a90c243c0dc94945a28f0a045ffac77, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 308
@@ -8601,6 +8621,42 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1019928043}
+    - target: {fileID: 1890807347640014711, guid: 8a90c243c0dc94945a28f0a045ffac77, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6cb9bb8ded3e2a5418d3bc3f3603b282, type: 3}
+    - target: {fileID: 3022451094830549833, guid: 8a90c243c0dc94945a28f0a045ffac77, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6cb9bb8ded3e2a5418d3bc3f3603b282, type: 3}
+    - target: {fileID: 3465992250637450424, guid: 8a90c243c0dc94945a28f0a045ffac77, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6cb9bb8ded3e2a5418d3bc3f3603b282, type: 3}
+    - target: {fileID: 5285254155658786557, guid: 8a90c243c0dc94945a28f0a045ffac77, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6cb9bb8ded3e2a5418d3bc3f3603b282, type: 3}
+    - target: {fileID: 5909049850941311823, guid: 8a90c243c0dc94945a28f0a045ffac77, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6cb9bb8ded3e2a5418d3bc3f3603b282, type: 3}
+    - target: {fileID: 6656049924386890462, guid: 8a90c243c0dc94945a28f0a045ffac77, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6cb9bb8ded3e2a5418d3bc3f3603b282, type: 3}
+    - target: {fileID: 7777961884300442237, guid: 8a90c243c0dc94945a28f0a045ffac77, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6cb9bb8ded3e2a5418d3bc3f3603b282, type: 3}
+    - target: {fileID: 8204130365378073215, guid: 8a90c243c0dc94945a28f0a045ffac77, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6cb9bb8ded3e2a5418d3bc3f3603b282, type: 3}
+    - target: {fileID: 8401315435891139805, guid: 8a90c243c0dc94945a28f0a045ffac77, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6cb9bb8ded3e2a5418d3bc3f3603b282, type: 3}
     - target: {fileID: 8927148081980122565, guid: 8a90c243c0dc94945a28f0a045ffac77, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

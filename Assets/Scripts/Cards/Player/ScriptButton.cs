@@ -17,6 +17,10 @@ public class ScriptButton : MonoBehaviour, IPointerExitHandler, IPointerEnterHan
     public delegate void DragEnded();
     public static DragEnded endDrag;
 
+    public delegate void WhiskasNecessary(Card current);
+    public static WhiskasNecessary whiskasNecessary;
+
+
     public float offsetY = 300;
     public Vector3 scale;
     private RectTransform rect;
@@ -203,6 +207,7 @@ public class ScriptButton : MonoBehaviour, IPointerExitHandler, IPointerEnterHan
     }
     private IEnumerator NotEnough(Image i)
     {
+        whiskasNecessary?.Invoke(selfCard);
         i.color = Color.red;
         yield return new WaitForSeconds(0.2f);
         i.color = Color.white;

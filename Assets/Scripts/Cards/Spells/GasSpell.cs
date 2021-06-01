@@ -18,7 +18,7 @@ public class GasSpell : Spell
             if (tileManager.FloorTilemap.HasTile(mouseIntPos))
             {
 
-                if (prevPos != mouseIntPos && !executed )
+                if (prevPos != mouseIntPos)
                 {
 
                     tileManager.UITilemap.SetTile(prevPos, null);
