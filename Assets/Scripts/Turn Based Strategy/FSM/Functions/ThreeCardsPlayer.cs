@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ThreeCardsPlayer : MonoBehaviour
 {
-    private List<Card> _cards; //Baraja elegida por el player (8 cartas)
+    private List<Card> _cards = new List<Card>(); //Baraja elegida por el player (8 cartas)
     [SerializeField]
     private DeckPlayer _deckPlayer;
 
@@ -16,22 +16,26 @@ public class ThreeCardsPlayer : MonoBehaviour
     private RectTransform[] cardInstancePos;
     private GameObject[] cardsGO;
 
-    private List<Card> randomControl = new List<Card>();
-
     [SerializeField]
     private HandManager Hand;
     [SerializeField]
     private int maxCardInHand = 6;
-    private bool currentTurn = false;
 
-    private bool PressedFirst;
-
-    private bool cardSelected;
-
-    private List<Card> discardedCards = new List<Card>();
+    private List<int> discardedCards = new List<int>();
 
     [SerializeField]
     private GameObject xGO;
+
+    private int[] listRandom;
+
+    private bool _buttonPressed;
+
+    private GameObject canvasGO;
+
+    private float _timer;
+    [SerializeField]
+    private float _timeAfterConfirm = 1.5f;
+    private bool _startTimer;
 
     private void OnEnable()
     {
@@ -45,6 +49,8 @@ public class ThreeCardsPlayer : MonoBehaviour
     }
     private void Start()
     {
+        canvasGO = buttons[0].transform.parent.gameObject;
+
         randomCards = new Card[buttons.Length];
         cardInstancePos = new RectTransform[buttons.Length];
         cardsGO = new GameObject[buttons.Length];
@@ -60,18 +66,15 @@ public class ThreeCardsPlayer : MonoBehaviour
     {
         if (Hand.hand.Count < maxCardInHand)
         {
+            canvasGO.SetActive(true);
             RemovePreviousCards();
             ChooseRandomInitial();
             ShowRandomCards();
-
-            //AddCards() after confirm and animation
         }
-
         else
         {
-            animator.SetBool("ChooseCard", false);
-            cardSelected = false;
-            TurnManager.CardDrawn = true;
+            animator.SetBool("CardsDrawn", false);
+            TurnManager.ExtraCards = true;
         }
     }
 
@@ -86,12 +89,26 @@ public class ThreeCardsPlayer : MonoBehaviour
 
     private void ThreeCardsUpdate(Animator animator)
     {
-        if (cardSelected)
+        if (_buttonPressed)
         {
-            animator.SetBool("ChooseCard", false);
-            cardSelected = false;
-            TurnManager.CardDrawn = true;
+            _buttonPressed = false;
+            _startTimer = true;
+            _timer = 0;
         }
+        //Debug.Log(_timer);
+        if (_startTimer && _timer >= _timeAfterConfirm)
+        {
+            animator.SetBool("CardsDrawn", false);
+            TurnManager.ExtraCards = true;
+            TurnManager.CardDrawn = true;
+
+            AddCards();
+            HideRandomCards();
+
+            canvasGO.SetActive(false);
+            _startTimer = false;
+        }
+        _timer += Time.deltaTime;
     }
     private void ShowRandomCards() //muestra las dos cartas random
     {
@@ -117,19 +134,23 @@ public class ThreeCardsPlayer : MonoBehaviour
     }
     private void ChooseRandomInitial() //salen dos cartas random y las guarda en una lista.
     {
-        int[] listRandom = new int[randomCards.Length];
-        bool differentToPrevious = false;
+        listRandom = new int[randomCards.Length];
         for (int i = 0; i < randomCards.Length; i++)
         {
             int currentRandom = UnityEngine.Random.Range(0, _cards.Count);
             listRandom[i] = currentRandom;
+            bool differentToPrevious = false;
 
             if (i > 0) 
             {
-                while (differentToPrevious)
+                while (!differentToPrevious)
                 {
+                    currentRandom = UnityEngine.Random.Range(0, _cards.Count);
+                    listRandom[i] = currentRandom;
+
                     differentToPrevious = true;
-                    for (int j = i; j >= 0; j--)
+
+                    for (int j = i - 1; j >= 0; j--)
                     {
                         if (currentRandom == listRandom[j])
                         {
@@ -157,62 +178,76 @@ public class ThreeCardsPlayer : MonoBehaviour
         {
             buttons[i].gameObject.SetActive(false);
         }
-        cardSelected = true;
     }
     
     public void SelectCard(int number)
     {
-        Card selectedCard = randomCards[number];
         Image xImage = buttons[number].transform.GetChild(1).GetChild(buttons[number].transform.GetChild(1).childCount - 1).GetComponent<Image>();
         if (xImage.enabled == true)
         {
             xImage.enabled = false;
-            discardedCards.Remove(selectedCard);
+            discardedCards.Remove(number);
         }
         else
         {
             xImage.enabled = true;
-            discardedCards.Add(selectedCard);
+            discardedCards.Add(number);
         }
     }
 
     public void Confirm()
     {
-        List<Card> canNotRepeatCards = new List<Card>();
+        List<int> canNotRepeatCards = new List<int>();
         for (int i = 0; i < randomCards.Length; i++)
         {
-            canNotRepeatCards.Add(randomCards[i]);
+            canNotRepeatCards.Add(listRandom[i]);
         }
+        if (canNotRepeatCards.Count > 0)
+        {
+            ChooseRandomFinal(canNotRepeatCards);
+            RemovePreviousCards();
+            ShowRandomCards();
+        }
+
+        _buttonPressed = true;
     }
-    private void ChooseRandomFinal() //salen dos cartas random y las guarda en una lista.
+    private void ChooseRandomFinal(List<int> canNotRepeatCards) //salen dos cartas random y las guarda en una lista.
     {
-        int[] listRandom = new int[randomCards.Length];
-        bool differentToPrevious = false;
+        int[] previousListRandom = new int[listRandom.Length];
+        listRandom.CopyTo(previousListRandom, 0);
+        listRandom = new int[randomCards.Length];
         for (int i = 0; i < randomCards.Length; i++)
         {
-            int currentRandom = UnityEngine.Random.Range(0, _cards.Count);
-            listRandom[i] = currentRandom;
-
-            if (i > 0)
+            if (discardedCards.Contains(i))
             {
-                while (differentToPrevious)
+                int currentRandom = UnityEngine.Random.Range(0, _cards.Count);
+                listRandom[i] = currentRandom;
+
+                while (canNotRepeatCards.Contains(currentRandom))
                 {
-                    differentToPrevious = true;
-                    for (int j = i; j >= 0; j--)
-                    {
-                        if (currentRandom == listRandom[j])
-                        {
-                            differentToPrevious = false;
-                            break;
-                        }
-                    }
+                    currentRandom = UnityEngine.Random.Range(0, _cards.Count);
+                    listRandom[i] = currentRandom;
                 }
+
+                canNotRepeatCards.Add(currentRandom);
+            }
+            else 
+            {
+                listRandom[i] = previousListRandom[i];
             }
         }
 
         for (int i = 0; i < randomCards.Length; i++)
         {
             randomCards[i] = _cards[listRandom[i]];
+        }
+    }
+
+    private void HideRandomCards()
+    {
+        for (int i = 0; i > buttons.Length; i++)
+        {
+            buttons[i].gameObject.SetActive(false);
         }
     }
 }
