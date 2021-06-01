@@ -14,13 +14,17 @@ public class SetManaValue : MonoBehaviour
     private Slider manaSlider;
     private Text manaText;
 
+    private int _currentMana;
+    private int _maxMana;
     private void OnEnable()
     {
         TurnManager.setDisplay += ChangeValue;
+        ScriptButton.whiskasNecessary += CourutineMana;
     }
     private void OnDisable()
     {
         TurnManager.setDisplay -= ChangeValue;
+        ScriptButton.whiskasNecessary -= CourutineMana;
     }
     private void Start()
     {
@@ -28,6 +32,8 @@ public class SetManaValue : MonoBehaviour
     }
     private void ChangeValue(int currentAmount, int maxMana)
     {
+        _currentMana = currentAmount;
+        _maxMana = maxMana;
         if (whiskas_array == null) //As it's called from the awake method this avoids 
             Init();
 
@@ -62,6 +68,31 @@ public class SetManaValue : MonoBehaviour
         for (int i = 0; i < whiskas_array.Length; i++)
         {
             whiskas_array[i].gameObject.SetActive(false);
+        }
+    }
+
+    private void CourutineMana(Card currentCardMana)
+    {
+        StartCoroutine(ManaNecessary(currentCardMana));
+    }
+    public IEnumerator ManaNecessary(Card current)
+    {
+        Color temp = disactiveWhiskas_array[0].color;
+
+        for (int i = _currentMana; i < current.Whiskas; i++)
+        {
+
+            disactiveWhiskas_array[i].color = Color.red;
+            disactiveWhiskas_array[i].gameObject.SetActive(true);
+        }
+        yield return new WaitForSeconds(0.5f);
+
+        for (int i = current.Whiskas; i >= _currentMana; i--)
+        {
+
+            disactiveWhiskas_array[i].color = temp;
+            if (i>=_maxMana)//para q no retire las espacios de mana utilizado:)
+                disactiveWhiskas_array[i].gameObject.SetActive(false);
         }
     }
 }

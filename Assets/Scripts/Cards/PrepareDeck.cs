@@ -21,9 +21,10 @@ public class PrepareDeck : MonoBehaviour
 
     private int slot;
     private GameObject displayC;
-    //private Vector3 backDesplacement;
+    private Vector3 backDesplacement;
     private bool desplace = false;
     public float desplaceTime = 0.5f;
+    private GameObject temporalDisplay;
     public MenuPanel[] toShow;
     private void Start()
     {
@@ -45,18 +46,23 @@ public class PrepareDeck : MonoBehaviour
     }
     private void DesplaceCard()
     {
+       
         if (desplace)
         {
-            //displayC es la carta q se ha seleccionado.
-            displayC.transform.position = Vector2.Lerp(displayC.transform.position, Slots[slot].transform.position, desplaceTime);
+            //displayC y temporalDisplay es la carta q se ha seleccionado.
+            temporalDisplay.transform.position = Vector2.Lerp(displayC.transform.position, Slots[slot].transform.position, desplaceTime);
 
-            if (displayC.transform.position == Slots[slot].transform.position)
+            if (temporalDisplay.transform.position == Slots[slot].transform.position)
             {
+                print("hola");
                 desplace = false;
+
+                
                 displayC.gameObject.SetActive(false);
-                //displayC.transform.position = backDesplacement;
+                Destroy(temporalDisplay.gameObject, 0.1f);
             }
         }
+       
     }
     private void OnDisable()
     {
@@ -82,8 +88,10 @@ public class PrepareDeck : MonoBehaviour
             cardDisplay.gameObject.SetActive(false);
             slot = index;
             displayC = displayCard;
-            //backDesplacement = displayCard.transform.position; //guardamos su posicion inicial
+            
             desplace = true;
+
+            temporalDisplay = Instantiate(displayC, displayC.transform.position, Quaternion.identity,displayC.transform.parent);
 
             index++; 
         }
