@@ -21,7 +21,11 @@ public class SelectingAI : CombatAIBehaviour
     private void SelectingUpdate(Animator animator)
     {
         var CharactersActive = EntityManager.GetActiveCharacters(Team.TeamAI).Length > 0;
-        if (!TurnManager.CardDrawn)
+        if (!TurnManager.ExtraCards)
+        {
+            animator.SetBool("CardsDrawn", true);
+        }
+        else if (!TurnManager.CardDrawn)
         {
             animator.SetBool("ChooseCard", true);
         }

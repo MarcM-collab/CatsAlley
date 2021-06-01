@@ -19,6 +19,7 @@ public static class TurnManager
     public static SwitchBehaviour OnSwitchBehaviour;
 
     public static bool CardDrawn = false;
+    public static bool ExtraCards = false;
     public static bool Spawned;
 
     public static Team TeamTurn
@@ -50,6 +51,13 @@ public static class TurnManager
         OnSwitchBehaviour?.Invoke();
         CardDrawn = false;
         Spawned = false;
+
+        if ((currentTurn == 1 || currentTurn % 10 == 9) || (currentTurn == 2 || currentTurn % 10 == 0)) // Player || AI
+        {
+            Debug.Log("extra draw");
+            ExtraCards = false;
+        }
+
         EntityManager.RemoveExhaust();
     }
 
