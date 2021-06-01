@@ -23,7 +23,16 @@ public class SelectingPlayer : CombatPlayerBehaviour
     }
     private void SelectingUpdate(Animator animator)
     {
-        if(TurnManager.CardDrawn)
+        if (!TurnManager.ExtraCards)
+        {
+            animator.SetBool("CardsDrawn", true);
+        }
+        else if (!TurnManager.CardDrawn)
+        {
+            animator.SetBool("ChooseCard", true);
+            _uITilemap.SetTile(_currentGridPos, null);
+        }
+        else
         {
             if (!CardUsage.isDragging)
             {
@@ -36,11 +45,6 @@ public class SelectingPlayer : CombatPlayerBehaviour
                 animator.SetBool("IsDragging", true);
                 _uITilemap.SetTile(_currentGridPos, null);
             }
-        }
-        else
-        {
-            animator.SetBool("ChooseCard", true);
-            _uITilemap.SetTile(_currentGridPos, null);
         }
     }
     private void SelectingExit()
