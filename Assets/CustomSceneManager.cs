@@ -27,6 +27,15 @@ public class CustomSceneManager : MonoBehaviour
         {
             Init();
         }
+
+        if (!PlayerPrefs.HasKey("Unlocked"))
+        {
+            PlayerPrefs.SetInt("Unlocked", levelsUnlocked);
+        }
+        else
+        {
+            levelsUnlocked = PlayerPrefs.GetInt("Unlocked");
+        }
     }
     public void LoadScene(int buildIndex)
     {
@@ -47,6 +56,12 @@ public class CustomSceneManager : MonoBehaviour
     }
     public void UnlockNextLevel()
     {
-        levelsUnlocked++;
+        int buildIndex = SceneManager.GetActiveScene().buildIndex;
+        if (buildIndex > levelsUnlocked)
+        {
+            levelsUnlocked = buildIndex; //1 level 1 2 level 2 and so on...
+            PlayerPrefs.SetInt("Unlocked", levelsUnlocked);
+            PlayerPrefs.Save();
+        }
     }
 }

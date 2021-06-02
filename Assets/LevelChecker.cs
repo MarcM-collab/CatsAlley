@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class LevelChecker : MonoBehaviour
 {
-    public GameObject active;
-    public GameObject disactive;
+    public MenuPanel active;
+    public MenuPanel disactive;
 }
