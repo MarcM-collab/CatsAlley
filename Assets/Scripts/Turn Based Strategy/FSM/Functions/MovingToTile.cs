@@ -20,7 +20,8 @@ public class MovingToTile : CombatBehaviour
         {
             var cellSize = TileManager.CellSize;
 
-            _executorCharacter.Turn = true;
+            var deltaX = _tileChosenGridPosition.x - _executorGridPosition.x;
+            _executorCharacter.TurningExecutor(deltaX);
 
             _executorCharacter.TeleportPoint = _tileChosenGridPosition + cellSize;
 
