@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class PrepareDeck : MonoBehaviour
 {
+    public Transform parent;
     public Image[] Slots;
     public DeckPlayer CardDeck;
     private List<Card> currentCards = new List<Card>();
@@ -50,16 +51,19 @@ public class PrepareDeck : MonoBehaviour
         if (desplace)
         {
             //displayC y temporalDisplay es la carta q se ha seleccionado.
-            temporalDisplay.transform.position = Vector2.Lerp(displayC.transform.position, Slots[slot].transform.position, desplaceTime);
-
-            if (temporalDisplay.transform.position == Slots[slot].transform.position)
+            if (temporalDisplay)
             {
-                print("hola");
-                desplace = false;
+                //print(Slots[slot].transform.name + "///" + Slots[slot].GetComponent<RectTransform>().position + "....." + Slots[slot].transform.position);
+                //temporalDisplay.transform.position += Vector3.Lerp(displayC.transform.position, Slots[slot].transform.position, Time.deltaTime/desplaceTime);
 
-                
-                displayC.gameObject.SetActive(false);
-                Destroy(temporalDisplay.gameObject, 0.1f);
+                if (temporalDisplay.transform.position == Slots[slot].transform.position)
+                {
+                    desplace = false;
+
+
+                    displayC.gameObject.SetActive(false);
+                    Destroy(temporalDisplay);
+                }
             }
         }
        
@@ -91,7 +95,10 @@ public class PrepareDeck : MonoBehaviour
             
             desplace = true;
 
-            temporalDisplay = Instantiate(displayC, displayC.transform.position, Quaternion.identity,displayC.transform.parent);
+            //temporalDisplay = Instantiate(displayC, displayC.transform.position, Quaternion.identity,displayC.transform.parent);
+            //temporalDisplay.SetActive(true);
+            //temporalDisplay.transform.SetParent(parent);
+            //temporalDisplay.GetComponent<Button>().enabled = false;
 
             index++; 
         }
