@@ -1596,6 +1596,7 @@ MonoBehaviour:
   Hand: {fileID: 1456539419}
   maxCardInHand: 6
   xGO: {fileID: 5649604159908724666, guid: 5c3df9fa63dfb024eb42aa37ecba41f9, type: 3}
+  _timeAfterConfirm: 1.5
 --- !u!1 &1031322680
 GameObject:
   m_ObjectHideFlags: 0
@@ -11736,7 +11737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &5719729144442968218
 MonoBehaviour:
   m_ObjectHideFlags: 0

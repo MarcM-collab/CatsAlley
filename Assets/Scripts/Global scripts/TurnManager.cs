@@ -52,7 +52,6 @@ public static class TurnManager
 
         if ((currentTurn == 1 || currentTurn % 10 == 9) || (currentTurn == 2 || currentTurn % 10 == 0)) // Player || AI
         {
-            Debug.Log("extra draw");
             ExtraCards = false;
         }
 
