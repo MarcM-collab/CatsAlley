@@ -6,15 +6,8 @@ using UnityEngine;
 
 public class Riccochet : Abilty
 {
-    //public int damage = 2;
-    public int numOfTargets = 2;
+    public int damage = 6;
     public float waitForNextTarget;
-    private List<Character> damagedCharacters = new List<Character>();
-    private Character selfChar;
-    private void Start()
-    {
-        selfChar = GetComponent<Character>();
-    }
     public override void Excecute()
     {
         Use(Team.TeamAI);
@@ -26,11 +19,16 @@ public class Riccochet : Abilty
     private void Use(Team targetTeam)
     {
         Character[] targets = EntityManager.GetCharacters(targetTeam);
-        Character target = targets[UnityEngine.Random.Range(0, targets.Length)];
+        if(targets.Length > 0)
+        {
+            Character currentTarget = targets[UnityEngine.Random.Range(0, targets.Length)];
 
-        Damage(target, selfChar);
+            StartCoroutine(Damage(currentTarget));
+        }
 
-        StartCoroutine(FindNewTargets(targetTeam, target));
+
+
+
         //RaycastHit2D hit2D = Physics2D.Raycast(GetMousePosition, Vector2.zero);
 
         //if (hit2D)
@@ -46,56 +44,17 @@ public class Riccochet : Abilty
         //    }
         //}
     }
-    private IEnumerator FindNewTargets(Team team, Character currentTarget)
+    private IEnumerator Damage(Character target)
     {
-        for (int i = 0; i < numOfTargets; i++)
-        {
-            yield return new WaitForSeconds(waitForNextTarget);
-            damagedCharacters.Add(currentTarget);
-            currentTarget = GetNearTarget(currentTarget, team);
+        yield return new WaitForSeconds(0.25f);
 
-            if (!currentTarget)
-                break;
-
-            Damage(currentTarget, selfChar);
-        }
-        executed = true;
-    }
-
-    private Character GetNearTarget(Character currentTarget, Team team)
-    {
-        List<Character> inGameCharacters = EntityManager.GetCharacters(team).ToList();
-
-        foreach (var item in damagedCharacters)
-        {
-            if (inGameCharacters.Contains(item))
-            {
-                inGameCharacters.Remove(item);
-            }
-        }
-        if (inGameCharacters.Count <= 0)
-            return null;
-        
-        Character nearestChar = inGameCharacters[0];
-
-        for (int i = 1; i < inGameCharacters.Count; i++)
-        {
-            if (CheckDistance(nearestChar.transform.position, inGameCharacters[i].transform.position, currentTarget.transform.position))
-            {
-                nearestChar = inGameCharacters[i];
-            }
-        }
-        return nearestChar;
-    }
-    private bool CheckDistance(Vector3 nearest, Vector3 toTest, Vector3 current)
-    {
-        return Vector2.Distance(nearest, current) > Vector2.Distance(toTest, current);
-    }
-    private void Damage(Character target, Character executor)
-    {
-        EntityManager.SetExecutor(executor);
         EntityManager.SetTarget(target);
-
+        Character executor = EntityManager.ExecutorCharacter.GetComponent<Character>();
+        int currentAttack = executor.currentAttack;
+        executor.currentAttack = damage;
         target.Hit = true;
+        executed = true;
+
+        executor.currentAttack = currentAttack;
     }
 }
