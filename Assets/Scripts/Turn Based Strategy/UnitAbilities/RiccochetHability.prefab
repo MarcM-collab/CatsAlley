@@ -45,6 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   executed: 0
   whiskasCost: 2
-  textExplain: Substracts 2 damage to 3 targets
-  numOfTargets: 2
+  textExplain: Shoots 3 times to a random target
+  damage: 6
   waitForNextTarget: 0.25

@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class ThreeCardsPlayer : MonoBehaviour
 {
+    public MenuPanel threeCardPanel;
+    public MenuPanel cardCanvas;
+    public MenuPanel infoManager;
+
     private List<Card> _cards = new List<Card>(); //Baraja elegida por el player (8 cartas)
     [SerializeField]
     private DeckPlayer _deckPlayer;
@@ -65,10 +69,10 @@ public class ThreeCardsPlayer : MonoBehaviour
     {
         if (Hand.hand.Count < maxCardInHand)
         {
+            threeCardPanel.Show();
+            cardCanvas.Show();
+            infoManager.Hide();
             randomCards = new Card[buttons.Length];
-            discardedCards.Clear();
-
-            canvasGO.SetActive(true);
             RemovePreviousCards();
             ChooseRandomInitial();
             ShowRandomCards();
@@ -93,6 +97,7 @@ public class ThreeCardsPlayer : MonoBehaviour
     {
         if (_buttonPressed)
         {
+            threeCardPanel.Hide();
             _buttonPressed = false;
             _startTimer = true;
             _timer = 0;
@@ -107,7 +112,7 @@ public class ThreeCardsPlayer : MonoBehaviour
             AddCards();
             HideRandomCards();
 
-            canvasGO.SetActive(false);
+            infoManager.Show();
             _startTimer = false;
         }
         _timer += Time.deltaTime;
