@@ -59,11 +59,15 @@ public class MeleeShowRangePlayer : CombatPlayerBehaviour
                 }
                 else
                 {
-                    var IsInsideAttackRange = i != -attackRange && i != attackRange && j != -attackRange && j != attackRange;
-                    var ThereIsAnEnemy = InTile(currentGridCenterPosition) == (int)EntityType.EnemyCharacter;
 
-                    if (IsInsideAttackRange && ThereIsAnEnemy)
+                    var IsInsideAttackRange = i != -attackRange && i != attackRange && j != -attackRange && j != attackRange;
+                    var ThereIsAnEnemyCharacter = InTile(currentGridCenterPosition) == (int)EntityType.EnemyCharacter;
+                    var ThereIsAnEnemyHero = InTile(currentGridCenterPosition) == (int)EntityType.EnemyHero;
+
+                    if (IsInsideAttackRange && ThereIsAnEnemyCharacter)
                         _uITilemap.SetTile(currentGridPosition, _targetTile);
+                    else if (ThereIsAnEnemyHero)
+                        enemyHeroOnRange = true;
                 }
             }
         }

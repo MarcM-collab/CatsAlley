@@ -7,9 +7,10 @@ public class Spell : Card
     [HideInInspector] public bool executed = false;
     public int Priority = 2;
     private Camera mainCamera;
-    protected bool activated = false;
     protected TileManager tileManager;
     protected Vector3Int prevPos;
+
+    protected Spell usingSpell;
     private void OnEnable()
     {
         ScriptButton.spellButton += Dragging;
@@ -18,13 +19,12 @@ public class Spell : Card
     {
         ScriptButton.spellButton -= Dragging;
     }
-    public virtual void ExecuteSpell() 
-    {
-        activated = false;
-    }
+    public virtual void ExecuteSpell() {}
     private void Dragging(Spell s) 
     {
-        activated = true;
+        usingSpell = s;
+        Debug.Log(usingSpell);
+        usingSpell.Activate();
     }
     public virtual void IAUse() {}
     public virtual bool CanBeUsed() { return false; }
@@ -41,4 +41,5 @@ public class Spell : Card
         mainCamera = Camera.main; //This will avoid extra iterations searching for a Game Object with tag in the whole scene.
         tileManager = FindObjectOfType<TileManager>();
     }
+    public virtual void Activate() {}
 }

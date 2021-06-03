@@ -49,7 +49,7 @@ public class MeleeShowAttackTilePlayer : CombatPlayerBehaviour
                 var IsNothingOrIsEnemy = InTile(currentGridCenterPosition) == (int)EntityType.Nothing ||
                     InTile(currentGridCenterPosition) == (int)EntityType.EnemyCharacter || InTile(currentGridCenterPosition) == (int)EntityType.EnemyHero;
 
-                if (_floorTilemap.HasTile(currentGridPosition))
+                if (_floorTilemap.HasTile(currentGridPosition) && _uITilemap.GetTile(currentGridPosition) == _allyTile)
                 {
                     if (IsNothingOrIsEnemy)
                     {

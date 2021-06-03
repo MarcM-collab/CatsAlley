@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   executed: 0
   whiskasCost: 1
-  textExplain: Damage a random enemy
+  textExplain: Steal 1 health point from a random enemy
   damage: 1

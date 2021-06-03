@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class ThreeCardsPlayer : MonoBehaviour
 {
+    public MenuPanel threeCardPanel;
+    public MenuPanel cardCanvas;
+    public MenuPanel infoManager;
+
     private List<Card> _cards = new List<Card>(); //Baraja elegida por el player (8 cartas)
     [SerializeField]
     private DeckPlayer _deckPlayer;
@@ -51,7 +55,6 @@ public class ThreeCardsPlayer : MonoBehaviour
     {
         canvasGO = buttons[0].transform.parent.gameObject;
 
-        randomCards = new Card[buttons.Length];
         cardInstancePos = new RectTransform[buttons.Length];
         cardsGO = new GameObject[buttons.Length];
 
@@ -66,7 +69,11 @@ public class ThreeCardsPlayer : MonoBehaviour
     {
         if (Hand.hand.Count < maxCardInHand)
         {
-            canvasGO.SetActive(true);
+            threeCardPanel.Show();
+            cardCanvas.Show();
+            infoManager.Hide();
+            discardedCards.Clear();
+            randomCards = new Card[buttons.Length];
             RemovePreviousCards();
             ChooseRandomInitial();
             ShowRandomCards();
@@ -91,6 +98,7 @@ public class ThreeCardsPlayer : MonoBehaviour
     {
         if (_buttonPressed)
         {
+            threeCardPanel.Hide();
             _buttonPressed = false;
             _startTimer = true;
             _timer = 0;
@@ -105,7 +113,7 @@ public class ThreeCardsPlayer : MonoBehaviour
             AddCards();
             HideRandomCards();
 
-            canvasGO.SetActive(false);
+            infoManager.Show();
             _startTimer = false;
         }
         _timer += Time.deltaTime;
@@ -117,7 +125,6 @@ public class ThreeCardsPlayer : MonoBehaviour
             buttons[i].gameObject.SetActive(true);
 
             cardsGO[i] = Instantiate(randomCards[i].gameObject, buttons[i].transform);
-            Instantiate(xGO, buttons[i].transform.GetChild(1));
 
             cardsGO[i].GetComponent<ScriptButton>().enabled = false;
             cardsGO[i].GetComponent<Button>().enabled = false;
@@ -129,6 +136,8 @@ public class ThreeCardsPlayer : MonoBehaviour
             RectTransform rt = cardsGO[i].GetComponent<RectTransform>();
             rt.position = cardInstancePos[i].position;
             rt.localScale = cardInstancePos[i].localScale;
+
+            var a = Instantiate(xGO, cardsGO[i].transform);
         }
 
     }

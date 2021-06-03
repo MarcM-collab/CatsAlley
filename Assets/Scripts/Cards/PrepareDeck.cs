@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class PrepareDeck : MonoBehaviour
 {
+    private MenuPanel panel;
+    public Transform parent;
     public Image[] Slots;
     public DeckPlayer CardDeck;
     private List<Card> currentCards = new List<Card>();
@@ -25,7 +27,7 @@ public class PrepareDeck : MonoBehaviour
     private bool desplace = false;
     public float desplaceTime = 0.5f;
     private GameObject temporalDisplay;
-    public MenuPanel[] toShow;
+    private bool hasEnded = false;
     private void Start()
     {
         emptyImage = Slots[0].sprite;
@@ -39,46 +41,39 @@ public class PrepareDeck : MonoBehaviour
         canvas = GetComponent<CanvasGroup>();
         cardDisplays = FindObjectsOfType<SelectableCardButton>().ToList();
     }
-
-    private void Update()
+    private void Enter()
     {
-        DesplaceCard();
+        print("XD?");
+        panel = GetComponent<MenuPanel>();
+        panel.Show();
     }
-    private void DesplaceCard()
+
+    private void SetFinished(Animator a)
     {
-       
-        if (desplace)
+        if (hasEnded)
         {
-            //displayC y temporalDisplay es la carta q se ha seleccionado.
-            temporalDisplay.transform.position = Vector2.Lerp(displayC.transform.position, Slots[slot].transform.position, desplaceTime);
-
-            if (temporalDisplay.transform.position == Slots[slot].transform.position)
-            {
-                print("hola");
-                desplace = false;
-
-                
-                displayC.gameObject.SetActive(false);
-                Destroy(temporalDisplay.gameObject, 0.1f);
-            }
+            a.SetBool("PreparingDeck", false);
         }
-       
     }
+
     private void OnDisable()
     {
         SelectableCardButton.displayCard -= CardDisplayChoosen;
+        PrepareDeckBehaviour.OnPrepareDeckEnter -= Enter;
+        PrepareDeckBehaviour.OnPrepareDeckUpdate -= SetFinished;
     }
 
     private void OnEnable()
     {
         SelectableCardButton.displayCard += CardDisplayChoosen;
+        PrepareDeckBehaviour.OnPrepareDeckEnter += Enter;
+        PrepareDeckBehaviour.OnPrepareDeckUpdate += SetFinished;
     }
 
     public void CardDisplayChoosen(Image cardDisplay, Card card, GameObject displayCard)
     {
         if (index < Slots.Length)
         {
-            
             Slots[index].sprite = cardDisplay.sprite;
             Slots[index].color = new Color(Slots[index].color.r, Slots[index].color.g, Slots[index].color.b, 1);
             currentCards.Add(card);
@@ -91,7 +86,10 @@ public class PrepareDeck : MonoBehaviour
             
             desplace = true;
 
-            temporalDisplay = Instantiate(displayC, displayC.transform.position, Quaternion.identity,displayC.transform.parent);
+            //temporalDisplay = Instantiate(displayC, displayC.transform.position, Quaternion.identity,displayC.transform.parent);
+            //temporalDisplay.SetActive(true);
+            //temporalDisplay.transform.SetParent(parent);
+            //temporalDisplay.GetComponent<Button>().enabled = false;
 
             index++; 
         }
@@ -132,19 +130,38 @@ public class PrepareDeck : MonoBehaviour
             {
                 CardDeck.Cards[i] = currentCards[i];
             }
+            panel.Hide();
 
-            canvas.alpha = 0;
-            canvas.interactable = false;
-            canvas.blocksRaycasts = false;
-
-            gameObject.SetActive(true);
-            GetComponent<MenuPanel>().Hide();
+            hasEnded = true;
             //TurnManager.NextTurn();
-
-            for (int i = 0; i < toShow.Length; i++)
-            {
-                toShow[i].Show();
-            }
         }
     }
+
+    //private void Update()
+    //{
+    //    DesplaceCard();
+    //}
+    //private void DesplaceCard()
+    //{
+
+    //    if (desplace)
+    //    {
+    //        //displayC y temporalDisplay es la carta q se ha seleccionado.
+    //        if (temporalDisplay)
+    //        {
+    //            //print(Slots[slot].transform.name + "///" + Slots[slot].GetComponent<RectTransform>().position + "....." + Slots[slot].transform.position);
+    //            //temporalDisplay.transform.position += Vector3.Lerp(displayC.transform.position, Slots[slot].transform.position, Time.deltaTime/desplaceTime);
+
+    //            if (temporalDisplay.transform.position == Slots[slot].transform.position)
+    //            {
+    //                desplace = false;
+
+
+    //                displayC.gameObject.SetActive(false);
+    //                Destroy(temporalDisplay);
+    //            }
+    //        }
+    //    }
+
+    //}
 }

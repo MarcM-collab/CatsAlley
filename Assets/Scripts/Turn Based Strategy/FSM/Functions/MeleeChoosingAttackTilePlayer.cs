@@ -15,7 +15,7 @@ public class MeleeChoosingAttackTilePlayer : CombatPlayerBehaviour
     private void MeleeChoosingAttackTileUpadate(Animator animator)
     {
         var PointingNewTile = _currentGridPos != _lastGridPos;
-        var PointingSpawnableTile = _uITilemap.GetTile(_currentGridPos) == _targetTile && _currentGridPos != _targetGridPosition;
+        var PointingSpawnableTile = _uITilemap.GetTile(_currentGridPos) == _targetTile && _currentGridPos != _targetGridPosition && !IsEnemy();
         var LeavingSpawnableZone = _uITilemap.GetTile(_lastGridPos) == _attackingTile;
         var PointingNewSpawnableTile = _uITilemap.GetTile(_lastGridPos) == _attackingTile;
 
@@ -42,11 +42,13 @@ public class MeleeChoosingAttackTilePlayer : CombatPlayerBehaviour
         var SelectInput = InputManager.LeftMouseClick;
         if (SelectInput)
         {
-            var EnemySelected = IsEnemy();
-            if (EnemySelected)
+            if (InTile(_currentGridPos + TileManager.CellSize) == (int)EntityType.EnemyHero || InTile(_currentGridPos + TileManager.CellSize) == (int)EntityType.EnemyCharacter)
             {
-                if (IsExecutorMelee())
+                Debug.Log(IsHeroMelee());
+                if (IsExecutorMelee() || (IsHeroMelee() && InTile(_currentGridPos + TileManager.CellSize) == (int)EntityType.EnemyHero))
                 {
+                    TeamAILength = EntityManager.GetCharacters(Team.TeamAI).Length;
+
                     _tileChosenGridPosition = _executorGridPosition;
                     _uITilemap.SetTile(_executorGridPosition, _allyTile);
                     animator.SetTrigger("TileChosen");
@@ -62,6 +64,8 @@ public class MeleeChoosingAttackTilePlayer : CombatPlayerBehaviour
                 }
                 else
                 {
+                    TeamAILength = EntityManager.GetCharacters(Team.TeamAI).Length;
+
                     _tileChosenGridPosition = _currentGridPos;
                     _uITilemap.SetTile(_currentGridPos, _allyTile);
                     animator.SetTrigger("TileChosen");
@@ -80,6 +84,24 @@ public class MeleeChoosingAttackTilePlayer : CombatPlayerBehaviour
                 var currentGridPosition = _targetGridPosition + position;
 
                 if (currentGridPosition == _executorGridPosition)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    private bool IsHeroMelee()
+    {
+        for (int j = -1; j <= 1; j++)
+        {
+            for (int i = -1; i <= 1; i++)
+            {
+                var position = new Vector3Int(i, j, 0);
+                var currentGridPosition = _executorGridPosition + position;
+                var currentGridCenterPosition = currentGridPosition + TileManager.CellSize;
+
+                if (InTile(currentGridCenterPosition) == (int)EntityType.EnemyHero)
                 {
                     return true;
                 }
