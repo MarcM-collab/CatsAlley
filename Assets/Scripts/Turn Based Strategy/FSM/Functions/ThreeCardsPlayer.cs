@@ -72,6 +72,7 @@ public class ThreeCardsPlayer : MonoBehaviour
             threeCardPanel.Show();
             cardCanvas.Show();
             infoManager.Hide();
+            discardedCards.Clear();
             randomCards = new Card[buttons.Length];
             RemovePreviousCards();
             ChooseRandomInitial();

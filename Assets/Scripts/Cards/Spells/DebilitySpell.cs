@@ -7,10 +7,13 @@ public class DebilitySpell : Spell
 {
     private Character priorChar;
     public GameObject FX;
+
+    public bool activated;
     private void Update()
     {
         if (activated)
         {
+            //Debug.Log("using");
             Vector3Int mouseIntPos = GetIntPos(GetMousePosition);
 
             if (tileManager.FloorTilemap.HasTile(mouseIntPos))
@@ -32,7 +35,7 @@ public class DebilitySpell : Spell
     }
     public override void ExecuteSpell()
     {
-        base.ExecuteSpell();
+        activated = false;
         RaycastHit2D hit2D = Physics2D.Raycast(GetMousePosition, Vector2.zero);
 
         if (hit2D)
@@ -102,5 +105,9 @@ public class DebilitySpell : Spell
 
         int example = target.AttackPoints;
         print("Attack of the unit reduced: " + example);
+    }
+    public override void Activate()
+    {
+        activated = true;
     }
 }
