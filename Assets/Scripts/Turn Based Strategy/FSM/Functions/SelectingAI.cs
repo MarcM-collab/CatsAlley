@@ -5,6 +5,9 @@ using UnityEngine;
 public class SelectingAI : CombatAIBehaviour
 {
     private bool _spawned;
+    [SerializeField]
+    private float delayTime = 1.0f;
+    private float timer;
     private void OnEnable()
     {
         SelectingBehaviour.OnSelectingEnter += SelectingEnter;
@@ -17,6 +20,7 @@ public class SelectingAI : CombatAIBehaviour
     }
     private void SelectingEnter(Animator animator)
     {
+        timer = 0.0f;
     }
     private void SelectingUpdate(Animator animator)
     {
@@ -35,31 +39,38 @@ public class SelectingAI : CombatAIBehaviour
         }
         else
         {
-            if (CharactersActive)
+            if (timer >= delayTime)
             {
-                var characters = EntityManager.GetActiveCharacters(Team.TeamAI);
-
-                var _currentGridPos = _floorTilemap.WorldToCell(characters[0].transform.position);
-
-                if (characters[0].Class == Class.Ranged)
+                if (CharactersActive)
                 {
-                    animator.SetBool("Ranged", true);
+                    var characters = EntityManager.GetActiveCharacters(Team.TeamAI);
+
+                    TeamAILength = EntityManager.GetCharacters(Team.TeamAI).Length;
+
+                    var _currentGridPos = _floorTilemap.WorldToCell(characters[0].transform.position);
+
+                    if (characters[0].Class == Class.Ranged)
+                    {
+                        animator.SetBool("Ranged", true);
+                    }
+                    else
+                    {
+                        animator.SetBool("Ranged", false);
+                    }
+                    animator.SetBool("Selected", true);
+
+                    _executorGridPosition = _currentGridPos;
+                    _uITilemap.SetTile(_executorGridPosition, _allyTile);
+                    EntityManager.SetExecutor(characters[0]);
+                    _notPossibleTarget.Clear();
                 }
                 else
                 {
-                    animator.SetBool("Ranged", false);
+                    TurnManager.NextTurn();
                 }
-                animator.SetBool("Selected", true);
-
-                _executorGridPosition = _currentGridPos;
-                _uITilemap.SetTile(_executorGridPosition, _allyTile);
-                EntityManager.SetExecutor(characters[0]);
-                _notPossibleTarget.Clear();
-            }
-            else
-            {
-                TurnManager.NextTurn();
             }
         }
+        
+        timer += Time.deltaTime;
     }
 }

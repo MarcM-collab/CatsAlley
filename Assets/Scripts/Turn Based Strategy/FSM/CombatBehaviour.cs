@@ -49,6 +49,9 @@ public class CombatBehaviour : MonoBehaviour
     protected static Vector3Int _tileChosenGridPosition;
     protected static Vector3Int _targetGridPosition;
 
+    public static int TeamAILength;
+    public static int TeamPlayerLength;
+
     protected int InTile(Vector3 vector)
     {
         var postion = new Vector2(vector.x, vector.y);

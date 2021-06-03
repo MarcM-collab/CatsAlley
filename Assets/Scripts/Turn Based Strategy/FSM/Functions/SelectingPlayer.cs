@@ -100,6 +100,9 @@ public class SelectingPlayer : CombatPlayerBehaviour
                 if (CharacterOfTeamPlayer)
                 {
                     EntityManager.SetExecutor(tempCharacter);
+
+                    TeamPlayerLength = EntityManager.GetCharacters(Team.TeamPlayer).Length;
+
                     _executorGridPosition = _currentGridPos;
 
                     var CharacterIsRanged = tempCharacter.Class == Class.Ranged;

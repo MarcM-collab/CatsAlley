@@ -55,6 +55,7 @@ public class Character : Entity
             if (transform.rotation.eulerAngles.y == 0)
             {
                 Turn = true;
+                Debug.Log("B");
             }
         }
     }

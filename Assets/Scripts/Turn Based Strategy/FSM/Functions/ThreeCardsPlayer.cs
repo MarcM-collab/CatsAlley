@@ -51,7 +51,6 @@ public class ThreeCardsPlayer : MonoBehaviour
     {
         canvasGO = buttons[0].transform.parent.gameObject;
 
-        randomCards = new Card[buttons.Length];
         cardInstancePos = new RectTransform[buttons.Length];
         cardsGO = new GameObject[buttons.Length];
 
@@ -66,6 +65,9 @@ public class ThreeCardsPlayer : MonoBehaviour
     {
         if (Hand.hand.Count < maxCardInHand)
         {
+            randomCards = new Card[buttons.Length];
+            discardedCards.Clear();
+
             canvasGO.SetActive(true);
             RemovePreviousCards();
             ChooseRandomInitial();
@@ -117,7 +119,6 @@ public class ThreeCardsPlayer : MonoBehaviour
             buttons[i].gameObject.SetActive(true);
 
             cardsGO[i] = Instantiate(randomCards[i].gameObject, buttons[i].transform);
-            Instantiate(xGO, buttons[i].transform.GetChild(1));
 
             cardsGO[i].GetComponent<ScriptButton>().enabled = false;
             cardsGO[i].GetComponent<Button>().enabled = false;
@@ -129,6 +130,8 @@ public class ThreeCardsPlayer : MonoBehaviour
             RectTransform rt = cardsGO[i].GetComponent<RectTransform>();
             rt.position = cardInstancePos[i].position;
             rt.localScale = cardInstancePos[i].localScale;
+
+            var a = Instantiate(xGO, cardsGO[i].transform);
         }
 
     }

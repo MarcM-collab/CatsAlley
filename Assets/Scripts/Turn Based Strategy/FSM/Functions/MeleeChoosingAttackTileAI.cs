@@ -4,57 +4,75 @@ using UnityEngine;
 public class MeleeChoosingAttackTileAI : CombatAIBehaviour
 {
     private List<Vector3Int> possiblePosition = new List<Vector3Int>();
+    [SerializeField]
+    private float delayTime = 1.0f;
+    private float timer;
+
+    private bool _goingToAttack;
     private void OnEnable()
     {
         MeleeChoosingAttackTileBehaviour.OnMeleeChoosingAttackTileEnter += MeleeChoosingAttackTileEnter;
+        MeleeChoosingAttackTileBehaviour.OnMeleeChoosingAttackTileUpdate += MeleeChoosingAttackUpdate;
     }
     private void OnDisable()
     {
         MeleeChoosingAttackTileBehaviour.OnMeleeChoosingAttackTileEnter -= MeleeChoosingAttackTileEnter;
+        MeleeChoosingAttackTileBehaviour.OnMeleeChoosingAttackTileUpdate -= MeleeChoosingAttackUpdate;
     }
     private void MeleeChoosingAttackTileEnter(Animator animator)
     {
-        if (IsTargetNeighbour())
-        {
-            _tileChosenGridPosition = _executorGridPosition;
-            _uITilemap.SetTile(_tileChosenGridPosition, _allyTile);
-            animator.SetTrigger("TileChosen");
-            animator.SetBool("Attacking", true);
-        }
-        else
-        {
-            GetPossiblePosition();
-            possiblePosition = OnRangeTiles();
-
-            foreach(Vector3Int i in possiblePosition)
+            if (IsTargetNeighbour())
             {
-                Debug.Log(i);
-            }
-
-            if (possiblePosition.Count == 0)
-            {
-                _notPossibleTarget.Add(_targetGridPosition);
-                animator.SetBool("PreparingAttack", false);
-            }
-            else
-            {
-                if (!(_targetEntity.GetComponent("Entity") as Entity is null))
-                {
-                    _uITilemap.SetTile(_targetGridPosition, _targetTile);
-                }
-                if (!(_targetEntity.GetComponent("Hero") as Hero is null))
-                {
-                    ShowHeroTiles();
-                }
-
-                _tileChosenGridPosition = possiblePosition[UnityEngine.Random.Range(0, possiblePosition.Count)];
+                _tileChosenGridPosition = _executorGridPosition;
                 _uITilemap.SetTile(_tileChosenGridPosition, _allyTile);
                 animator.SetTrigger("TileChosen");
                 animator.SetBool("Attacking", true);
-                _notPossibleTarget.Clear();
+
+                _goingToAttack = true;
+                timer = 0.0f;
             }
-            possiblePosition.Clear();
+            else
+            {
+                GetPossiblePosition();
+                possiblePosition = OnRangeTiles();
+
+                if (possiblePosition.Count == 0)
+                {
+                    _notPossibleTarget.Add(_targetGridPosition);
+                    animator.SetBool("PreparingAttack", false);
+                }
+                else
+                {
+                    if (!(_targetEntity.GetComponent("Entity") as Entity is null))
+                    {
+                        _uITilemap.SetTile(_targetGridPosition, _targetTile);
+                    }
+                    if (!(_targetEntity.GetComponent("Hero") as Hero is null))
+                    {
+                        ShowHeroTiles();
+                    }
+                    TeamPlayerLength = EntityManager.GetCharacters(Team.TeamPlayer).Length;
+
+                    _tileChosenGridPosition = possiblePosition[UnityEngine.Random.Range(0, possiblePosition.Count)];
+                    _uITilemap.SetTile(_tileChosenGridPosition, _allyTile);
+                    _notPossibleTarget.Clear();
+
+                    _goingToAttack = true;
+                    timer = 0.0f;
+                }
+                possiblePosition.Clear();
+            }
+    }
+    private void MeleeChoosingAttackUpdate(Animator animator)
+    {
+        if (timer >= delayTime)
+        {
+            animator.SetTrigger("TileChosen");
+            animator.SetBool("Attacking", true);
+            _goingToAttack = false;
         }
+
+        timer += Time.deltaTime;
     }
     private void GetPossiblePosition()
     {
