@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackingBehaviour : StateMachineBehaviour
 {
-    public delegate void AttackingEnterDelegate();
+    public delegate void AttackingEnterDelegate(Animator animator);
     public static AttackingEnterDelegate OnAttackingEnter;
     public delegate void AttackingUpdateDelegate(Animator animator);
     public static AttackingUpdateDelegate OnAttackingUpdate;
@@ -13,7 +13,7 @@ public class AttackingBehaviour : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        OnAttackingEnter?.Invoke();
+        OnAttackingEnter?.Invoke(animator);
     }
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
