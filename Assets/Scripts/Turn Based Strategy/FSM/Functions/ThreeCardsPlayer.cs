@@ -66,6 +66,8 @@ public class ThreeCardsPlayer : MonoBehaviour
         if (Hand.hand.Count < maxCardInHand)
         {
             randomCards = new Card[buttons.Length];
+            discardedCards.Clear();
+
             canvasGO.SetActive(true);
             RemovePreviousCards();
             ChooseRandomInitial();

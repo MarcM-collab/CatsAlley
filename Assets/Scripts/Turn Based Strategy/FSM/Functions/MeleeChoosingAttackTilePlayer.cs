@@ -47,6 +47,8 @@ public class MeleeChoosingAttackTilePlayer : CombatPlayerBehaviour
                 Debug.Log(IsHeroMelee());
                 if (IsExecutorMelee() || (IsHeroMelee() && InTile(_currentGridPos + TileManager.CellSize) == (int)EntityType.EnemyHero))
                 {
+                    TeamAILength = EntityManager.GetCharacters(Team.TeamAI).Length;
+
                     _tileChosenGridPosition = _executorGridPosition;
                     _uITilemap.SetTile(_executorGridPosition, _allyTile);
                     animator.SetTrigger("TileChosen");
@@ -62,6 +64,8 @@ public class MeleeChoosingAttackTilePlayer : CombatPlayerBehaviour
                 }
                 else
                 {
+                    TeamAILength = EntityManager.GetCharacters(Team.TeamAI).Length;
+
                     _tileChosenGridPosition = _currentGridPos;
                     _uITilemap.SetTile(_currentGridPos, _allyTile);
                     animator.SetTrigger("TileChosen");
