@@ -15,11 +15,11 @@ C:/Users/ainoa/Documents/GitHub/CatsAlley
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-55752
+64233
 Successfully changed project path to: C:/Users/ainoa/Documents/GitHub/CatsAlley
 C:/Users/ainoa/Documents/GitHub/CatsAlley
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 36.31 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 32.86 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.2.7f1 (c53830e277f1)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/Resources/UnitySubsystems
@@ -35,52 +35,284 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56784
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56252
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.7f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.003462 seconds.
+Registered in 0.002910 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 37.08 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 30.14 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.378 seconds
+- Completed reload, in  2.346 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.001753 seconds.
+Registered in 0.001661 seconds.
 Begin MonoManager ReloadAssembly
 OnLevelWasLoaded was found on CustomSceneManager
 This message has been deprecated and will be removed in a later version of Unity.
 Add a delegate to SceneManager.sceneLoaded instead to get notifications after scene loading has completed
 
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.79 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 0.31 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.080 seconds
+- Completed reload, in  0.946 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
-Refreshing native plugins compatible for Editor in 0.77 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 0.37 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1323 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 65.5 MB.
 System memory in use after: 65.6 MB.
 
 Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 1770.
-Total: 3.276500 ms (FindLiveObjects: 0.308000 ms CreateObjectMapping: 0.099800 ms MarkObjects: 2.770000 ms  DeleteObjects: 0.097200 ms)
+Total: 2.584900 ms (FindLiveObjects: 0.194200 ms CreateObjectMapping: 0.048000 ms MarkObjects: 2.267200 ms  DeleteObjects: 0.073700 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/Animations/Animaciones
-  artifactKey: Guid(af95be9e58cd9784ebd34131e1069cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Animaciones using Guid(af95be9e58cd9784ebd34131e1069cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a74eb8228d8f69cdfdff6eb93bfde4e3') in 0.007891 seconds
-  Import took 0.010465 seconds .
+  path: Assets/Animations/Animaciones/HeroeIdle/IdleHeroe_3.png
+  artifactKey: Guid(f0772508a79c92942a255c12d820dee1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeIdle/IdleHeroe_3.png using Guid(f0772508a79c92942a255c12d820dee1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e28dcfab783d7e0a194243f95c653c5') in 0.118796 seconds
+  Import took 0.121146 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000253 seconds.
+  path: Assets/Animations/Animaciones/HeroeIdle/IdleHeroe_2.png
+  artifactKey: Guid(0f17b70bb581fd647b61092828db0b05) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeIdle/IdleHeroe_2.png using Guid(0f17b70bb581fd647b61092828db0b05) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24c40894b1ef156cf8903f4cd204caf0') in 0.019374 seconds
+  Import took 0.022455 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000311 seconds.
+  path: Assets/Animations/Animaciones/teleport
+  artifactKey: Guid(4d28ad4a5a684af4d9f7d4a00e14ebff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/teleport using Guid(4d28ad4a5a684af4d9f7d4a00e14ebff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '51699c563e40a5fd00f372844a8f16a9') in 0.006564 seconds
+  Import took 0.009225 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000320 seconds.
+  path: Assets/Animations/Animaciones/HeroeIdle
+  artifactKey: Guid(851971f4efa3f674eb12d85ed114d8ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeIdle using Guid(851971f4efa3f674eb12d85ed114d8ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '875128b240edb10579550578f9207d9e') in 0.012286 seconds
+  Import took 0.014462 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000298 seconds.
+  path: Assets/Animations/Animaciones/HeroeIdle/IdleHeroe_1.png
+  artifactKey: Guid(d3d09d26bb934e34791f0a4d6d998a11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeIdle/IdleHeroe_1.png using Guid(d3d09d26bb934e34791f0a4d6d998a11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fcee8effaacadd7d85e9aba029d176b3') in 0.050473 seconds
+  Import took 0.052977 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002546 seconds.
+  path: Assets/Animations/Animaciones/HeroeIdle/IdleHeroe_1.png
+  artifactKey: Guid(d3d09d26bb934e34791f0a4d6d998a11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeIdle/IdleHeroe_1.png using Guid(d3d09d26bb934e34791f0a4d6d998a11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fcee8effaacadd7d85e9aba029d176b3') in 0.030388 seconds
+  Import took 0.033319 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.141134 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged
+  artifactKey: Guid(1d88debb9aa897d4884770f011334efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged using Guid(1d88debb9aa897d4884770f011334efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1173fc5f7f6ac18bc645f6fc892ce96') in 0.006719 seconds
+  Import took 0.009065 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.063927 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_1.png
+  artifactKey: Guid(879443cc002aa454596fae0954a6d19d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_1.png using Guid(879443cc002aa454596fae0954a6d19d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '269d90f1146f532405e09e2a6fddeb62') in 0.037762 seconds
+  Import took 0.039919 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000286 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b8ad45f8f0009ebd75703eaa735590a') in 0.037021 seconds
+  Import took 0.039318 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000240 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_2.png
+  artifactKey: Guid(2ca4b4e5c01ad2b49a18f1920fcb0cbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_2.png using Guid(2ca4b4e5c01ad2b49a18f1920fcb0cbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b45315d6798742f5810eecc9ab54def5') in 0.074097 seconds
+  Import took 0.076468 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 52.312578 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b59728614bab6a13bac800954394dc7') in 0.020870 seconds
+  Import took 0.023319 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001013 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b59728614bab6a13bac800954394dc7') in 0.017216 seconds
+  Import took 0.019720 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.212187 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6ffabffc87e5a41c61648cf44afe000f') in 0.012750 seconds
+  Import took 0.015282 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.010280 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6ffabffc87e5a41c61648cf44afe000f') in 0.016586 seconds
+  Import took 0.019326 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.318002 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2f8ae2734a8f166c07675ff61bf1da9') in 0.027844 seconds
+  Import took 0.030664 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004210 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2f8ae2734a8f166c07675ff61bf1da9') in 0.026413 seconds
+  Import took 0.029155 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.945148 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '426b455720a1a7317050ae5ba630c651') in 0.041042 seconds
+  Import took 0.043681 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.630297 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3_0.controller
+  artifactKey: Guid(cabd3ae817e6ddd438db23c63eb3c69e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3_0.controller using Guid(cabd3ae817e6ddd438db23c63eb3c69e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e44dcc7004cf878aacfd97db6606b2b1') in 0.017125 seconds
+  Import took 0.019391 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000750 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3_0.controller
+  artifactKey: Guid(cabd3ae817e6ddd438db23c63eb3c69e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3_0.controller using Guid(cabd3ae817e6ddd438db23c63eb3c69e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e44dcc7004cf878aacfd97db6606b2b1') in 0.009060 seconds
+  Import took 0.011630 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.237858 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.anim
+  artifactKey: Guid(236c3fbd90d3acd42b230ad448315dd3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.anim using Guid(236c3fbd90d3acd42b230ad448315dd3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd66fdaa70592f427a597110ef03985f1') in 0.008976 seconds
+  Import took 0.011289 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002361 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.anim
+  artifactKey: Guid(236c3fbd90d3acd42b230ad448315dd3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.anim using Guid(236c3fbd90d3acd42b230ad448315dd3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd66fdaa70592f427a597110ef03985f1') in 0.006771 seconds
+  Import took 0.009284 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 60.381894 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a50f19f5e04a181fee566df5df51f440') in 0.017702 seconds
+  Import took 0.020045 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.624739 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8f2073e41c0b71ad8be6b4a2071fe2c') in 0.013612 seconds
+  Import took 0.016410 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.012964 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8f2073e41c0b71ad8be6b4a2071fe2c') in 0.011997 seconds
+  Import took 0.014495 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.753640 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0e9e374606ac687a9fac42d8d8d22a9') in 0.046327 seconds
+  Import took 0.048896 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 71.315809 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aff869590eb5350ee0bec2b42a21d033') in 0.014759 seconds
+  Import took 0.017300 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.944032 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c27c2e76a9663df2a5adbb574f4bb2b7') in 0.013557 seconds
+  Import took 0.016603 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.028836 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c27c2e76a9663df2a5adbb574f4bb2b7') in 0.014924 seconds
+  Import took 0.018608 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.726139 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e220e88d54f57f11114b2c80459e5cf1') in 0.020287 seconds
+  Import took 0.023313 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.010927 seconds.
+  path: Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png
+  artifactKey: Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animations/Animaciones/HeroeDamaged/Heroe_3.png using Guid(6ad395ee358236f4da7dadcdc2c44795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e220e88d54f57f11114b2c80459e5cf1') in 0.019940 seconds
+  Import took 0.022673 seconds .
 
