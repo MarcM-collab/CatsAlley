@@ -370,7 +370,6 @@ GameObject:
   - component: {fileID: 507745496865460723}
   - component: {fileID: 304155172706219578}
   - component: {fileID: -2602713288980645324}
-  - component: {fileID: 8223678420012410267}
   m_Layer: 0
   m_Name: Gato_A_Distancia
   m_TagString: Character
@@ -458,7 +457,7 @@ Animator:
   m_GameObject: {fileID: 507745496865460720}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 74f9211b9548bf24b9c044eb16b6815d, type: 2}
+  m_Controller: {fileID: 9100000, guid: c3def055568fa204ab1bdacf11d29f03, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -630,18 +629,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meowType: 0
---- !u!114 &8223678420012410267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507745496865460720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f90ac3a3d18f3b4182e23b9d25df944, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &507745497298803552
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,8 +1057,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6341453519630116672}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1.93934, y: 0.017579999, z: 1}
+  m_LocalPosition: {x: 0.07, y: 0.55, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 507745496865460687}
   m_RootOrder: 2
@@ -1116,8 +1103,8 @@ SpriteRenderer:
   m_SortingLayerID: 524843471
   m_SortingLayer: 9
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.7672777, a: 1}
+  m_Sprite: {fileID: -8753283788699527778, guid: 63a739a938182a348a01ff6fa9a02c7a, type: 3}
+  m_Color: {r: 0, g: 1, b: 0.8124151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

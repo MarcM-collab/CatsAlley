@@ -277,14 +277,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5162430281586322654}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7, y: 0, z: 73.7983}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 5162430280426360514}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5162430281586322651
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -323,9 +323,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1039971011
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7125859345973526363, guid: 69f4de1a8afb83d498a2272627ac2624, type: 3}
+  m_Sprite: {fileID: 516532357927483883, guid: 6ad395ee358236f4da7dadcdc2c44795, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -346,7 +346,7 @@ Animator:
   m_GameObject: {fileID: 5162430281586322654}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 84f9030257eacb14fb59819ec8471021, type: 2}
+  m_Controller: {fileID: 9100000, guid: c14822b6d0e71f5418690d75dd8864ca, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -372,7 +372,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.1636363, y: 1.1636363}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -398,7 +398,7 @@ MonoBehaviour:
   Exhausted: 0
   Hit: 0
   Dead: 0
-  IsDeadAnim: 0
+  MaxHP: 0
 --- !u!1 &5162430281955724452
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,33 +538,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EntityGameObject: {fileID: 5162430281586322654}
-  ColorGradient:
-    serializedVersion: 2
-    key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 0, g: 1, b: 0.070883274, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
+  color: {r: 0, g: 0, b: 0, a: 0}
   FillImage: {fileID: 5162430280875363945}
