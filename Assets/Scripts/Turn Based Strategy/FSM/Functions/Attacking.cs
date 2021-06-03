@@ -16,11 +16,17 @@ public class Attacking : CombatBehaviour
         AttackingBehaviour.OnAttackingUpdate -= AttackingUpdate;
         AttackingBehaviour.OnAttackingExit -= AttackingExit;
     }
-    private void AttackingEnter()
+    private void AttackingEnter(Animator animator)
     {
         var deltaX = _targetGridPosition.x - _tileChosenGridPosition.x;
         _executorCharacter.TurningExecutor(deltaX);
         _executorCharacter.Attack = true;
+
+
+        if (animator.GetBool("Ranged"))
+        {
+            _executorCharacter.GetComponentInChildren<BulletSpawner>().Spawn();
+        }
     }
     private void AttackingUpdate(Animator animator)
     {
