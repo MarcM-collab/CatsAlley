@@ -67,6 +67,7 @@ public class AudioManager : MonoBehaviour
         {
             audioManager = this;
         }
+        DontDestroyOnLoad(gameObject);
 
         if (!PlayerPrefs.HasKey("sfxVol"))
         {
@@ -92,69 +93,35 @@ public class AudioManager : MonoBehaviour
         music.Play();
     }
 
-    private void Update()
-    {
-        if ((!playerTurn && TurnManager.TeamTurn == Team.TeamPlayer) || (playerTurn && TurnManager.TeamTurn == Team.TeamAI))
-        {
-            transitioning = true;
-            StartCoroutine(ChangeTurn());
-        }
-        if (music.volume == 0 && !transitioning)
-        {
-            StopAllCoroutines();
-            StartCoroutine(FadeIn(transitionWait, prevVolume));
-        }
-    }
 
-    private IEnumerator ChangeTurn()
-    {
-        playerTurn = !playerTurn;
-        //transition.Play();
-        StartCoroutine(FadeOut(transitionWait));
-        prevVolume = music.volume;
+    //private IEnumerator FadeIn(float duration, float targetVolume)
+    //{
+    //    float currentTime = 0;
+    //    float start = 0;
 
-        yield return new WaitForSeconds(transitionWait);
+    //    while (currentTime < duration)
+    //    {
+    //        currentTime += Time.deltaTime;
+    //        music.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
 
-        if (playerTurn)
-        {
-            //music.clip = musicClips[0].playerTurnClip;
-        }
-        else
-        {
-            //music.clip = musicClips[0].IATurnClip;
-        }
-        music.Play();
-        StartCoroutine(FadeIn(transitionWait, prevVolume));
-        transitioning = false;
-    }
-    private IEnumerator FadeIn(float duration, float targetVolume)
-    {
-        float currentTime = 0;
-        float start = 0;
-
-        while (currentTime < duration)
-        {
-            currentTime += Time.deltaTime;
-            music.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
-
-            if (start != prevVolume) //someone change the settings transitioning
-                prevVolume = start;
-            yield return null;
-        }
-        yield break;
-    }
-    private IEnumerator FadeOut(float duration)
-    {
-        float start = music.volume;
-        while (music.volume > 0)
-        {
-            music.volume -= start * Time.deltaTime / duration;
-            if (start != prevVolume) //someone change the settings transitioning
-                prevVolume = start;
-            yield return null;
-        }
-        yield break;
-    }
+    //        if (start != prevVolume) //someone change the settings transitioning
+    //            prevVolume = start;
+    //        yield return null;
+    //    }
+    //    yield break;
+    //}
+    //private IEnumerator FadeOut(float duration)
+    //{
+    //    float start = music.volume;
+    //    while (music.volume > 0)
+    //    {
+    //        music.volume -= start * Time.deltaTime / duration;
+    //        if (start != prevVolume) //someone change the settings transitioning
+    //            prevVolume = start;
+    //        yield return null;
+    //    }
+    //    yield break;
+    //}
     public void ChangeVolume(float value, soundType s)
     {
         switch (s)
@@ -195,5 +162,23 @@ public class AudioManager : MonoBehaviour
     public void StopFilter()
     {
         passFilter.enabled = false;
+    }
+    private void OnLevelWasLoaded(int level)
+    {
+        if (level == 0)
+        {
+            music.clip = musicClips[0];
+            music.Play();
+        }
+        else
+        {
+            music.clip = musicClips[1];
+            music.Play();
+        }
+    }
+    public void StartBattle()
+    {
+        music.clip = musicClips[2];
+        music.Play();
     }
 }

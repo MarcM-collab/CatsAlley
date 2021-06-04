@@ -36,14 +36,19 @@ public class GasDamage : MonoBehaviour
     }
     private void Execute()
     {
-        print("substracct");
         currentTurns++;
-        executed = true;
-        var inTrigger = Physics2D.OverlapBoxAll(transform.position, tileSize, 360);
+        Collider2D[] inTrigger = Physics2D.OverlapBoxAll(transform.position, tileSize, 360);
         print(inTrigger.Length);
+        Damage(inTrigger);
+        executed = true;
+    }
+    private void Damage(Collider2D[] inTrigger )
+    {
+        List<Collider2D> damaged = new List<Collider2D>();
+
         for (int i = 0; i < inTrigger.Length; i++)
         {
-            if (inTrigger[i].CompareTag("Character"))
+            if (inTrigger[i].CompareTag("Character") && !damaged.Contains(inTrigger[i]))
             {
                 HealthSystem.TakeDamage(damage, inTrigger[i].GetComponent<Character>());
             }

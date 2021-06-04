@@ -19,6 +19,8 @@ public class InfoManager : MonoBehaviour
 
     private Camera mainCamera;
     private Character targetChar;
+    private Hero targetHero;
+    private Hero[] heroes = new Hero[2];
     private UseAbility currentAbility;
     private int currentAttack = 0;
     private Vector2 GetMousePosition
@@ -42,19 +44,33 @@ public class InfoManager : MonoBehaviour
 
             if (rayCast)
             {
+                InitSpriteShower();
                 if (rayCast.transform.CompareTag("Character"))
                 {
-                    if (spriteShower.color.a <= 0)
-                    {
-                        spriteShower.color = new Color(spriteShower.color.r, spriteShower.color.g, spriteShower.color.b, 1);
-                    }
+                    targetHero = null;
                     targetChar = rayCast.transform.gameObject.GetComponent<Character>();
                     currentAttack = targetChar.AttackPoints;
+                    ShowSprite(targetChar.gameObject);
                     ShowBasicInfo();
                     if (targetChar.Team == Team.TeamPlayer)
                     {
                         if (!targetChar.Exhausted)
-                            ShowAbility();
+                            ShowAbility(targetChar.gameObject);
+                    }
+                }
+                else if (rayCast.transform.CompareTag("Hero"))
+                {
+                    targetChar = null;
+                    targetHero = rayCast.transform.gameObject.GetComponent<Hero>();
+
+                    ShowSprite(targetHero.gameObject);
+
+                    //ShowSprite(targetHero.GetComponentsInChildren<Transform>()[1].gameObject);
+
+                    if (targetHero.Team == Team.TeamPlayer)
+                    {
+                        if (!targetHero.Exhausted)
+                            ShowAbility(targetHero.gameObject);
                     }
                 }
             }
@@ -66,11 +82,46 @@ public class InfoManager : MonoBehaviour
                 currentAttack = targetChar.AttackPoints;
                 ShowBasicInfo();
             }
+            if (targetChar.Exhausted || TurnManager.TeamTurn != Team.TeamPlayer)
+            {
+                HideAbilityInfo();
+            }
+            else if (TurnManager.TeamTurn == Team.TeamPlayer)
+            {
+                ShowAbility(targetChar.gameObject);
+            }
         }
+        if (targetHero)
+        {
+            if (targetHero.Exhausted || TurnManager.TeamTurn != Team.TeamPlayer)
+            {
+                HideAbilityInfo();
+            }
+            else if (TurnManager.TeamTurn == Team.TeamPlayer)
+            {
+                ShowAbility(targetHero.gameObject);
+            }
+        }
+    }
+    private void Hide()
+    {
+        HideAbilityInfo();
+        spriteShower.color = new Color(spriteShower.color.r, spriteShower.color.g, spriteShower.color.b, 0);
+        attackText.text = "";
+    }
+    private void InitSpriteShower()
+    {
+        if (spriteShower.color.a <= 0)
+        {
+            spriteShower.color = new Color(spriteShower.color.r, spriteShower.color.g, spriteShower.color.b, 1);
+        }
+    }
+    private void ShowSprite(GameObject toshow)
+    {
+        spriteShower.sprite = toshow.GetComponent<SpriteRenderer>().sprite;
     }
     private void ShowBasicInfo()
     {
-        spriteShower.sprite = targetChar.GetComponent<SpriteRenderer>().sprite;
         attackText.text = targetChar.AttackPoints.ToString();
 
         HideAbilityInfo();
@@ -85,9 +136,9 @@ public class InfoManager : MonoBehaviour
         currentAbility = null; //resets and avoids casting when another char selected.
     }
 
-    private void ShowAbility()
+    private void ShowAbility(GameObject target)
     {
-        currentAbility = targetChar.GetComponentInChildren<UseAbility>();
+        currentAbility = target.GetComponentInChildren<UseAbility>();
 
         if (currentAbility)
         {
@@ -102,6 +153,7 @@ public class InfoManager : MonoBehaviour
     {
         if (currentAbility)
         {
+            print("USE" + currentAbility);
             currentAbility.Use();
         }
         if (TurnManager.currentMana < currentAbility.ability.whiskasCost)

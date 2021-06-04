@@ -134,6 +134,7 @@ public class PrepareDeck : MonoBehaviour
 
             hasEnded = true;
             //TurnManager.NextTurn();
+            AudioManager.audioManager.StartBattle();
         }
     }
 

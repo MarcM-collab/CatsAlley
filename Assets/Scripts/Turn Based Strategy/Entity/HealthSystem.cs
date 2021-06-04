@@ -15,6 +15,7 @@ public static class HealthSystem
         if (currentHealth <= 0)
         {
             OnDeath(target);
+            target.Hit = true;
             if (currentHealth < 0)
                 currentHealth = OnOverkill();
         }

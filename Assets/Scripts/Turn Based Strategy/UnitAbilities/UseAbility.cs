@@ -5,6 +5,7 @@ using UnityEngine;
 public class UseAbility : MonoBehaviour
 {
     public Abilty ability;
+    public bool isHero = false;
     public void Use()
     {
         if (ability.whiskasCost <= TurnManager.currentMana && TurnManager.TeamTurn == Team.TeamPlayer)
@@ -16,7 +17,14 @@ public class UseAbility : MonoBehaviour
     {
         if (ability.executed)
         {
-            EntityManager.ExecutorCharacter.Exhausted = true;
+            if (isHero)
+            {
+                GetComponentInParent<Hero>().Exhausted = true;
+            }
+            else
+            {
+                EntityManager.ExecutorCharacter.Exhausted = true;
+            }
             TurnManager.SubstractMana(ability.whiskasCost);
             ability.executed = false;
         }

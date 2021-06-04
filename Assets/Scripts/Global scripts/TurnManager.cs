@@ -40,12 +40,10 @@ public static class TurnManager
     {
         currentTurn++;
 
-        Debug.Log(currentTurn + "///" + TeamTurn);
         if (TeamTurn == Team.TeamPlayer && currentTurn < manaLimit*2-2)
             maxMana++;
 
         currentMana = maxMana;
-        Debug.Log(currentMana + "///" + maxMana);
         setDisplay?.Invoke(currentMana, maxMana);
 
         OnSwitchBehaviour?.Invoke();

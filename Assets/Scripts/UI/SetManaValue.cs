@@ -39,7 +39,6 @@ public class SetManaValue : MonoBehaviour
 
         for (int i = 0; i < currentAmount; i++)
         {
-            print(i);
             whiskas_array[i].gameObject.SetActive(true);
         }
         for (int i = currentAmount; i < whiskas_array.Length; i++)

@@ -26,5 +26,10 @@ public class Hero : Entity
             else
                 SceneManager.LoadScene("EndLoss");
         }
+
+        if (TurnManager.TeamTurn != Team.TeamPlayer)
+        {
+            Exhausted = false;
+        }
     }
 }
