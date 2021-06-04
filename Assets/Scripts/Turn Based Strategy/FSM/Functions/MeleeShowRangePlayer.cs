@@ -16,7 +16,7 @@ public class MeleeShowRangePlayer : CombatPlayerBehaviour
     {
         var enemyHeroOnRange = false;
         var cellSize = TileManager.CellSize;
-        var attackRange = _executorCharacter.Range + 2;
+        var attackRange = _executorCharacter.Range + 1;
         var counter = 0;
 
         for (int j = -attackRange; j <= attackRange; j++)
@@ -30,7 +30,9 @@ public class MeleeShowRangePlayer : CombatPlayerBehaviour
                 var currentGridPosition = _executorGridPosition + position;
                 var currentGridCenterPosition = currentGridPosition + cellSize;
 
-                var IsMovementRange = Mathf.Abs(i) < counter - 2;
+                var IsMovementRange = Mathf.Abs(i) < counter - 1;
+
+                var IsAttackRange = Mathf.Abs(i) <= counter;
 
                 if (IsMovementRange)
                 {
@@ -57,7 +59,8 @@ public class MeleeShowRangePlayer : CombatPlayerBehaviour
                         _uITilemap.SetTile(currentGridPosition, _collisionAllyTile);
                     }
                 }
-                else
+
+                else if (IsAttackRange)
                 {
 
                     var IsInsideAttackRange = i != -attackRange && i != attackRange && j != -attackRange && j != attackRange;

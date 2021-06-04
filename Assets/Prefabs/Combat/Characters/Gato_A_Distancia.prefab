@@ -370,7 +370,6 @@ GameObject:
   - component: {fileID: 507745496865460723}
   - component: {fileID: 304155172706219578}
   - component: {fileID: -2602713288980645324}
-  - component: {fileID: 8223678420012410267}
   m_Layer: 0
   m_Name: Gato_A_Distancia
   m_TagString: Character
@@ -630,18 +629,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meowType: 0
---- !u!114 &8223678420012410267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507745496865460720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f90ac3a3d18f3b4182e23b9d25df944, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &507745497298803552
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,8 +11,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(Mathf.Asin(FinalPosition.y - InitialPosition.y / FinalPosition.x - InitialPosition.x) * Mathf.Rad2Deg);
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + Mathf.Asin(FinalPosition.y - InitialPosition.y / FinalPosition.x - InitialPosition.x) * Mathf.Rad2Deg, 0);
+        transform.eulerAngles = new Vector3(0, Vector3.Angle(InitialPosition, FinalPosition), 0);
     }
     // Update is called once per frame
     void Update()
