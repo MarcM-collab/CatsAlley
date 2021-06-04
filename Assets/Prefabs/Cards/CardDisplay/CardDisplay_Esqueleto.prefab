@@ -1694,7 +1694,6 @@ GameObject:
   - component: {fileID: 2098432757967717681}
   - component: {fileID: 7782509182268302427}
   - component: {fileID: 2141095885114891718}
-  - component: {fileID: -3672240853811296152}
   m_Layer: 5
   m_Name: CardDisplay_Esqueleto
   m_TagString: Untagged
@@ -1869,19 +1868,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   use: 0
   toActive: {fileID: 5559759586295377754}
---- !u!114 &-3672240853811296152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8766396624261718455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee4cecdd123a8bc4084c4d49ae7c1bb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  card: {fileID: 1912205611453271048, guid: e3ab8a363afbb57499e4ba91e8202daa, type: 3}
 --- !u!1 &8957641903925017379
 GameObject:
   m_ObjectHideFlags: 0

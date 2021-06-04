@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SetManaValue : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class SetManaValue : MonoBehaviour
     private Image[] disactiveWhiskas_array;
 
     private Slider manaSlider;
-    private Text manaText;
+    private TextMeshProUGUI manaText;
 
     private int _currentMana;
     private int _maxMana;
@@ -56,7 +57,7 @@ public class SetManaValue : MonoBehaviour
     private void Init()
     {
         //manaSlider = GetComponent<Slider>();
-        manaText = GetComponentInChildren<Text>();
+        manaText = GetComponentInChildren<TextMeshProUGUI>();
         whiskas_array = whiskas.GetComponentsInChildren<Image>();
         disactiveWhiskas_array = maxWhiskas.GetComponentsInChildren<Image>();
 

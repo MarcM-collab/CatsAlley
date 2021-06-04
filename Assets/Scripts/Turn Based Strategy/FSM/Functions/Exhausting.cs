@@ -21,6 +21,21 @@ public class Exhausting : CombatBehaviour
     {
         ResetAnimatorParamaters(animator);
 
+        if (_executorCharacter.Team == Team.TeamPlayer)
+        {
+            if (_executorCharacter.transform.eulerAngles.y == 0)
+            {
+                _executorCharacter.Turn = true;
+            }
+        }
+        if (_executorCharacter.Team == Team.TeamAI)
+        {
+            if (_executorCharacter.transform.eulerAngles.y == 180)
+            {
+                _executorCharacter.Turn = true;
+            }
+        }
+
         _executorCharacter.Exhausted = true;
 
         Cursor.SetCursor(_cursorHand, Vector2.zero, CursorMode.Auto);

@@ -20,6 +20,7 @@ public class SelectingAI : CombatAIBehaviour
     }
     private void SelectingEnter(Animator animator)
     {
+
         timer = 0.0f;
     }
     private void SelectingUpdate(Animator animator)

@@ -9,12 +9,14 @@ public class Turn : StateMachineBehaviour
     {
         var gO = animator.gameObject;
         var sliderGO = gO.GetComponentInChildren<Slider>().gameObject;
+        var healthGO = gO.GetComponentInChildren<SetHealthText>().gameObject;
 
         var gORotationY = gO.transform.rotation.eulerAngles.y == 180 ? -180 : 180;
 
         gO.transform.Rotate(0, gORotationY, 0);
 
         sliderGO.transform.Rotate(0, -gORotationY, 0);
+        healthGO.transform.Rotate(0, -gORotationY, 0);
 
         animator.GetComponent<Character>().Turn = false;
     }
