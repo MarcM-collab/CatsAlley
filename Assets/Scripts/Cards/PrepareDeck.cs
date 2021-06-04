@@ -43,7 +43,6 @@ public class PrepareDeck : MonoBehaviour
     }
     private void Enter()
     {
-        print("XD?");
         panel = GetComponent<MenuPanel>();
         panel.Show();
     }
