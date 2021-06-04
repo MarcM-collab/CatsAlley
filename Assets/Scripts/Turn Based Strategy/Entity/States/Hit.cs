@@ -11,7 +11,7 @@ public class Hit : StateMachineBehaviour
 
         HealthSystem.TakeDamage(EntityManager.ExecutorCharacter.currentAttack);
 
-        //EntityManager.TargetCharacter.GetComponent<MeowAudio>().PlayAudioMew();
+        EntityManager.TargetCharacter.GetComponent<MeowAudio>().PlayAudioMew();
         animator.GetComponent<Entity>().ChangeHealth();
 
         SpriteRenderer[] r = animator.GetComponentsInChildren<SpriteRenderer>();

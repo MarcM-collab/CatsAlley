@@ -168,8 +168,11 @@ public class AudioManager : MonoBehaviour
         StopFilter();
         if (level == 0)
         {
-            music.clip = musicClips[0];
-            music.Play();
+            if (music)
+            {
+                music.clip = musicClips[0];
+                music.Play();
+            }
         }
         else
         {
