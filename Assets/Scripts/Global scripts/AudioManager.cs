@@ -165,6 +165,7 @@ public class AudioManager : MonoBehaviour
     }
     private void OnLevelWasLoaded(int level)
     {
+        StopFilter();
         if (level == 0)
         {
             music.clip = musicClips[0];

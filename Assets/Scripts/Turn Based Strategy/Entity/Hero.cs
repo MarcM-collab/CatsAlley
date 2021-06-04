@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class Hero : Entity
 {
     private bool Cast;
+    public MenuPanel win, loose;
+    public MenuPanel[] toHide;
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -21,10 +23,20 @@ public class Hero : Entity
 
         if (Dead)
         {
+            for (int i = 0; i < toHide.Length; i++)
+            {
+                toHide[i].Hide();
+            }
             if (Team == Team.TeamAI)
-                SceneManager.LoadScene("EndPlayer");
+            {
+                win.Show();
+
+            }
             else
-                SceneManager.LoadScene("EndLoss");
+            {
+                loose.Show();
+            }
+
         }
 
         if (TurnManager.TeamTurn != Team.TeamPlayer)

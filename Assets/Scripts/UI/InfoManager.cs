@@ -102,6 +102,8 @@ public class InfoManager : MonoBehaviour
                 ShowAbility(targetHero.gameObject);
             }
         }
+        if (TurnManager.TeamTurn != Team.TeamPlayer)
+            HideAbilityInfo();
     }
     private void Hide()
     {

@@ -9,6 +9,10 @@ public class CustomSceneManager : MonoBehaviour
     public bool test = false;
     private int levelsUnlocked = 0;
 
+    public int currentBuildIndex
+    {
+        get { return SceneManager.GetActiveScene().buildIndex; }
+    }
 
     public int GetLevelsUnlocked()
     {

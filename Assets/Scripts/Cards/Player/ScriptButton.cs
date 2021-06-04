@@ -52,7 +52,10 @@ public class ScriptButton : MonoBehaviour, IPointerExitHandler, IPointerEnterHan
 
         silbingIndex = transform.GetSiblingIndex();
         startParent = transform.parent;
-        newParent = GetComponentInParent<Canvas>().transform;
+
+        if (GetComponentInParent<Canvas>().transform)
+            newParent = GetComponentInParent<Canvas>().transform;
+
         rect = GetComponent<RectTransform>();
         startY = rect.position.y;
         startScale = rect.localScale;
