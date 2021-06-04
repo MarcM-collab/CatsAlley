@@ -43,7 +43,7 @@ public class MeleeChoosingAttackTileAI : CombatAIBehaviour
                 }
                 else
                 {
-                    if (!(_targetEntity.GetComponent("Entity") as Entity is null))
+                    if (!(_targetEntity.GetComponent("Character") as Character is null))
                     {
                         _uITilemap.SetTile(_targetGridPosition, _targetTile);
                     }

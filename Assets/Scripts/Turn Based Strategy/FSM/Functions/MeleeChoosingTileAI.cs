@@ -34,7 +34,7 @@ public class MeleeChoosingTileAI : CombatAIBehaviour
     private void FindTarget()
     {
         var cellSize = TileManager.CellSize;
-        var attackRange = _executorCharacter.Range + 2;
+        var attackRange = _executorCharacter.Range + 1;
         int counter = 0;
 
         for (int j = -attackRange; j <= attackRange; j++)
@@ -48,7 +48,7 @@ public class MeleeChoosingTileAI : CombatAIBehaviour
                 var currentGridPosition = _executorGridPosition + position;
                 var currentGridCenterPosition = currentGridPosition + cellSize;
 
-                var OnAttackRange = Mathf.Abs(i) < counter;
+                var OnAttackRange = Mathf.Abs(i) <= counter;
                 if (OnAttackRange)
                 {
                     if (i != -attackRange && i != attackRange && j != -attackRange && j != attackRange)
