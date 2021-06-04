@@ -4673,3 +4673,46 @@ System memory in use after: 69.9 MB.
 Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 2128.
 Total: 1.902200 ms (FindLiveObjects: 0.228200 ms CreateObjectMapping: 0.050900 ms MarkObjects: 1.607300 ms  DeleteObjects: 0.014500 ms)
 
+========================================================================
+Received Import Request.
+  Time since last request: 682.747290 seconds.
+  path: Assets/Scenes/Ainoa 2.unity
+  artifactKey: Guid(ba9123ff72d4da54cbf8a072072c99db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Ainoa 2.unity using Guid(ba9123ff72d4da54cbf8a072072c99db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26a18698c6711a153a9e03442ec35608') in 0.015011 seconds
+  Import took 0.018299 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005986 seconds.
+  path: Assets/Scenes/Ainoa 2.unity
+  artifactKey: Guid(ba9123ff72d4da54cbf8a072072c99db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Ainoa 2.unity using Guid(ba9123ff72d4da54cbf8a072072c99db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26a18698c6711a153a9e03442ec35608') in 0.005393 seconds
+  Import took 0.008231 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001309 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.30 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.087 seconds
+Platform modules already initialized, skipping
+OnLevelWasLoaded was found on CustomSceneManager
+This message has been deprecated and will be removed in a later version of Unity.
+Add a delegate to SceneManager.sceneLoaded instead to get notifications after scene loading has completed
+
+Refreshing native plugins compatible for Editor in 0.47 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1307 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 69.8 MB.
+System memory in use after: 69.9 MB.
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 2131.
+Total: 2.326900 ms (FindLiveObjects: 0.252600 ms CreateObjectMapping: 0.051700 ms MarkObjects: 1.994000 ms  DeleteObjects: 0.026500 ms)
+
