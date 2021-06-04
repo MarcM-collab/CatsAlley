@@ -44,7 +44,6 @@ public class MeleeChoosingAttackTilePlayer : CombatPlayerBehaviour
         {
             if (InTile(_currentGridPos + TileManager.CellSize) == (int)EntityType.EnemyHero || InTile(_currentGridPos + TileManager.CellSize) == (int)EntityType.EnemyCharacter)
             {
-                Debug.Log(IsHeroMelee());
                 if (IsExecutorMelee() || (IsHeroMelee() && InTile(_currentGridPos + TileManager.CellSize) == (int)EntityType.EnemyHero))
                 {
                     TeamAILength = EntityManager.GetCharacters(Team.TeamAI).Length;

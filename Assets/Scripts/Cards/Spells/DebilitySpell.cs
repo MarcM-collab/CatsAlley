@@ -58,7 +58,6 @@ public class DebilitySpell : Spell
         if (!priorChar)
             SetPriorChar();
 
-        print(priorChar);
         if (priorChar)
         {
             ReduceAttack(priorChar);
@@ -104,7 +103,6 @@ public class DebilitySpell : Spell
             target.AttackPoints = 1;
 
         int example = target.AttackPoints;
-        print("Attack of the unit reduced: " + example);
     }
     public override void Activate()
     {

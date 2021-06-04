@@ -33,7 +33,6 @@ public class SpellSpawner : MonoBehaviour
     {
         if (currentSpell)
         {
-            print("Executing");
             switch (team)
             {
                 case Team.TeamPlayer:
