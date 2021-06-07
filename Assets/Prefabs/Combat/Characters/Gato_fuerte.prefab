@@ -148,15 +148,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d30a958c7f71b246b5af1c8c66ddc90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 4
+  HP: 6
   Team: 0
   Exhausted: 0
   Hit: 0
   Dead: 0
-  MaxHP: 4
+  MaxHP: 6
   Class: 0
-  AttackPoints: 7
-  Range: 3
+  AttackPoints: 6
+  Range: 4
   Velocity: 5
   Teleporting: 0
   Turn: 0
@@ -342,7 +342,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 13.92, y: 0.0000076293945}
   m_SizeDelta: {x: 0.88, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

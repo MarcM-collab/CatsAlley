@@ -28,6 +28,8 @@ public class PrepareDeck : MonoBehaviour
     public float desplaceTime = 0.5f;
     private GameObject temporalDisplay;
     private bool hasEnded = false;
+
+    public Animator toHighLight;
     private void Start()
     {
         emptyImage = Slots[0].sprite;
@@ -137,6 +139,17 @@ public class PrepareDeck : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (currentCards.Count == DeckLimitation)
+        {
+            toHighLight.SetBool("HighLigh", true);
+        }
+        else
+        {
+            toHighLight.SetBool("HighLigh", false);
+        }
+    }
     //private void Update()
     //{
     //    DesplaceCard();

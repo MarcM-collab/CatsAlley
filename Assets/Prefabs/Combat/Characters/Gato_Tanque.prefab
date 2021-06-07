@@ -370,9 +370,9 @@ MonoBehaviour:
   Exhausted: 0
   Hit: 0
   Dead: 0
-  MaxHP: 8
+  MaxHP: 6
   Class: 0
-  AttackPoints: 1
+  AttackPoints: 2
   Range: 3
   Velocity: 5
   Teleporting: 0
@@ -394,6 +394,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ability: {fileID: 2116078389631182469, guid: fc1389e6a11db2046b0df9c2ff7bc7f7, type: 3}
+  isHero: 0
+  hasBeenUsed: 0
 --- !u!82 &1454931646380779833
 AudioSource:
   m_ObjectHideFlags: 0
