@@ -511,7 +511,7 @@ MonoBehaviour:
   Dead: 0
   MaxHP: 1
   Class: 1
-  AttackPoints: 2
+  AttackPoints: 1
   Range: 1
   Velocity: 5
   Teleporting: 0
