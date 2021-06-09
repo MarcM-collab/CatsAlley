@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
-
+using System;
 
 public class PrepareDeck : MonoBehaviour
 {
+    public GameObject vol;
     private MenuPanel panel;
     public Transform parent;
     public Image[] Slots;
@@ -17,14 +18,17 @@ public class PrepareDeck : MonoBehaviour
 
     [SerializeField]
     private List<SelectableCardButton> cardDisplays;
+    [SerializeField]
+    private GameObject[] lockDisplays;
 
     private Sprite emptyImage;
     private CanvasGroup canvas;
 
-    private int slot;
-    private GameObject displayC;
-    private Vector3 backDesplacement;
-    private bool desplace = false;
+    //private int slot;
+    //private GameObject displayC;
+    //private Vector3 backDesplacement;
+    //private bool desplace = false;
+
     public float desplaceTime = 0.5f;
     private GameObject temporalDisplay;
     private bool hasEnded = false;
@@ -32,6 +36,11 @@ public class PrepareDeck : MonoBehaviour
     public Animator toHighLight;
     private void Start()
     {
+        if (vol)
+        {
+            vol.SetActive(true);
+        }
+
         emptyImage = Slots[0].sprite;
 
         for (int i = index; i < Slots.Length; i++)
@@ -40,9 +49,40 @@ public class PrepareDeck : MonoBehaviour
             Slots[i].sprite = emptyImage;
         }
 
+        for (int i = 0; i < GetCardsUnlocked(); i++)
+        {
+            if (i >= cardDisplays.Count)
+            {
+                Debug.LogWarning("Not enought cards");
+                break;
+            }
+            cardDisplays[i].gameObject.SetActive(true);
+
+            if (i > 8)
+            {
+                CheckLock(2);
+            }
+            else if (i > 10)
+            {
+                CheckLock(4);
+            }
+        }
+
+
         canvas = GetComponent<CanvasGroup>();
         cardDisplays = FindObjectsOfType<SelectableCardButton>().ToList();
     }
+
+    private int GetCardsUnlocked()
+    {
+        return (CustomSceneManager.SceneManagerCustom.GetLevelsUnlocked()) switch
+        {
+            0 => 8,
+            1 => 10,
+            _ => 12,
+        };
+    }
+
     private void Enter()
     {
         panel = GetComponent<MenuPanel>();
@@ -82,10 +122,10 @@ public class PrepareDeck : MonoBehaviour
                 index = 0;
 
             cardDisplay.gameObject.SetActive(false);
-            slot = index;
-            displayC = displayCard;
+            //slot = index;
+            //displayC = displayCard;
             
-            desplace = true;
+            //desplace = true;
 
             //temporalDisplay = Instantiate(displayC, displayC.transform.position, Quaternion.identity,displayC.transform.parent);
             //temporalDisplay.SetActive(true);
@@ -136,9 +176,20 @@ public class PrepareDeck : MonoBehaviour
             hasEnded = true;
             //TurnManager.NextTurn();
             AudioManager.audioManager.StartBattle();
+
+            if (vol)
+            {
+                vol.SetActive(false);
+            }
         }
     }
-
+    private void CheckLock(int length)
+    {
+        for (int i = 0; i < length; i++)
+        {
+            lockDisplays[i].SetActive(false);
+        }
+    }
     private void Update()
     {
         if (currentCards.Count == DeckLimitation)
