@@ -8,7 +8,18 @@ public class CustomSceneManager : MonoBehaviour
     public static CustomSceneManager SceneManagerCustom;
     public bool test = false;
     private int levelsUnlocked = 0;
-
+    public int GetCardsUnlocked
+    {
+        get
+        {
+            if (levelsUnlocked == 0)
+                return 8;
+            if (levelsUnlocked == 1)
+                return 10;
+            else
+                return 12;
+        }
+    }
     public int currentBuildIndex
     {
         get { return SceneManager.GetActiveScene().buildIndex; }
