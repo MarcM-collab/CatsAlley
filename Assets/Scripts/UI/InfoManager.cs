@@ -16,7 +16,6 @@ public class InfoManager : MonoBehaviour
     public TMP_Text attackText;
     public TMP_Text abilityInfo;
     public TMP_Text abilityCost;
-
     private Camera mainCamera;
     private Character targetChar;
     private Hero targetHero;
@@ -44,7 +43,6 @@ public class InfoManager : MonoBehaviour
 
             if (rayCast)
             {
-                InitSpriteShower();
                 if (rayCast.transform.CompareTag("Character"))
                 {
                     targetHero = null;
@@ -82,7 +80,7 @@ public class InfoManager : MonoBehaviour
                 currentAttack = targetChar.AttackPoints;
                 ShowBasicInfo();
             }
-            if (targetChar.Exhausted || TurnManager.TeamTurn != Team.TeamPlayer)
+            if (targetChar.Team == Team.TeamAI || targetChar.Exhausted || TurnManager.TeamTurn != Team.TeamPlayer)
             {
                 HideAbilityInfo();
             }
@@ -93,7 +91,7 @@ public class InfoManager : MonoBehaviour
         }
         if (targetHero)
         {
-            if (targetHero.Exhausted || TurnManager.TeamTurn != Team.TeamPlayer)
+            if (targetHero.Team == Team.TeamAI || targetHero.Exhausted || TurnManager.TeamTurn != Team.TeamPlayer)
             {
                 HideAbilityInfo();
             }
@@ -104,6 +102,11 @@ public class InfoManager : MonoBehaviour
         }
         if (TurnManager.TeamTurn != Team.TeamPlayer)
             HideAbilityInfo();
+
+        if (currentAbility)
+            if (currentAbility.hasBeenUsed)
+                HideAbilityInfo();
+
     }
     private void Hide()
     {
@@ -121,6 +124,7 @@ public class InfoManager : MonoBehaviour
     private void ShowSprite(GameObject toshow)
     {
         spriteShower.sprite = toshow.GetComponent<SpriteRenderer>().sprite;
+        InitSpriteShower();
     }
     private void ShowBasicInfo()
     {
@@ -153,15 +157,14 @@ public class InfoManager : MonoBehaviour
     }
     public void UseAbility()
     {
-        if (currentAbility)
-        {
-            print("USE" + currentAbility);
-            currentAbility.Use();
-        }
         if (TurnManager.currentMana < currentAbility.ability.whiskasCost)
         {
             StartCoroutine(NotEnough(buttonUse, buttonUseColor));
             StartCoroutine(NotEnough(whiskasIm, whiskasColor));
+        }
+        else if (currentAbility)
+        {
+            currentAbility.Use();
         }
     }
     private IEnumerator NotEnough(Image i, Color startColor)

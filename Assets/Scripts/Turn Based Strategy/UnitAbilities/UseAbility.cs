@@ -6,9 +6,10 @@ public class UseAbility : MonoBehaviour
 {
     public Abilty ability;
     public bool isHero = false;
+    [HideInInspector] public bool hasBeenUsed = false; //avoids bugs
     public void Use()
     {
-        if (ability.whiskasCost <= TurnManager.currentMana && TurnManager.TeamTurn == Team.TeamPlayer)
+        if (ability.whiskasCost <= TurnManager.currentMana && TurnManager.TeamTurn == Team.TeamPlayer && !hasBeenUsed)
         {
             ability.Excecute();
         }
@@ -27,6 +28,12 @@ public class UseAbility : MonoBehaviour
             }
             TurnManager.SubstractMana(ability.whiskasCost);
             ability.executed = false;
+            hasBeenUsed = true;
+        }
+
+        if (TurnManager.TeamTurn == Team.TeamAI)
+        {
+            hasBeenUsed = false;
         }
     }
 }

@@ -27,6 +27,12 @@ public class ChooseDrawableCardsPlayer : MonoBehaviour
 
     private bool cardSelected;
 
+    public MenuPanel toShow;
+
+    public static int GetMaxHand
+    {
+        get { return 6;  }
+    }
     private void OnEnable()
     {
         ChooseDrawableCardsBehaviour.OnChooseDrawableCardsEnter += ChooseDrawableCardsEnter;
@@ -101,6 +107,7 @@ public class ChooseDrawableCardsPlayer : MonoBehaviour
             rt.localScale = cardInstancePos[i].localScale;
 
             buttonsPanel[i].Show();
+            toShow.Show();
         }
 
     }

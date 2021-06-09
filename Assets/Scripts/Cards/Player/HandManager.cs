@@ -8,7 +8,16 @@ public class HandManager : MonoBehaviour
     [SerializeField]
     private float scale = 1f;
     public Transform HandCanvas;
-
+    public int GetMaxHandCost()
+    {
+        int max = 0;
+        for (int i = 0; i < hand.Count; i++)
+        {
+            if (max < hand[i].Whiskas)
+                max = hand[i].Whiskas;
+        }
+        return max;
+    }
     public void AddCard(Card newCard)
     {
         Transform cardInstance = Instantiate(newCard, HandCanvas.position, Quaternion.identity).transform;

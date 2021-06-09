@@ -1247,7 +1247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b4761a51813125469f6201f65153f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Whiskas: 2
+  Whiskas: 1
   character: {fileID: 507745496865460723, guid: 20892a19571806c43a7862cbc8be5adf, type: 3}
 --- !u!114 &3163353293594914938
 MonoBehaviour:

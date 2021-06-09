@@ -152,16 +152,19 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        mixer.SetFloat(parameter, Mathf.Log10(value) * 20);
+        if (mixer)
+            mixer.SetFloat(parameter, Mathf.Log10(value) * 20);
     }
 
     public void ApplyFilter()
     {
-        passFilter.enabled = true;
+        if (passFilter)
+            passFilter.enabled = true;
     }
     public void StopFilter()
     {
-        passFilter.enabled = false;
+        if (passFilter)
+            passFilter.enabled = false;
     }
     private void OnLevelWasLoaded(int level)
     {
