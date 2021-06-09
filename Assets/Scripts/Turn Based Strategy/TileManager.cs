@@ -9,16 +9,13 @@ using UnityEngine.Tilemaps;
 public class TileManager : MonoBehaviour
 {
     [Header("UITiles")]
-    public Tile PointingTile;
-    public Tile TargetTile;
-    public Tile AllyTile;
-    public Tile SpawningTile;
-    public Tile SpawningSelectedTile;
-    public Tile MovingTile;
-    public Tile MovingSelectedTile;
-    public Tile AttackingTile;
-    public Tile AttackingSelectedTile;
-    public Tile CollisionAllyTile;
+    public AnimatedTile PointingTile;
+    public AnimatedTile TargetTile;
+    public AnimatedTile AllyTile;
+    public AnimatedTile SpawningTile;
+    public AnimatedTile MovingTile;
+    public AnimatedTile AttackingTile;
+    public AnimatedTile CollisionAllyTile;
 
     [Header("HeroTiles")]
     public GameObject AIHeroTile;
@@ -37,7 +34,7 @@ public class TileManager : MonoBehaviour
     {
         _grid = GetComponent<Grid>();
     }
-    public static void ShowTilesInTilemap(Tilemap tilemapToLook, Tilemap tilemapToEdit, Tile tile, System.Func<Vector3Int, bool> function)
+    public static void ShowTilesInTilemap(Tilemap tilemapToLook, Tilemap tilemapToEdit, AnimatedTile tile, System.Func<Vector3Int, bool> function)
     {
         for (int x = tilemapToLook.cellBounds.min.x; x <= tilemapToLook.cellBounds.max.x; x++)
         {
