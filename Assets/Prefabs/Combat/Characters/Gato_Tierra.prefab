@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 507745496865460723}
   - component: {fileID: 4552217383504228236}
   m_Layer: 0
-  m_Name: Gato_Esqueleto
+  m_Name: Gato_Tierra
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -531,7 +531,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461c764d45c3a4b44aa76e7436d963dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ability: {fileID: 2370314083122607442}
+  ability: {fileID: 1676792713312034716, guid: d4a3a5d574b9ff3409ed4342b7d8a469, type: 3}
+  isHero: 0
 --- !u!1 &507745497298803552
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,14 +1126,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8386242815035518298, guid: 17dcecd48a4f0e748a828e1ebc3bcaa8, type: 3}
   m_PrefabInstance: {fileID: 5663547959166047345}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2370314083122607442 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -1261576596295524061, guid: 17dcecd48a4f0e748a828e1ebc3bcaa8, type: 3}
-  m_PrefabInstance: {fileID: 5663547959166047345}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e35935de9b5eb1c48b409786cd18ce82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
