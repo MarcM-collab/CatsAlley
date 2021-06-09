@@ -18,16 +18,13 @@ public class CombatBehaviour : MonoBehaviour
     protected TileManager _tileManager => FindObjectOfType<TileManager>();
     protected Camera _camera => _art.Camera;
 
-    protected Tile _pointingTile => _tileManager.PointingTile;
-    protected Tile _targetTile => _tileManager.TargetTile;
-    protected Tile _allyTile => _tileManager.AllyTile;
-    protected Tile _spawningTile => _tileManager.SpawningTile;
-    protected Tile _spawningSelectedTile => _tileManager.SpawningSelectedTile;
-    protected Tile _movingTile => _tileManager.MovingTile;
-    protected Tile _movingSelectedTile => _tileManager.MovingSelectedTile;
-    protected Tile _attackingTile => _tileManager.AttackingTile;
-    protected Tile _attackingSelectedTile => _tileManager.AttackingSelectedTile;
-    protected Tile _collisionAllyTile => _tileManager.CollisionAllyTile;
+    protected AnimatedTile _pointingTile => _tileManager.PointingTile;
+    protected AnimatedTile _targetTile => _tileManager.TargetTile;
+    protected AnimatedTile _allyTile => _tileManager.AllyTile;
+    protected AnimatedTile _spawningTile => _tileManager.SpawningTile;
+    protected AnimatedTile _movingTile => _tileManager.MovingTile;
+    protected AnimatedTile _attackingTile => _tileManager.AttackingTile;
+    protected AnimatedTile _collisionAllyTile => _tileManager.CollisionAllyTile;
 
     protected GameObject _aIHeroTile => _tileManager.AIHeroTile;
     protected GameObject _playerHeroTile => _tileManager.PlayerHeroTile;
