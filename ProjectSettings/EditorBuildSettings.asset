@@ -9,14 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 2316a784c8ebd9e469b91aa8104df6dc
   - enabled: 1
+    path: Assets/Scenes/Ainoa/_Ainoa1000.unity
+    guid: ef33d5265680c134dbccb11e74488140
+  - enabled: 1
     path: Assets/Scenes/Marc/Marc3.unity
     guid: c589fa559716f544a841677948002b37
   - enabled: 1
     path: Assets/Scenes/Ricard_-_copia.unity
     guid: 7cfdfcdd2afd9b14bb923803030c5884
-  - enabled: 1
-    path: Assets/Scenes/Ainoa 2.unity
-    guid: ba9123ff72d4da54cbf8a072072c99db
   - enabled: 1
     path: Assets/Scenes/Marc/Marc.unity
     guid: 216bb97ca5ac68446bc0e6e8e652c663
