@@ -6,6 +6,7 @@ public class PassTurn : MonoBehaviour
 {
     private MenuPanel p;
     private HandManager h;
+    public MenuPanel checkSteal;
     private bool hided = false;
     private void Start()
     {
@@ -14,16 +15,20 @@ public class PassTurn : MonoBehaviour
     }
     private void Update()
     {
-        if (TurnManager.TeamTurn != Team.TeamPlayer && !hided)
+        if (TurnManager.TeamTurn != Team.TeamPlayer && !p.isHided)
         {
-            hided = true;
             p.Hide();
         }
-        else if (TurnManager.TeamTurn == Team.TeamPlayer && hided)
+        if (TurnManager.TeamTurn == Team.TeamPlayer && h.GetCurrentHandLength <= ChooseDrawableCardsPlayer.GetMaxHand && p.isHided && checkSteal.isHided)
         {
-            hided = false;
-            if (h.GetCurrentHandLength <= ChooseDrawableCardsPlayer.GetMaxHand)
-                p.Show();
+            StartCoroutine(ReCheck());
         }
+    }
+    private IEnumerator ReCheck()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        if (checkSteal.isHided)
+            p.Show();
     }
 }

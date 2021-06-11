@@ -45,7 +45,6 @@ public class GasDamage : MonoBehaviour
     private void Damage(Collider2D[] inTrigger )
     {
         List<Collider2D> damaged = new List<Collider2D>();
-
         for (int i = 0; i < inTrigger.Length; i++)
         {
             if (inTrigger[i].CompareTag("Character") && !damaged.Contains(inTrigger[i]))

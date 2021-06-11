@@ -8,6 +8,7 @@ public class Hero : Entity
     private bool Cast;
     public MenuPanel win, loose;
     public MenuPanel[] toHide;
+    public Animator hit;
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -21,6 +22,16 @@ public class Hero : Entity
         _animator.SetBool("Dead", Dead);
         _animator.SetBool("Cast", Cast);
 
+        if (Hit)
+        {
+            StartCoroutine(Shake());
+
+            if (Team == Team.TeamPlayer)
+            {
+                hit.SetBool("Hit", true);
+                StartCoroutine(DisHit());
+            }
+        }
         if (Dead)
         {
             for (int i = 0; i < toHide.Length; i++)
@@ -43,5 +54,15 @@ public class Hero : Entity
         {
             Exhausted = false;
         }
+    }
+    private IEnumerator DisHit() //triggers activated it 2 times
+    {
+        yield return new WaitForSeconds(0.5f);
+        hit.SetBool("Hit", false);
+    }
+    private IEnumerator Shake() //triggers activated it 2 times
+    {
+        yield return new WaitForSeconds(0.15f);
+        CameraShake.TriggerShake(2);
     }
 }
