@@ -25,7 +25,7 @@ public class PathCreator : MonoBehaviour
         for (int i = 0; i < linesActive.Length; i++)
         {
             linesActive[i].SetBool("Show", true);
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 }
