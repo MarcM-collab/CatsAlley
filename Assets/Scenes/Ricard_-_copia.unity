@@ -6981,13 +6981,41 @@ PrefabInstance:
       value: Map
       objectReference: {fileID: 0}
     - target: {fileID: 804958840143935206, guid: 006225af0c6b1d648bbd669a4cda83e2, type: 3}
+      propertyPath: AllyTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 603446439041fbf4483576b6ebe18d6b, type: 2}
+    - target: {fileID: 804958840143935206, guid: 006225af0c6b1d648bbd669a4cda83e2, type: 3}
       propertyPath: AIHeroTile
       value: 
       objectReference: {fileID: 1081912528}
     - target: {fileID: 804958840143935206, guid: 006225af0c6b1d648bbd669a4cda83e2, type: 3}
+      propertyPath: MovingTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 774bdbce799aea844b03cd55dec8f93c, type: 2}
+    - target: {fileID: 804958840143935206, guid: 006225af0c6b1d648bbd669a4cda83e2, type: 3}
+      propertyPath: TargetTile
+      value: 
+      objectReference: {fileID: 11400000, guid: b29b1c2b338b8e74991583760ab81399, type: 2}
+    - target: {fileID: 804958840143935206, guid: 006225af0c6b1d648bbd669a4cda83e2, type: 3}
+      propertyPath: PointingTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 196ecb66c0924dc41a6d6a599beee7e2, type: 2}
+    - target: {fileID: 804958840143935206, guid: 006225af0c6b1d648bbd669a4cda83e2, type: 3}
+      propertyPath: SpawningTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a3006b974b4dda4689c501d678f3c0b, type: 2}
+    - target: {fileID: 804958840143935206, guid: 006225af0c6b1d648bbd669a4cda83e2, type: 3}
+      propertyPath: AttackingTile
+      value: 
+      objectReference: {fileID: 11400000, guid: d40e8f0cf342f814cab5f6b4c468f47d, type: 2}
+    - target: {fileID: 804958840143935206, guid: 006225af0c6b1d648bbd669a4cda83e2, type: 3}
       propertyPath: PlayerHeroTile
       value: 
       objectReference: {fileID: 130658111}
+    - target: {fileID: 804958840143935206, guid: 006225af0c6b1d648bbd669a4cda83e2, type: 3}
+      propertyPath: CollisionAllyTile
+      value: 
+      objectReference: {fileID: 11400000, guid: ab1e2300bd38a244b99c2484df997ea4, type: 2}
     - target: {fileID: 804958840640387384, guid: 006225af0c6b1d648bbd669a4cda83e2, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -11816,9 +11844,21 @@ PrefabInstance:
       value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 6305203042380207360, guid: bd7b84f9176ef9546a2fcf9a8d0b8f14, type: 3}
+      propertyPath: AngleScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305203042380207360, guid: bd7b84f9176ef9546a2fcf9a8d0b8f14, type: 3}
       propertyPath: HandCanvas
       value: 
       objectReference: {fileID: 8927148080274675591}
+    - target: {fileID: 6305203042380207360, guid: bd7b84f9176ef9546a2fcf9a8d0b8f14, type: 3}
+      propertyPath: DivisionAngle
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6305203042380207360, guid: bd7b84f9176ef9546a2fcf9a8d0b8f14, type: 3}
+      propertyPath: divisionAngle
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6305203042380207361, guid: bd7b84f9176ef9546a2fcf9a8d0b8f14, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -12601,7 +12641,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1506348309}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.3506697
+  m_Size: 0.35066974
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -33346,32 +33386,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8927148080181621397}
   m_CullTransparentMesh: 1
---- !u!114 &8927148080274675584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8927148080274675590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: 40
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!1 &8927148080274675590
 GameObject:
   m_ObjectHideFlags: 0
@@ -33381,7 +33395,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8927148080274675591}
-  - component: {fileID: 8927148080274675584}
   - component: {fileID: 1194568785}
   m_Layer: 5
   m_Name: PosHand
@@ -33404,10 +33417,10 @@ RectTransform:
   m_Father: {fileID: 8927148081219406129}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.014984, y: -404.7082}
-  m_SizeDelta: {x: 1920, y: 270.6837}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1260}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &8927148080630337712
 PrefabInstance:
@@ -34003,10 +34016,10 @@ RectTransform:
   m_Father: {fileID: 8927148081219406129}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -879.35, y: 59.65413}
-  m_SizeDelta: {x: 542.7316, y: 79.5252}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 90, y: 59.654114}
+  m_SizeDelta: {x: 542.7316, y: 79.52521}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8927148082127615008
 MonoBehaviour:

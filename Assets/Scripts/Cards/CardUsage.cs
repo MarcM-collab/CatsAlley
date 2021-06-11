@@ -21,7 +21,7 @@ public class CardUsage : MonoBehaviour
     private Tilemap _floorTilemap => _tileManager.FloorTilemap;
     private Tilemap _collisionTilemap => _tileManager.CollisionTilemap;
     private Tilemap _uITilemap => _tileManager.UITilemap;
-    private Tile _allyTile => _tileManager.AllyTile;
+    private AnimatedTile _allyTile => _tileManager.AllyTile;
 
     private Camera _camera => _art.Camera;
 
