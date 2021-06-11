@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class PrepareDeck : MonoBehaviour
@@ -30,6 +31,11 @@ public class PrepareDeck : MonoBehaviour
     private bool hasEnded = false;
 
     public Animator toHighLight;
+    public TMP_Text WhiskasAverageText;
+    private float whiskasAverage = 0f;
+    private List<float> _WhiskasAverage = new List<float>();
+        
+
     private void Start()
     {
         emptyImage = Slots[0].sprite;
@@ -86,7 +92,23 @@ public class PrepareDeck : MonoBehaviour
             displayC = displayCard;
             
             desplace = true;
+            //lista que guarda los wishkas de las cartas para realizar la media
+            whiskasAverage = 0;
+            _WhiskasAverage.Add(currentCards[currentCards.Count - 1].Whiskas);
+            for (int i = 0; i < currentCards.Count; i++)
+            {
+                whiskasAverage += _WhiskasAverage[i];
+            }
+            
+            whiskasAverage /= _WhiskasAverage.Count;
+            whiskasAverage = Mathf.Round(whiskasAverage * 100) / 100.0f;
 
+            if (whiskasAverage <= 0)
+                whiskasAverage = 0;
+
+            WhiskasAverageText.text = whiskasAverage.ToString();
+
+            
             //temporalDisplay = Instantiate(displayC, displayC.transform.position, Quaternion.identity,displayC.transform.parent);
             //temporalDisplay.SetActive(true);
             //temporalDisplay.transform.SetParent(parent);
@@ -106,22 +128,43 @@ public class PrepareDeck : MonoBehaviour
             {
                 if (Slots[i + 1].sprite != null)
                     Slots[i].sprite = Slots[i + 1].sprite;
-
             }
             for (int i = 0; i < cardDisplays.Count; i++)
             {
-
                 if (cardDisplays[i].GetComponent<SelectableCardButton>().card.name == currentCards[_index].name)
                     cardDisplays[i].gameObject.SetActive(true);
             }
 
             //Slots[Slots.Length-1].color = new Color(Slots[_index].color.r, Slots[_index].color.g, Slots[_index].color.b, 0);
             Slots[Slots.Length - 1].sprite = emptyImage;
+
+
+            //lista que guarda los wishkas de las cartas para realizar la media
+            _WhiskasAverage.RemoveAt(_index);
+            whiskasAverage = 0;
+            for (int i = 0; i < _WhiskasAverage.Count; i++)
+            {
+                whiskasAverage += _WhiskasAverage[i];
+            }
+            whiskasAverage /= _WhiskasAverage.Count;
+            whiskasAverage = Mathf.Round(whiskasAverage * 100) / 100.0f;
+
+            if (whiskasAverage <= 0)
+                whiskasAverage = 0;
+
+
+            WhiskasAverageText.text = whiskasAverage.ToString();
             currentCards.RemoveAt(_index);
+
+            
+           
+
             index--;
         }
         
     }
+
+
 
     public void DeckIsFinished()
     {
@@ -149,7 +192,12 @@ public class PrepareDeck : MonoBehaviour
         {
             toHighLight.SetBool("HighLigh", false);
         }
+
+        ;
     }
+
+
+    
     //private void Update()
     //{
     //    DesplaceCard();

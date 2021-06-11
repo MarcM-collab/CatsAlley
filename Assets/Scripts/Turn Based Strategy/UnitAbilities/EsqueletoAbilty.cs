@@ -4,65 +4,93 @@ using UnityEngine;
 
 public class EsqueletoAbilty : Abilty
 {
-    private TileManager tileManager;
-    private bool activated = false;
+    public Character littleSkeleton;
 
-    public int damage = 1;
-    private Vector3Int mouseIntPos;
-    private Vector2[] fieldRange = new Vector2[] { new Vector2(3, 1), new Vector2(-3, -1) };
-    private Vector3Int prevPos;
-    public GameObject fx;
-    public Vector2 tileSize;
+    private int nSpawn = 32;
+    Vector2 positionSpawn;
+    private bool CanSpawn;
+    TileManager tileManager;
+    List<Vector2> positions;
 
-    private void Start()
-    {
-        tileManager = FindObjectOfType<TileManager>();
-
-
-    }
     public override void Excecute()
     {
-        //tileManager.
-        print("tus muertos");
+        if (!tileManager)
+            tileManager = FindObjectOfType<TileManager>();
 
-    }
+        positions = new List<Vector2>();
 
-    private void Update()
-    {
-        if (activated)
+        CanSpawn = false;
+        int i = 0;
+        while (!CanSpawn)
         {
-            if (mouseIntPos.x <= fieldRange[0].x && mouseIntPos.x >= fieldRange[1].x && mouseIntPos.y <= fieldRange[0].y && mouseIntPos.y >= fieldRange[1].y && tileManager.FloorTilemap.HasTile(mouseIntPos))
-            {
-                tileManager.UITilemap.SetTile(prevPos, null);
-                prevPos = mouseIntPos;
-                tileManager.UITilemap.SetTile(mouseIntPos, tileManager.PointingTile);
-            }
-            else
-            {
-                tileManager.UITilemap.SetTile(prevPos, null);
-            }
-            if (Input.GetMouseButtonDown(0) && !IsOccupied())
-            {
-                Excecute();
-            }
+            if (i > nSpawn)
+                return;
+            positions.Add(positionSpawn);
+            Spawn();
+            i++;
         }
 
+        if (CanSpawn)
+        {
+            executed = true;
+            print("gettile "+GetTilePosition(positionSpawn));
+            Character e = Instantiate(littleSkeleton, GetTilePosition(positionSpawn), Quaternion.identity).GetComponent<Character>();
+            e.Team = Team.TeamPlayer;
+            e.Exhausted = true;
+            
+            e.ChangeHealth();
+
+
+        }
+    }
+    private Vector2 GetTilePosition(Vector2 pos)
+    {
+        return new Vector2(pos.x - 0.5f, pos.y - 0.5f);
     }
 
-    private bool IsOccupied()
+    //private void GetTilePosition(Transform toPosition, Vector2 pos)
+    //{
+
+    //    toPosition.transform.position = new Vector3(pos.x + (TileManager.CellSize.x / 2), pos.y + (TileManager.CellSize.y / 2), 0);
+    //}
+
+
+    protected Vector3Int GetIntPos(Vector2 pos)
     {
-        activated = false;
-        RaycastHit2D hit2D = Physics2D.Raycast(GetMousePosition, Vector2.zero);
-
-        if (hit2D)
+        return (Vector3Int)tileManager.FloorTilemap.WorldToCell(pos);
+    }
+    private void Spawn()
+    {
+        do
         {
-            if (hit2D.transform.CompareTag("Character"))
-            {
+            positionSpawn = new Vector2(Random.Range(-3, 5), Random.Range(1, 3));
+        }
+        while (positions.Contains(positionSpawn));
+       
+        print(positionSpawn);
 
-                return true;
+        var vector = new Vector3(positionSpawn.x, positionSpawn.y);
+        RaycastHit2D rayCast = Physics2D.Raycast(vector, Vector3.zero, Mathf.Infinity);
+
+        if (rayCast)
+        {
+            if ((rayCast.collider.CompareTag("Character")))
+            {
+                print("no spawn");
+                CanSpawn = false;
+                return;
             }
         }
+        else if (tileManager.CollisionTilemap.HasTile(GetIntPos(positionSpawn)))
+        {
+            CanSpawn = false;
+            return;
+        }
 
-        return false;
+
+        print("puede spawnear");
+        CanSpawn = true;
+
     }
+
 }
