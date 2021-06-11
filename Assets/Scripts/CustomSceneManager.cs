@@ -8,23 +8,20 @@ public class CustomSceneManager : MonoBehaviour
     public static CustomSceneManager SceneManagerCustom;
     public bool test = false;
     private int levelsUnlocked = 0;
-    public int GetCardsUnlocked
-    {
-        get
-        {
-            if (levelsUnlocked == 0)
-                return 8;
-            if (levelsUnlocked == 1)
-                return 10;
-            else
-                return 12;
-        }
-    }
+    private bool unlocked = false;
+
+    public delegate void Unlocked(int index);
+    public static Unlocked OnUnlock;
     public int currentBuildIndex
     {
         get { return SceneManager.GetActiveScene().buildIndex; }
     }
+    [HideInInspector] public int[] starsInEachLevel = new int[3];
 
+    public void SetStars(int amount)
+    {
+        starsInEachLevel[currentBuildIndex] += amount;
+    }
     public int GetLevelsUnlocked()
     {
         return levelsUnlocked;
@@ -75,10 +72,15 @@ public class CustomSceneManager : MonoBehaviour
     private void OnLevelWasLoaded(int level)
     {
 
-        if (level != 0) //menu
+        if (level == 0) //menu
+        {
+            OnUnlock?.Invoke(levelsUnlocked);
+        }
+        else
         {
             Init();
         }
+
     } 
 
     public void Init()
@@ -94,6 +96,7 @@ public class CustomSceneManager : MonoBehaviour
             levelsUnlocked = buildIndex; //1 level 1 2 level 2 and so on...
             PlayerPrefs.SetInt("Unlocked", levelsUnlocked);
             PlayerPrefs.Save();
+            unlocked = true;
         }
     }
 }

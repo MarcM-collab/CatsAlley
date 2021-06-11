@@ -16,7 +16,7 @@ public class MenuPanel : MonoBehaviour
         if(startShown)
         {
             _canvasGroup.alpha = 1;
-            Show();
+            Hide();
         }
     }
 
