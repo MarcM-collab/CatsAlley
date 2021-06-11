@@ -30,6 +30,13 @@ public class HandManager : MonoBehaviour
         }
         return max;
     }
+    public int GetCurrentHandLength
+    {
+        get
+        {
+            return hand.Count;
+        }
+    }
     public void AddCard(Card newCard)
     {
         var scaledAngle = DivisionAngle - AngleScale * (hand.Count + 1);

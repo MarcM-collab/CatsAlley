@@ -30,6 +30,10 @@ public class CheckUnlocked : MonoBehaviour
                 if(i!=0)
                     paths[i-1].ShowPath();
             }
+            else
+            {
+                levels[i].disactive.Show();
+            }
         }
     }
 }
