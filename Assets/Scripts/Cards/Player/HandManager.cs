@@ -12,6 +12,14 @@ public class HandManager : MonoBehaviour
     public float DivisionAngle;
     public float AngleScale;
     private float _randomOffset = 1950;
+
+    public int GetCurrentHandLength
+    {
+        get
+        {
+            return hand.Count;
+        }
+    }
     public int GetMaxHandCost()
     {
         int max = 0;
