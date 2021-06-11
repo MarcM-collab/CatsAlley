@@ -12,6 +12,8 @@ public class EsqueletoAbilty : Abilty
     TileManager tileManager;
     List<Vector2> positions;
 
+
+
     public override void Excecute()
     {
         if (!tileManager)
@@ -37,7 +39,6 @@ public class EsqueletoAbilty : Abilty
             Character e = Instantiate(littleSkeleton, GetTilePosition(positionSpawn), Quaternion.identity).GetComponent<Character>();
             e.Team = Team.TeamPlayer;
             e.Exhausted = true;
-            
             e.ChangeHealth();
 
 
@@ -86,10 +87,14 @@ public class EsqueletoAbilty : Abilty
             CanSpawn = false;
             return;
         }
+        else
+        {
+            print("puede spawnear");
+            CanSpawn = true;
+        }
 
 
-        print("puede spawnear");
-        CanSpawn = true;
+       
 
     }
 
