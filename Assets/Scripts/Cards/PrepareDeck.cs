@@ -138,25 +138,29 @@ public class PrepareDeck : MonoBehaviour
             //temporalDisplay.GetComponent<Button>().enabled = false;
 
             _WhiskasAverage.Add(card.Whiskas);
-            whiskasAverage = 0;
-            for (int i = 0; i < _WhiskasAverage.Count; i++)
-            {
-                whiskasAverage += _WhiskasAverage[i];
-            }
-            whiskasAverage /= _WhiskasAverage.Count;
-            whiskasAverage = Mathf.Round(whiskasAverage * 100) / 100.0f;
-
-            if (whiskasAverage <= 0)
-                whiskasAverage = 0;
-
-
-            WhiskasAverageText.text = whiskasAverage.ToString();
+            CalculateAverage();
 
 
             index++; 
         }
     }
 
+
+    private void CalculateAverage()
+    {
+        whiskasAverage = 0;
+        for (int i = 0; i < _WhiskasAverage.Count; i++)
+        {
+            whiskasAverage += _WhiskasAverage[i];
+        }
+        whiskasAverage /= _WhiskasAverage.Count;
+        whiskasAverage = Mathf.Round(whiskasAverage * 10) / 10.0f;
+
+        WhiskasAverageText.text = whiskasAverage.ToString();
+
+        if (WhiskasAverageText.text == "NaN")
+            WhiskasAverageText.text = "0";
+    }
     
 
     public void RemoveChosenCard(int _index)
@@ -178,20 +182,12 @@ public class PrepareDeck : MonoBehaviour
 
             //lista que guarda los wishkas de las cartas para realizar la media
             _WhiskasAverage.RemoveAt(_index);
-            whiskasAverage = 0;
-            for (int i = 0; i < _WhiskasAverage.Count; i++)
-            {
-                whiskasAverage += _WhiskasAverage[i];
-            }
-            whiskasAverage /= _WhiskasAverage.Count;
-            whiskasAverage = Mathf.Round(whiskasAverage * 100) / 100.0f;
-
-            if (whiskasAverage <= 0)
-                whiskasAverage = 0;
+            CalculateAverage();
+            
 
 
-            WhiskasAverageText.text = whiskasAverage.ToString();
-            currentCards.RemoveAt(_index);
+
+
 
             //Slots[Slots.Length-1].color = new Color(Slots[_index].color.r, Slots[_index].color.g, Slots[_index].color.b, 0);
             Slots[Slots.Length - 1].sprite = emptyImage;

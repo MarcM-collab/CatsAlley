@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   executed: 0
   whiskasCost: 1
-  textExplain: spawn a little cat in a not occupied area
+  textExplain: spawn a little cat in a random not occupied area
   littleSkeleton: {fileID: 2294010376720223419, guid: 83b6b02657ae2e6478268228581140a8, type: 3}

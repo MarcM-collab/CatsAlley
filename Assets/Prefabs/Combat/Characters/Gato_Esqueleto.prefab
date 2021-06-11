@@ -509,7 +509,7 @@ MonoBehaviour:
   Hit: 0
   Dead: 0
   MaxHP: 3
-  Class: 1
+  Class: 0
   AttackPoints: 2
   Range: 2
   Velocity: 5
