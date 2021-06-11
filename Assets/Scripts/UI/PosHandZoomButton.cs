@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PosHandZoomButton : MonoBehaviour
 {
     public GameObject show;
-    public PosHand posHand;
+    //public PosHand posHand;
     private void OnEnable()
     {
         ScriptButton.spellButton += SetDisabledCard;
@@ -28,6 +28,6 @@ public class PosHandZoomButton : MonoBehaviour
     public void SetDisabledCard(Card c)
     {
         SetActivated();
-        posHand.Hide();
+        //posHand.Hide();
     }
 }
