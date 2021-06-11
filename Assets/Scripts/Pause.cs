@@ -5,7 +5,8 @@ using UnityEngine;
 public class Pause : MonoBehaviour
 {
     public MenuPanel pause;
-    public GameObject button;
+    public GameObject vol;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -23,7 +24,11 @@ public class Pause : MonoBehaviour
             AudioManager.audioManager.ApplyFilter();
 
         pause.Show();
-        button.SetActive(false);
+
+        if (vol)
+        {
+            vol.SetActive(true);
+        }
         Time.timeScale = 0;
     }
     public void UnPause()
@@ -32,7 +37,12 @@ public class Pause : MonoBehaviour
             AudioManager.audioManager.StopFilter();
         
         pause.Hide();
-        button.SetActive(true);
+
+        if (vol)
+        {
+            vol.SetActive(false);
+        }
+
         Time.timeScale = 1;
     }
 }
