@@ -25,7 +25,6 @@ public class Reminder : MonoBehaviour //this is used to remember the player to p
 
         if (EntityManager.GetActiveCharacters(Team.TeamPlayer).Length <= 0 && EntityManager.GetCharacters(Team.TeamPlayer).Length > 0)
         {
-            print(hm.GetMaxHandCost() > TurnManager.currentMana);
             if (TurnManager.currentMana <= 0 || hm.GetMaxHandCost() > TurnManager.currentMana)
             {
                 anim.SetBool("HighLight", true);

@@ -118,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turns: 3
   damage: 1
-  tileSize: {x: 1.8, y: 1.8}
+  tileSize: {x: 1.2, y: 1.2}
 --- !u!1 &3002964911951838244
 GameObject:
   m_ObjectHideFlags: 0

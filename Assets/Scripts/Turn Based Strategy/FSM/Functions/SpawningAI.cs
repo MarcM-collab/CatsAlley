@@ -52,7 +52,7 @@ public class SpawningAI : CardAIBehaviour
         //    RandomCardChosen();
 
         Spell priorSpell = GetPriorSpell();
-        if (priorSpell && priorSpell.CanBeUsed()) //Has any spell in hand, spells are only used if there are units of the player ingame
+        if (priorSpell && priorSpell.CanBeUsed() && priorSpell.Whiskas <= TurnManager.currentMana) //Has any spell in hand, spells are only used if there are units of the player ingame
         {
             SetSelectedHandCard(Random.Range(0, IAHand.Count));
             yield return new WaitForSeconds(cardUsageWait);
