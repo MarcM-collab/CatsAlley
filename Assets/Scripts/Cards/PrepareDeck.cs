@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 public class PrepareDeck : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class PrepareDeck : MonoBehaviour
 
     private Sprite emptyImage;
     private CanvasGroup canvas;
+
+    private List<float> _WhiskasAverage = new List<float>();
+    private float whiskasAverage = 0;
+    public TMP_Text WhiskasAverageText;
 
     //private int slot;
     //private GameObject displayC;
@@ -124,13 +129,29 @@ public class PrepareDeck : MonoBehaviour
             cardDisplay.gameObject.SetActive(false);
             //slot = index;
             //displayC = displayCard;
-            
+
             //desplace = true;
 
             //temporalDisplay = Instantiate(displayC, displayC.transform.position, Quaternion.identity,displayC.transform.parent);
             //temporalDisplay.SetActive(true);
             //temporalDisplay.transform.SetParent(parent);
             //temporalDisplay.GetComponent<Button>().enabled = false;
+
+            _WhiskasAverage.Add(card.Whiskas);
+            whiskasAverage = 0;
+            for (int i = 0; i < _WhiskasAverage.Count; i++)
+            {
+                whiskasAverage += _WhiskasAverage[i];
+            }
+            whiskasAverage /= _WhiskasAverage.Count;
+            whiskasAverage = Mathf.Round(whiskasAverage * 100) / 100.0f;
+
+            if (whiskasAverage <= 0)
+                whiskasAverage = 0;
+
+
+            WhiskasAverageText.text = whiskasAverage.ToString();
+
 
             index++; 
         }
@@ -154,6 +175,23 @@ public class PrepareDeck : MonoBehaviour
                 if (cardDisplays[i].GetComponent<SelectableCardButton>().card.name == currentCards[_index].name)
                     cardDisplays[i].gameObject.SetActive(true);
             }
+
+            //lista que guarda los wishkas de las cartas para realizar la media
+            _WhiskasAverage.RemoveAt(_index);
+            whiskasAverage = 0;
+            for (int i = 0; i < _WhiskasAverage.Count; i++)
+            {
+                whiskasAverage += _WhiskasAverage[i];
+            }
+            whiskasAverage /= _WhiskasAverage.Count;
+            whiskasAverage = Mathf.Round(whiskasAverage * 100) / 100.0f;
+
+            if (whiskasAverage <= 0)
+                whiskasAverage = 0;
+
+
+            WhiskasAverageText.text = whiskasAverage.ToString();
+            currentCards.RemoveAt(_index);
 
             //Slots[Slots.Length-1].color = new Color(Slots[_index].color.r, Slots[_index].color.g, Slots[_index].color.b, 0);
             Slots[Slots.Length - 1].sprite = emptyImage;
