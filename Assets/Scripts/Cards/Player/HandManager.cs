@@ -18,6 +18,13 @@ public class HandManager : MonoBehaviour
         }
         return max;
     }
+    public int GetCurrentHandLength
+    {
+        get
+        {
+            return hand.Count;
+        }
+    }
     public void AddCard(Card newCard)
     {
         Transform cardInstance = Instantiate(newCard, HandCanvas.position, Quaternion.identity).transform;

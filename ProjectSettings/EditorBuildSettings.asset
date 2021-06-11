@@ -9,8 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 2316a784c8ebd9e469b91aa8104df6dc
   - enabled: 1
-    path: Assets/Scenes/Marc/Marc3.unity
+    path: Assets/Scenes/Marc/Levels/Marc3.unity
     guid: c589fa559716f544a841677948002b37
+  - enabled: 1
+    path: Assets/Scenes/Marc/Levels/Marc3 1.unity
+    guid: eed3d0a161bee0d4fb77b55991ff39fe
+  - enabled: 1
+    path: Assets/Scenes/Marc/Levels/Marc3 2.unity
+    guid: de6e6b1bdfd4efb48aa5669fae1e83e5
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 031d891943f4d724d8b3c20cdee0ab7b
   - enabled: 1
     path: Assets/Scenes/Ricard_-_copia.unity
     guid: 7cfdfcdd2afd9b14bb923803030c5884

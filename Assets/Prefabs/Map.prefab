@@ -3629,7 +3629,7 @@ Transform:
   - {fileID: 804958839381976058}
   - {fileID: 8542623806931044635}
   - {fileID: 804958838797543827}
-  - {fileID: 804958840640387385}
+  - {fileID: 6883692106407578535}
   - {fileID: 804958840096259739}
   - {fileID: 8542623806587814094}
   - {fileID: 8542623805046449619}
@@ -3662,16 +3662,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56513a4db22744d47b6e98d5f3f15a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PointingTile: {fileID: 11400000, guid: 4fdc16b6fa1e0e94aa9c2c2747aeb760, type: 2}
-  TargetTile: {fileID: 11400000, guid: e307cb70e59969b4eb6b2789faf4cc8e, type: 2}
-  AllyTile: {fileID: 11400000, guid: d49a3c05d972334418a7d08a1af7f50c, type: 2}
-  SpawningTile: {fileID: 11400000, guid: 6daac596da7ffa542a5e97e3a3a3fbd7, type: 2}
-  SpawningSelectedTile: {fileID: 11400000, guid: 8879d8b4ec1d8804092342cc4d819234, type: 2}
-  MovingTile: {fileID: 11400000, guid: 13b993995dbed3a4d93b45e5de9d8eb6, type: 2}
-  MovingSelectedTile: {fileID: 11400000, guid: 6abcdc5fc443b494db29129f5ad3539c, type: 2}
-  AttackingTile: {fileID: 11400000, guid: e909dd0c32a4c034bb11ad8d3dd5762f, type: 2}
-  AttackingSelectedTile: {fileID: 11400000, guid: b08c26fa10cdb8e429a0410bc462f853, type: 2}
-  CollisionAllyTile: {fileID: 11400000, guid: 47e9b74d747c3324ab551081717651b0, type: 2}
+  PointingTile: {fileID: 0}
+  TargetTile: {fileID: 0}
+  AllyTile: {fileID: 0}
+  SpawningTile: {fileID: 0}
+  MovingTile: {fileID: 0}
+  AttackingTile: {fileID: 0}
+  CollisionAllyTile: {fileID: 0}
   AIHeroTile: {fileID: 0}
   PlayerHeroTile: {fileID: 0}
   FloorTilemap: {fileID: 804958839381976055}
@@ -3736,7 +3733,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 804958840640387385}
+  - component: {fileID: 6883692106407578535}
   - component: {fileID: 804958840640387383}
   - component: {fileID: 804958840640387382}
   m_Layer: 0
@@ -3746,8 +3743,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &804958840640387385
-Transform:
+--- !u!224 &6883692106407578535
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3760,6 +3757,11 @@ Transform:
   m_Father: {fileID: 804958840143935202}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1839735485 &804958840640387383
 Tilemap:
   m_ObjectHideFlags: 0

@@ -240,21 +240,29 @@ public class ScriptButton : MonoBehaviour, IPointerExitHandler, IPointerEnterHan
     {
         im.color = new Color(im.color.r, im.color.g, im.color.b, transparencyOnDrag);
         SpawnClick();
-        currentDisplayer = Instantiate(displayer, Input.mousePosition, Quaternion.identity, newParent);
-        currentDisplayer.transform.eulerAngles = new Vector3(0, 180, 0);
-        currentDisplayer.GetComponent<Image>().sprite = unitSprite;
-        currentDisplayer.transform.localScale *= 2;
+
+        if (selfCard is Unit)
+        {
+            currentDisplayer = Instantiate(displayer, Input.mousePosition, Quaternion.identity, newParent);
+            currentDisplayer.transform.eulerAngles = new Vector3(0, 180, 0);
+            currentDisplayer.GetComponent<Image>().sprite = unitSprite;
+            currentDisplayer.transform.localScale *= 2;
+        }
+
     }
     private void Dragging()
     {
-        if (currentDisplayer)
+        if (selfCard is Unit && currentDisplayer)
             currentDisplayer.transform.position = Input.mousePosition;
+
     }
     private void EndDrag()
     {
         endDrag?.Invoke();
         dragStart = false;
         im.color = new Color(im.color.r, im.color.g, im.color.b, 1);
-        Destroy(currentDisplayer);
+
+        if (selfCard is Unit && currentDisplayer)
+            Destroy(currentDisplayer);
     }
 }

@@ -20,7 +20,7 @@ public class ChooseDrawableCardsPlayer : MonoBehaviour
     [SerializeField]
     private HandManager Hand;
     [SerializeField]
-    private int maxCardInHand = 6;
+    private static int maxCardInHand = 6;
     private bool currentTurn = false;
 
     private bool PressedFirst;
@@ -31,7 +31,7 @@ public class ChooseDrawableCardsPlayer : MonoBehaviour
 
     public static int GetMaxHand
     {
-        get { return 6;  }
+        get { return maxCardInHand;  } 
     }
     private void OnEnable()
     {
