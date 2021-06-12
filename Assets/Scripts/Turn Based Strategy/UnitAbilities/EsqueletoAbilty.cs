@@ -10,12 +10,17 @@ public class EsqueletoAbilty : Abilty
     Vector2 positionSpawn;
     private bool CanSpawn;
     TileManager tileManager;
+    CardSpawner _cardSpawner;
     List<Vector2> positions;
+
+
 
     public override void Excecute()
     {
         if (!tileManager)
             tileManager = FindObjectOfType<TileManager>();
+        if (!_cardSpawner)
+            _cardSpawner = FindObjectOfType<CardSpawner>();
 
         positions = new List<Vector2>();
 
@@ -32,13 +37,13 @@ public class EsqueletoAbilty : Abilty
 
         if (CanSpawn)
         {
+            _cardSpawner.SpawnCharacter(littleSkeleton.gameObject, GetTilePosition(positionSpawn), Team.TeamPlayer);
             executed = true;
-            print("gettile "+GetTilePosition(positionSpawn));
-            Character e = Instantiate(littleSkeleton, GetTilePosition(positionSpawn), Quaternion.identity).GetComponent<Character>();
-            e.Team = Team.TeamPlayer;
-            e.Exhausted = true;
-            
-            e.ChangeHealth();
+            //Character e = Instantiate(littleSkeleton, GetTilePosition(positionSpawn), Quaternion.identity).GetComponent<Character>();
+            //e.Team = Team.TeamPlayer;
+            //e.Exhausted = true;
+            //e.GetComponentInChildren<HealthBar>().color = Color.green;
+            //e.ChangeHealth();
 
 
         }
@@ -86,10 +91,14 @@ public class EsqueletoAbilty : Abilty
             CanSpawn = false;
             return;
         }
+        else
+        {
+            print("puede spawnear");
+            CanSpawn = true;
+        }
 
 
-        print("puede spawnear");
-        CanSpawn = true;
+       
 
     }
 

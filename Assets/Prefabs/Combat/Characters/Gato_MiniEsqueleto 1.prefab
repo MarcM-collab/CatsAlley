@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 507745496865460723}
   - component: {fileID: 4552217383504228236}
   m_Layer: 0
-  m_Name: Gato_Esqueleto
+  m_Name: Gato_MiniEsqueleto 1
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -511,8 +511,8 @@ MonoBehaviour:
   Dead: 0
   MaxHP: 3
   Class: 0
-  AttackPoints: 2
-  Range: 2
+  AttackPoints: 1
+  Range: 4
   Velocity: 5
   Teleporting: 0
   Turn: 0

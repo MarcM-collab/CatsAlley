@@ -14,6 +14,15 @@ public class UseAbility : MonoBehaviour
             ability.Excecute();
         }
     }
+
+    public void IAUse()
+    {
+        if (TurnManager.TeamTurn == Team.TeamAI && !hasBeenUsed)
+        {
+            print("abilidad iaaaaaa");
+            ability.IAExecute();
+        }
+    }
     private void Update()
     {
         if (ability.executed)
