@@ -6,7 +6,7 @@ public class TestLevels : MonoBehaviour
 {
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Y))
         {
             CustomSceneManager.SceneManagerCustom.UnlockNextLevel();
             CustomSceneManager.SceneManagerCustom.LoadScene(0);

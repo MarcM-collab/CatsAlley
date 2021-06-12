@@ -26,10 +26,16 @@ public static class HealthSystem
     public static void Heal(Entity target, int amount)
     {
         var currentHealth = target.HP;
-        currentHealth += amount;
-
-        target.HP = currentHealth;
-        target.ChangeHealth();
+        for (int i = amount; i > 0; i--)
+        {
+            if (i + currentHealth <= target.MaxHP)
+            {
+                currentHealth += i;
+                target.HP = currentHealth;
+                target.ChangeHealth();
+                break;
+            }
+        }
     }
     private static void OnDeath(Entity toKill)
     {

@@ -293,7 +293,7 @@ PrefabInstance:
     - target: {fileID: 3657433410771621729, guid: fb6eb00f073a3e4478ce6d109cf943a1, type: 3}
       propertyPath: musicClips.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: e90c5568e1ab66e46af9e3eb1ca309d0, type: 3}
+      objectReference: {fileID: 8300000, guid: dc5277becb8ca224192bb301b7afb665, type: 3}
     - target: {fileID: 3657433410771621731, guid: fb6eb00f073a3e4478ce6d109cf943a1, type: 3}
       propertyPath: m_Name
       value: Music
@@ -2656,6 +2656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startShown: 0
+  isHided: 0
 --- !u!225 &427987530
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3252,6 +3253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startShown: 1
+  isHided: 0
 --- !u!225 &502110449
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3457,6 +3459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startShown: 1
+  isHided: 0
 --- !u!114 &530845051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4945,6 +4948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startShown: 1
+  isHided: 0
 --- !u!114 &776235778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5208,6 +5212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startShown: 0
+  isHided: 0
 --- !u!225 &816219358
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5817,6 +5822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startShown: 1
+  isHided: 0
 --- !u!225 &997355346
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -7232,6 +7238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startShown: 0
+  isHided: 0
 --- !u!225 &1262406663
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -7634,6 +7641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startShown: 0
+  isHided: 0
 --- !u!95 &1385607101
 Animator:
   serializedVersion: 3
@@ -8433,6 +8441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startShown: 1
+  isHided: 0
 --- !u!225 &1507431823
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9951,6 +9960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startShown: 0
+  isHided: 0
 --- !u!225 &1961016731
 CanvasGroup:
   m_ObjectHideFlags: 0

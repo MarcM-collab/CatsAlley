@@ -62,7 +62,7 @@ public class Hero : Entity
     }
     private IEnumerator Shake() //triggers activated it 2 times
     {
-        yield return new WaitForSeconds(0.15f);
-        CameraShake.TriggerShake(2);
+        yield return new WaitForSeconds(0.45f);
+        CameraShake.TriggerShake();
     }
 }

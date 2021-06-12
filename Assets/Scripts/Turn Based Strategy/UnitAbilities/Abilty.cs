@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Abilty : MonoBehaviour
 {
+    [HideInInspector] public Character selfChar;
     [HideInInspector] public bool executed = false;
     private Camera mainCamera;
 

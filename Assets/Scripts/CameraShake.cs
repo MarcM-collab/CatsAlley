@@ -15,6 +15,10 @@ public class CameraShake : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            TriggerShake();
+        }
         if (shakeDuration > 0)
         {
             transform.localPosition = pos + Random.insideUnitSphere * strength;
@@ -27,7 +31,11 @@ public class CameraShake : MonoBehaviour
             transform.localPosition = pos;
         }
     }
-    public static void TriggerShake(float duration)
+    public static void TriggerShake()
+    {
+        Shake(0.1f);
+    }
+    private static void Shake(float duration)
     {
         shakeDuration = duration;
     }

@@ -11,6 +11,7 @@ public class UseAbility : MonoBehaviour
     {
         if (ability.whiskasCost <= TurnManager.currentMana && TurnManager.TeamTurn == Team.TeamPlayer && !hasBeenUsed)
         {
+            ability.selfChar = GetComponent<Character>();
             ability.Excecute();
         }
     }
@@ -20,6 +21,7 @@ public class UseAbility : MonoBehaviour
         if (TurnManager.TeamTurn == Team.TeamAI && !hasBeenUsed)
         {
             print("abilidad iaaaaaa");
+            ability.selfChar = GetComponent<Character>();
             ability.IAExecute();
         }
     }
