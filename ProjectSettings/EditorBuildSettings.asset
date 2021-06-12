@@ -9,21 +9,24 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 2316a784c8ebd9e469b91aa8104df6dc
   - enabled: 1
+    path: Assets/Scenes/Marc3 1.unity
+    guid: 93a739d7f59993f4bae7426c932a0347
+  - enabled: 1
     path: Assets/Scenes/Marc3.unity
     guid: c589fa559716f544a841677948002b37
   - enabled: 1
     path: Assets/Scenes/Scene/Ricard Gold.unity
     guid: 34d540c20eea2f64c90d66a0fffe08e3
-  - enabled: 1
-    path: Assets/Scenes/Ricard_-_copia.unity
-    guid: 7cfdfcdd2afd9b14bb923803030c5884
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Scene/Ainoa/Ainoa 2.unity
     guid: ba9123ff72d4da54cbf8a072072c99db
-  - enabled: 1
-    path: Assets/Scenes/Marc/Marc.unity
-    guid: 216bb97ca5ac68446bc0e6e8e652c663
-  - enabled: 1
-    path: Assets/Scenes/Marc/Marc 1.unity
-    guid: 1302d7e7a3a1832478711d66c43ffe33
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

@@ -6,87 +6,143 @@ using UnityEngine;
 public class CardCanvasControl : MonoBehaviour
 {
     public MenuPanel posPlayer, posIA, infoCanvas;
-
-    private void OnEnable()
+    private void Start()
     {
-        if (TurnManager.TeamTurn == Team.TeamPlayer)
-        {
-            //SELECT
-            SelectingBehaviour.OnSelectingExit += HidePlayer;
-            SelectingBehaviour.OnSelectingExit += HideIA;
+        posPlayer.Show();
+        posIA.Show();
+    }
+    private void OnEnable()
+    {            //SELECT
+                 //SelectingBehaviour.OnSelectingExit += HidePlayer;
+                 //SelectingBehaviour.OnSelectingExit += HideIA;
 
-            SelectingBehaviour.OnSelectingEnter += ShowPlayer;
-            SelectingBehaviour.OnSelectingEnter += ShowIA;
+        //SelectingBehaviour.OnSelectingEnter += ShowPlayer;
+        //SelectingBehaviour.OnSelectingEnter += ShowIA;
 
-            //Drawable cards
-            ChooseDrawableCardsBehaviour.OnChooseDrawableCardsExit += HideIA;
-            ChooseDrawableCardsBehaviour.OnChooseDrawableCardsExit += HideInfo;
+        HideRangeBehaviour.OnHideRangeEnter += ShowPlayerAnim;
+        HideRangeBehaviour.OnHideRangeEnter += ShowIAAniamtor;
 
-            ChooseDrawableCardsBehaviour.OnChooseDrawableCardsEnter += ShowIA;
-            ChooseDrawableCardsBehaviour.OnChooseDrawableCardsEnter += ShowInfo;
+        MeleeShowRangeBehaviour.OnMeleeShowRangeEnter += HidePlayer;
+        MeleeShowRangeBehaviour.OnMeleeShowRangeEnter += HideIA;
 
-            //3 cards
-            ThreeCardsBehaviour.OnThreeCardsExit += HideIA;
-            ThreeCardsBehaviour.OnThreeCardsExit += HideInfo;
+        RangedShowRangeBehaviour.OnRangedShowRangeEnter += HidePlayer;
+        RangedShowRangeBehaviour.OnRangedShowRangeEnter += HideIA;
 
-            ThreeCardsBehaviour.OnThreeCardsEnter += ShowIA;
-            ThreeCardsBehaviour.OnThreeCardsEnter += ShowInfo;
-        }
+        HideRangeBehaviour.OnHideRangeEnter += ShowPlayerAnim;
+        HideRangeBehaviour.OnHideRangeEnter += ShowIAAniamtor;
+
+        HideUIBehaviour.OnHideUIEnter += ShowPlayer;
+        HideUIBehaviour.OnHideUIEnter += ShowIA;
+
+
+        //Drawable cards
+        ChooseDrawableCardsBehaviour.OnChooseDrawableCardsExit += ShowIA;
+        ChooseDrawableCardsBehaviour.OnChooseDrawableCardsExit += ShowInfo;
+
+        ChooseDrawableCardsBehaviour.OnChooseDrawableCardsEnter += HideIAAnimator;
+        ChooseDrawableCardsBehaviour.OnChooseDrawableCardsEnter += HideInfo;
+
+        //3 cards
+        ThreeCardsBehaviour.OnThreeCardsEnter += HideIAAnimator;
+        ThreeCardsBehaviour.OnThreeCardsEnter += HideInfo;
+
+        ThreeCardsBehaviour.OnThreeCardsExit += ShowIA;
+        ThreeCardsBehaviour.OnThreeCardsExit += ShowInfo;
+        //if (TurnManager.TeamTurn == Team.TeamPlayer)
+        //{
+
+        //}
     }
 
     private void OnDisable()
     {
-        if (TurnManager.TeamTurn == Team.TeamPlayer)
-        {
-            //SELECT
-            SelectingBehaviour.OnSelectingExit -= HidePlayer;
-            SelectingBehaviour.OnSelectingExit -= HideIA;
+        //SELECT
+        //SelectingBehaviour.OnSelectingExit -= HidePlayer;
+        //SelectingBehaviour.OnSelectingExit -= HideIA;
 
-            SelectingBehaviour.OnSelectingEnter -= ShowPlayer;
-            SelectingBehaviour.OnSelectingEnter -= ShowIA;
+        //SelectingBehaviour.OnSelectingEnter -= ShowPlayer;
+        //SelectingBehaviour.OnSelectingEnter -= ShowIA;
 
-            //Drawable cards
-            ChooseDrawableCardsBehaviour.OnChooseDrawableCardsExit -= HideIA;
-            ChooseDrawableCardsBehaviour.OnChooseDrawableCardsExit -= HideInfo;
+        HideRangeBehaviour.OnHideRangeEnter -= ShowPlayerAnim;
+        HideRangeBehaviour.OnHideRangeEnter -= ShowIAAniamtor;
 
-            ChooseDrawableCardsBehaviour.OnChooseDrawableCardsEnter -= ShowIA;
-            ChooseDrawableCardsBehaviour.OnChooseDrawableCardsEnter -= ShowInfo;
+        MeleeShowRangeBehaviour.OnMeleeShowRangeEnter -= HidePlayer;
+        MeleeShowRangeBehaviour.OnMeleeShowRangeEnter -= HideIA;
 
-            //3 cards
-            ThreeCardsBehaviour.OnThreeCardsExit -= HideIA;
-            ThreeCardsBehaviour.OnThreeCardsExit -= HideInfo;
+        HideRangeBehaviour.OnHideRangeEnter -= ShowPlayerAnim;
+        HideRangeBehaviour.OnHideRangeEnter -= ShowIAAniamtor;
 
-            ThreeCardsBehaviour.OnThreeCardsEnter -= ShowIA;
-            ThreeCardsBehaviour.OnThreeCardsEnter -= ShowInfo;
-        }
 
+        HideUIBehaviour.OnHideUIEnter -= ShowPlayer;
+        HideUIBehaviour.OnHideUIEnter -= ShowIA;
+        //Drawable cards
+        ChooseDrawableCardsBehaviour.OnChooseDrawableCardsExit -= ShowIA;
+        ChooseDrawableCardsBehaviour.OnChooseDrawableCardsExit -= ShowInfo;
+
+        ChooseDrawableCardsBehaviour.OnChooseDrawableCardsEnter -= HideIAAnimator;
+        ChooseDrawableCardsBehaviour.OnChooseDrawableCardsEnter -= HideInfo;
+
+        //3 cards
+        ThreeCardsBehaviour.OnThreeCardsEnter -= HideIAAnimator;
+        ThreeCardsBehaviour.OnThreeCardsEnter -= HideInfo;
+
+        ThreeCardsBehaviour.OnThreeCardsExit -= ShowIA;
+        ThreeCardsBehaviour.OnThreeCardsExit -= ShowInfo;
+
+    }
+    private void HideIAAnimator(Animator a)
+    {
+        HideIA();
     }
     private void HideIA()
     {
-        posIA.Hide();
+        if (TurnManager.TeamTurn == Team.TeamPlayer)
+        {
+            posIA.Hide();
+        }
     }
-    private void ShowIA(Animator a)
+
+    private void ShowIA()
     {
-        posIA.Show();
+        if (TurnManager.TeamTurn == Team.TeamPlayer)
+        {
+            posIA.Show();
+        }
+    }
+    private void ShowIAAniamtor(Animator a)
+    {
+        ShowIA();
     }
     private void HidePlayer()
     {
-        posPlayer.Hide();
+        if (TurnManager.TeamTurn == Team.TeamPlayer)
+        {
+            posPlayer.Hide();
+        }
     }
-    private void ShowPlayer(Animator a)
+    private void ShowPlayerAnim(Animator a)
     {
-        posPlayer.Show();
+        ShowPlayer();
     }
-    private void HideInfo()
+    private void ShowPlayer()
     {
-        infoCanvas.Hide();
+        if (TurnManager.TeamTurn == Team.TeamPlayer)
+        {
+            posPlayer.Show();
+        }
     }
-    private void ShowInfo(Animator a)
+    private void HideInfo(Animator a)
+    {
+        if (TurnManager.TeamTurn == Team.TeamPlayer)
+        {
+            infoCanvas.Hide();
+        }
+    }
+    private void ShowInfo()
     {
         if (TurnManager.TeamTurn == Team.TeamPlayer)
         {
             infoCanvas.Show();
         }
-
     }
 }
