@@ -5,11 +5,9 @@ using UnityEngine;
 public class PassTurn : MonoBehaviour
 {
     private MenuPanel p;
-    private HandManager h;
     private bool hided = false;
     private void Start()
     {
-        h = FindObjectOfType<HandManager>();
         p = GetComponent<MenuPanel>();
     }
     private void Update()
@@ -22,7 +20,7 @@ public class PassTurn : MonoBehaviour
         else if (TurnManager.TeamTurn == Team.TeamPlayer && hided)
         {
             hided = false;
-            if (h.GetCurrentHandLength <= ChooseDrawableCardsPlayer.GetMaxHand)
+            if (HandManager.HandPlayer.Count <= HandManager.HandLimit)
                 p.Show();
         }
     }

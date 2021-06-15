@@ -174,7 +174,7 @@ public class GasSpell : Spell
     {
         GeneratePuntuationList();
 
-        return Mathf.Max(puntuationList.ToArray()) >= 1;
+        return Mathf.Max(puntuationList.ToArray()) >= 2;
     }
     private void GeneratePuntuationList()
     {

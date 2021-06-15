@@ -54,7 +54,7 @@ public class SpellSpawner : MonoBehaviour
     public void DestroyCard(Card c)
     {
         TurnManager.SubstractMana(c.Whiskas);
-        hand.RemoveCard(c);
+        hand.RemoveCard(c, false);
         Destroy(c.gameObject);
     }
 }

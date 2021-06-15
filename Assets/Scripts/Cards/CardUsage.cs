@@ -104,7 +104,7 @@ public class CardUsage : MonoBehaviour
     public void DestroyCard(Card c)
     {
         TurnManager.SubstractMana(c.Whiskas);
-        HandManager.RemoveCard(c);
-        Destroy(c.gameObject);
+        HandManager.RemoveCard(c, false);
+        //Destroy(c.gameObject);
     }
 }
