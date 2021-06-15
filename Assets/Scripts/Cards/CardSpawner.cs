@@ -21,6 +21,20 @@ public class CardSpawner : MonoBehaviour
     public void SpawnCard(Card toSpawn, Vector2 pos, Team team)
     {
         GameObject theTile = Instantiate(toSpawn.GetComponent<Unit>().character.gameObject, pos, Quaternion.identity);
+
+        Spawn(theTile, pos, team);
+
+    }
+
+    public void SpawnCharacter(GameObject toSpawn, Vector2 pos, Team team)
+    {
+        GameObject theTile = Instantiate(toSpawn, pos, Quaternion.identity);
+
+        Spawn(theTile, pos, team);
+    }
+
+    private void Spawn(GameObject theTile, Vector2 pos, Team team)
+    {
         theTile.transform.position = new Vector3(pos.x + (FloorTileMap.cellSize.x / 2), pos.y + (FloorTileMap.cellSize.y / 2), 0);
 
         var character = theTile.GetComponent<Character>();

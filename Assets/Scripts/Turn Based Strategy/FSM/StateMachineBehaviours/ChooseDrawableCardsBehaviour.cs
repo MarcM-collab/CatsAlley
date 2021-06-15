@@ -9,8 +9,10 @@ public class ChooseDrawableCardsBehaviour : StateMachineBehaviour
     public static ChooseDrawableCardsEnterDelegate OnChooseDrawableCardsEnter;
     public delegate void ChooseDrawableCardsUpdateDelegate(Animator animator);
     public static ChooseDrawableCardsUpdateDelegate OnChooseDrawableCardsUpdate;
+    public delegate void ChooseDrawableCardsOnExitDelegate();
+    public static ChooseDrawableCardsOnExitDelegate OnChooseDrawableCardsExit;
 
-    
+
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -24,11 +26,11 @@ public class ChooseDrawableCardsBehaviour : StateMachineBehaviour
         OnChooseDrawableCardsUpdate?.Invoke(animator);
     }
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    //OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        OnChooseDrawableCardsExit?.Invoke();
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -13,6 +13,7 @@ public class InfoManager : MonoBehaviour
     public Image whiskasIm;
     private Color buttonUseColor;
     private Color whiskasColor;
+    public Image attackShower;
     public TMP_Text attackText;
     public TMP_Text abilityInfo;
     public TMP_Text abilityCost;
@@ -47,6 +48,7 @@ public class InfoManager : MonoBehaviour
                 {
                     targetHero = null;
                     targetChar = rayCast.transform.gameObject.GetComponent<Character>();
+                    ActiveAttack();
                     currentAttack = targetChar.AttackPoints;
                     ShowSprite(targetChar.gameObject);
                     ShowBasicInfo();
@@ -62,7 +64,7 @@ public class InfoManager : MonoBehaviour
                     targetHero = rayCast.transform.gameObject.GetComponent<Hero>();
 
                     ShowSprite(targetHero.gameObject);
-
+                    ActiveAttack(false);
                     //ShowSprite(targetHero.GetComponentsInChildren<Transform>()[1].gameObject);
 
                     if (targetHero.Team == Team.TeamPlayer)
@@ -108,6 +110,12 @@ public class InfoManager : MonoBehaviour
                 HideAbilityInfo();
 
     }
+
+    private void ActiveAttack(bool show = true)
+    {
+        attackShower.gameObject.SetActive(show);
+    }
+
     private void Hide()
     {
         HideAbilityInfo();

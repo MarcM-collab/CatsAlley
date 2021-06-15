@@ -8,6 +8,7 @@ public class MenuPanel : MonoBehaviour
     private CanvasGroup _canvasGroup;
     private Animator _animator;
     public bool startShown = false;
+    [HideInInspector] public bool isHided = false;
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
@@ -24,12 +25,14 @@ public class MenuPanel : MonoBehaviour
     {
         Interact();
         _animator.SetBool("Show", true);
+        isHided = false;
     }
 
     public void Hide()
     {
         StopInteract();
         _animator.SetBool("Show", false);
+        isHided = true;
     }
 
     private void Interact()

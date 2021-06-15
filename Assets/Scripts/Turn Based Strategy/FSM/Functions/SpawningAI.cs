@@ -7,6 +7,12 @@ using Random = UnityEngine.Random;
 
 public class SpawningAI : MonoBehaviour
 {
+
+    public delegate void IAabilitiesDelegate(int currentMana);
+    public static IAabilitiesDelegate abilityDelegate_;
+
+
+
     private Animator anim;
     private int _whiskasCombinationAccumulate = 0;
     private int _cardStatsAccumulates = 0;
@@ -208,8 +214,23 @@ public class SpawningAI : MonoBehaviour
     }
     private void EndTurn()
     {
-        TurnManager.Spawned = true;
+        //comprobar mana
+        if (TurnManager.currentMana > 0)
+        {
+            print("weeeey");
+            
+            abilityDelegate_?.Invoke(TurnManager.currentMana);
+        }
+        else
+        {
+            TurnManager.Spawned = true;
+          
+            
+        }
         anim.SetBool("IsDragging", false);
+
+
+
         SetSelectedHandCard(-1);
     }
     private List<Card> UnitList()
