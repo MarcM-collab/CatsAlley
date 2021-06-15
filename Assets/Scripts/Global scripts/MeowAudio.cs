@@ -13,6 +13,7 @@ public class MeowAudio : MonoBehaviour
     }
     public void PlayAudioMew()
     {
+        a.volume = 0.6f;
         a.PlayOneShot(AudioManager.audioManager.GetAudioClip(meowType));
     }
 }
