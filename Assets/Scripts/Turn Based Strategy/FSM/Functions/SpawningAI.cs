@@ -215,18 +215,15 @@ public class SpawningAI : MonoBehaviour
     private void EndTurn()
     {
         //comprobar mana
-        if (TurnManager.currentMana > 0)
-        {
-            print("weeeey");
-            
-            abilityDelegate_?.Invoke(TurnManager.currentMana);
-        }
-        else
-        {
-            TurnManager.Spawned = true;
-          
-            
-        }
+        //if (TurnManager.currentMana > 0)
+        //{
+        //    abilityDelegate_?.Invoke(TurnManager.currentMana);
+        //}
+        //else
+        //{
+        //    TurnManager.Spawned = true;
+        //}
+        TurnManager.Spawned = true;
         anim.SetBool("IsDragging", false);
 
 

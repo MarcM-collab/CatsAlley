@@ -44,7 +44,7 @@ public class HandManager : MonoBehaviour
 
         var scaledAngle = DivisionAngle - AngleScale * (hand.Count + 1);
 
-        RepositionCards(hand, handCanvas, offset);
+        RepositionCards(hand, handCanvas, offset, isAI);
 
         handCanvas.eulerAngles += new Vector3(0, 0, scaledAngle);
 
@@ -82,7 +82,7 @@ public class HandManager : MonoBehaviour
         OrderHand();
 
 
-        RepositionCards(hand, handCanvas, offset);
+        RepositionCards(hand, handCanvas, offset, isAI);
 
         handCanvas.eulerAngles /= 2.0f;
     }
@@ -95,7 +95,7 @@ public class HandManager : MonoBehaviour
             HandPlayer[i].name = HandPlayer[i].name + i;
         }
     }
-    private void RepositionCards(List<Card> hand, RectTransform handCanvas, float offset)
+    private void RepositionCards(List<Card> hand, RectTransform handCanvas, float offset, bool isAI)
     {
         handCanvas.eulerAngles = Vector3.zero;
         var scaledAngle = DivisionAngle - AngleScale * (hand.Count + 1);
@@ -105,6 +105,10 @@ public class HandManager : MonoBehaviour
             if (i != 0)
             {
                 handCanvas.eulerAngles += new Vector3(0, 0, scaledAngle);
+                if (isAI)
+                {
+                    handCanvas.eulerAngles += new Vector3(0, 0, scaledAngle);
+                }
             }
             hand[i].transform.SetParent(null);
             hand[i].transform.eulerAngles = new Vector3(0, 0, 0);
@@ -114,7 +118,7 @@ public class HandManager : MonoBehaviour
     }
     public void Reposition()
     {
-        RepositionCards(HandPlayer, HandCanvasPlayer, OffsetPlayer);
+        RepositionCards(HandPlayer, HandCanvasPlayer, OffsetPlayer, false);
 
         HandCanvasPlayer.eulerAngles /= 2.0f;
     }
@@ -145,7 +149,7 @@ public class HandManager : MonoBehaviour
         }
 
         cardInstance.SetParent(HandCanvasAI);
-        cardInstance.localScale = new Vector3(_scaleCard, _scaleCard, _scaleCard);
+        cardInstance.localScale = new Vector3(_scaleCard * 0.8f, _scaleCard * 0.8f, _scaleCard * 0.8f);
 
         return cardInstance.GetComponent<Card>();
     }
