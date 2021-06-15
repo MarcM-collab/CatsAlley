@@ -21,6 +21,7 @@ public class IAUseAbilities : MonoBehaviour
 
         IACharacters = EntityManager.GetCharacters(Team.TeamAI).ToList();
         UseAbility unitWithAbility = null;
+        Character abTarget = null;
 
         for (int i = 0; i < IACharacters.Count; i++)
         {
@@ -29,12 +30,14 @@ public class IAUseAbilities : MonoBehaviour
             if (temp)
             {
                 print("hay abilidad? "+ temp);
-                if (!unitWithAbility)
+                if (!unitWithAbility && !IACharacters[i].Exhausted)
                 {
                     unitWithAbility = temp;
-                }else if (temp.ability.whiskasCost < currentMana && temp.ability.whiskasCost> unitWithAbility.ability.whiskasCost) //ia choose the ability with the lowest mana cost. (min. 1 maná)
+                    abTarget = IACharacters[i];
+                }
+                else if (temp.ability.whiskasCost < currentMana && temp.ability.whiskasCost> unitWithAbility.ability.whiskasCost && !IACharacters[i].Exhausted) //ia choose the ability with the lowest mana cost. (min. 1 maná)
                 {
-
+                    abTarget = IACharacters[i];
                     unitWithAbility = temp;
                 }
                 
@@ -44,6 +47,7 @@ public class IAUseAbilities : MonoBehaviour
         if (unitWithAbility)
         {
             unitWithAbility.IAUse();
+            abTarget.Exhausted = true;
         }
            
 
