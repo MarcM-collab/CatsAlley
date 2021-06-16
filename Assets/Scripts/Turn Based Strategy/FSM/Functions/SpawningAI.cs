@@ -80,8 +80,8 @@ public class SpawningAI : MonoBehaviour
                 var position = GetValidRandomPos(2, 4, -2, 2);
                 if (!NoPossibleTiles) 
                 {
-                    spawner.SpawnCard(combinations[i], position, Team.TeamAI);
                     RemoveCardHand(combinations[i]);
+                    spawner.SpawnCard(combinations[i], position, Team.TeamAI);
                 }
                 else
                 {
@@ -118,7 +118,7 @@ public class SpawningAI : MonoBehaviour
     {
         HandManager.RemoveCard(cardToRemove, true);
         TurnManager.SubstractMana(cardToRemove.Whiskas);
-        //Destroy(cardToRemove.gameObject); //To make it visible that a card has been used.
+        Destroy(cardToRemove.gameObject); //To make it visible that a card has been used.
     }
     private List<Unit> CombinationCard(List<Card> list)
     {

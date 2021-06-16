@@ -31,7 +31,7 @@ public class ChooseDrawableCardsAI : MonoBehaviour
 
     public static bool StartAI;
 
-    public HandManager HandManager;
+    public HandManager handManager;
     private void OnEnable()
     {
         ChooseDrawableCardsBehaviour.OnChooseDrawableCardsEnter += ChooseDrawableCardsEnter;
@@ -77,7 +77,7 @@ public class ChooseDrawableCardsAI : MonoBehaviour
                 currentSelectFrequency += selectCardFrequency;
             }
         }
-        else if (Mathf.FloorToInt(currentWaitSelect) == Mathf.FloorToInt(selectWait)) //avoids extra executions
+        else if (Mathf.FloorToInt(currentWaitSelect) == Mathf.FloorToInt(selectWait) && animator.GetBool("ChooseCard")) //avoids extra executions
         {
             currentWaitSelect++;
             HideInitialCards();
@@ -125,7 +125,7 @@ public class ChooseDrawableCardsAI : MonoBehaviour
             random2 = Random.Range(0, IADeck.Count);
         }
 
-        HandManager.AddCard(ComproveHand(random1, random2), true);
+        handManager.AddCard(ComproveHand(random1, random2), true);
     }
     private Card ComproveHand(int random1, int random2)//comprueba que cartas tiene la IA en su mano.
     {
@@ -136,14 +136,14 @@ public class ChooseDrawableCardsAI : MonoBehaviour
         //miramos en la mano cuales tiene.
         for (int i = 0; i < HandManager.HandAI.Count; i++)
         {
-            if (HandManager.HandAI[i].name == IADeck[random1].card.name) //si el nombre es diferente =>  no la tiene| coge esta y no comprueba las otras.
-            {
-                _firstCardRepe = true;
-            }
-            else if (HandManager.HandAI[i].name == IADeck[random2].card.name) //si el nombre es diferente =>  no la tiene
-            {
-                _secondCardRepe = true;
-            }
+                if (HandManager.HandAI[i].name == IADeck[random1].card.name) //si el nombre es diferente =>  no la tiene| coge esta y no comprueba las otras.
+                {
+                    _firstCardRepe = true;
+                }
+                else if (HandManager.HandAI[i].name == IADeck[random2].card.name) //si el nombre es diferente =>  no la tiene
+                {
+                    _secondCardRepe = true;
+                }
         }
         if (!_firstCardRepe && _secondCardRepe)
         {

@@ -42,12 +42,6 @@ public class HandManager : MonoBehaviour
         var handCanvas = isAI ? HandCanvasAI : HandCanvasPlayer;
         var offset = isAI ? OffsetAI : OffsetPlayer;
 
-        var scaledAngle = DivisionAngle - AngleScale * (hand.Count + 1);
-
-        RepositionCards(hand, handCanvas, offset, isAI);
-
-        handCanvas.eulerAngles += new Vector3(0, 0, scaledAngle);
-
         Card cardInstance;
 
         if (isAI)
@@ -56,6 +50,8 @@ public class HandManager : MonoBehaviour
             cardInstance = CreatePlayerCardInstance(newCard);
 
         hand.Add(cardInstance);
+
+        RepositionCards(hand, handCanvas, offset, isAI);
 
         handCanvas.eulerAngles /= 2.0f;
     }
@@ -66,21 +62,17 @@ public class HandManager : MonoBehaviour
         var handCanvas = isAI ? HandCanvasAI : HandCanvasPlayer;
         var offset = isAI ? OffsetAI : OffsetPlayer;
 
-        if (hand.Count > 0)
-        {
-            handCanvas.eulerAngles -= new Vector3(0, 0, DivisionAngle);
-        }
+        hand.Remove(cardToRemove);
 
-        for (int i = 0; i < hand.Count; i++) //en el if hay que buscar una solución menos compleja.
-        {
-            if (hand[i].name.Substring(hand[i].name.Length - 1 - hand.Count / 10) == cardToRemove.name.Substring(cardToRemove.name.Length - 1 - hand.Count / 10)) //el .length con más de 10 cartas en la mano no funciona.
-            {
-                hand.Remove(hand[i]);
-                break;
-            }
-        }
+        //for (int i = 0; i < hand.Count; i++) //en el if hay que buscar una solución menos compleja.
+        //{
+        //    if (hand[i].name.Substring(hand[i].name.Length - 1 - hand.Count / 10) == cardToRemove.name.Substring(cardToRemove.name.Length - 1 - hand.Count / 10)) //el .length con más de 10 cartas en la mano no funciona.
+        //    {
+        //        hand.Remove(hand[i]);
+        //        break;
+        //    }
+        //}
         OrderHand();
-
 
         RepositionCards(hand, handCanvas, offset, isAI);
 
@@ -105,10 +97,6 @@ public class HandManager : MonoBehaviour
             if (i != 0)
             {
                 handCanvas.eulerAngles += new Vector3(0, 0, scaledAngle);
-                if (isAI)
-                {
-                    handCanvas.eulerAngles += new Vector3(0, 0, scaledAngle);
-                }
             }
             hand[i].transform.SetParent(null);
             hand[i].transform.eulerAngles = new Vector3(0, 0, 0);
@@ -137,6 +125,7 @@ public class HandManager : MonoBehaviour
     private Card CreateAICardInstance(Card card)
     {
         var cardInstance = Instantiate(card, new Vector3(Screen.width / 2, OffsetAI, 0), Quaternion.identity).transform;
+        cardInstance.name = cardInstance.name + HandAI.Count;
         cardInstance.GetComponent<Button>().enabled = false; //Avoids interaction with player
         cardInstance.GetComponent<ScriptButton>().enabled = false;
         cardInstance.GetComponent<Image>().sprite = CardBackSprite;
