@@ -5,12 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class ChooseDrawableCardsAI : CardAIBehaviour
+public class ChooseDrawableCardsAI : MonoBehaviour
 {
     [SerializeField]
     private DeckAI _deckAI;
 
-    private float maxCardsInHand = 6;
     public Transform IAHandCanvas;
     private List<CardType> IADeck;//deck hecho por nosotros
 
@@ -31,6 +30,8 @@ public class ChooseDrawableCardsAI : CardAIBehaviour
     private int currentSelectIndex = 1;
 
     public static bool StartAI;
+
+    public HandManager handManager;
     private void OnEnable()
     {
         ChooseDrawableCardsBehaviour.OnChooseDrawableCardsEnter += ChooseDrawableCardsEnter;
@@ -76,11 +77,11 @@ public class ChooseDrawableCardsAI : CardAIBehaviour
                 currentSelectFrequency += selectCardFrequency;
             }
         }
-        else if (Mathf.FloorToInt(currentWaitSelect) == Mathf.FloorToInt(selectWait)) //avoids extra executions
+        else if (Mathf.FloorToInt(currentWaitSelect) == Mathf.FloorToInt(selectWait) && animator.GetBool("ChooseCard")) //avoids extra executions
         {
             currentWaitSelect++;
             HideInitialCards();
-            var IsBelowHandMaxSize = IAHand.Count < maxCardsInHand;
+            var IsBelowHandMaxSize = HandManager.HandAI.Count < HandManager.HandLimit;
             if (IsBelowHandMaxSize)
                 RandomCardChosen();
             TurnManager.CardDrawn = true;
@@ -124,25 +125,7 @@ public class ChooseDrawableCardsAI : CardAIBehaviour
             random2 = Random.Range(0, IADeck.Count);
         }
 
-        AddCardHand(ComproveHand(random1, random2));
-    }
-    private void AddCardHand(Card toSpawn)
-    {
-        var cardInstance = Instantiate(toSpawn, IAHandCanvas.position, Quaternion.identity).transform;
-        IAHand.Add(cardInstance.GetComponent<Card>()); //Avoids modifing the prefab
-        cardInstance.GetComponent<Button>().enabled = false; //Avoids interaction with player
-        cardInstance.GetComponent<ScriptButton>().enabled = false;
-        cardInstance.GetComponent<Image>().sprite = cardSprites;
-
-        Transform[] stats = cardInstance.GetComponentsInChildren<Transform>();
-        foreach (Transform t in stats)
-        {
-            if (t != cardInstance.transform)
-                t.gameObject.SetActive(false);
-        }
-
-        cardInstance.SetParent(IAHandCanvas);
-        cardInstance.localScale = new Vector3(scale, scale, scale);//escalamos las cartas que se ven en la mano.
+        handManager.AddCard(ComproveHand(random1, random2), true);
     }
     private Card ComproveHand(int random1, int random2)//comprueba que cartas tiene la IA en su mano.
     {
@@ -151,16 +134,16 @@ public class ChooseDrawableCardsAI : CardAIBehaviour
         bool _secondCardRepe = false;
 
         //miramos en la mano cuales tiene.
-        for (int i = 0; i < IAHand.Count; i++)
+        for (int i = 0; i < HandManager.HandAI.Count; i++)
         {
-            if (IAHand[i].name == IADeck[random1].card.name) //si el nombre es diferente =>  no la tiene| coge esta y no comprueba las otras.
-            {
-                _firstCardRepe = true;
-            }
-            else if (IAHand[i].name == IADeck[random2].card.name) //si el nombre es diferente =>  no la tiene
-            {
-                _secondCardRepe = true;
-            }
+                if (HandManager.HandAI[i].name == IADeck[random1].card.name) //si el nombre es diferente =>  no la tiene| coge esta y no comprueba las otras.
+                {
+                    _firstCardRepe = true;
+                }
+                else if (HandManager.HandAI[i].name == IADeck[random2].card.name) //si el nombre es diferente =>  no la tiene
+                {
+                    _secondCardRepe = true;
+                }
         }
         if (!_firstCardRepe && _secondCardRepe)
         {

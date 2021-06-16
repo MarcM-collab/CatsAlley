@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MeleeShowRangePlayer : CombatPlayerBehaviour
 {
+    public delegate void HidePathEnterDelegate();
+    public static HidePathEnterDelegate OnHidePathEnter;
+
     private void OnEnable()
     {
         MeleeShowRangeBehaviour.OnMeleeShowRangeEnter += MeleeShowRangeEnter;
@@ -62,12 +65,10 @@ public class MeleeShowRangePlayer : CombatPlayerBehaviour
 
                 else if (IsAttackRange)
                 {
-
-                    var IsInsideAttackRange = i != -attackRange && i != attackRange && j != -attackRange && j != attackRange;
                     var ThereIsAnEnemyCharacter = InTile(currentGridCenterPosition) == (int)EntityType.EnemyCharacter;
                     var ThereIsAnEnemyHero = InTile(currentGridCenterPosition) == (int)EntityType.EnemyHero;
 
-                    if (IsInsideAttackRange && ThereIsAnEnemyCharacter)
+                    if (ThereIsAnEnemyCharacter)
                         _uITilemap.SetTile(currentGridPosition, _targetTile);
                     else if (ThereIsAnEnemyHero)
                         enemyHeroOnRange = true;

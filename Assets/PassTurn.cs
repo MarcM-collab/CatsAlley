@@ -19,7 +19,7 @@ public class PassTurn : MonoBehaviour
         {
             p.Hide();
         }
-        if (TurnManager.TeamTurn == Team.TeamPlayer && h.GetCurrentHandLength <= ChooseDrawableCardsPlayer.GetMaxHand && p.isHided && checkSteal.isHided)
+        if (TurnManager.TeamTurn == Team.TeamPlayer && HandManager.HandPlayer.Count <= HandManager.HandLimit && p.isHided && checkSteal.isHided)
         {
             StartCoroutine(ReCheck());
         }

@@ -32,13 +32,22 @@ public class AudioManager : MonoBehaviour
     private bool playerTurn = false;
     private float prevVolume;
     private bool transitioning;
+    public AudioClip teleportSFX;
 
     public AudioClip[] meowWomen;
     public AudioClip[] meowMen;
 
+    public AudioClip[] swissSounds;
+
     private AudioClip prevMeow;
 
     public float sfxVolume = 0.5f, musicVolume = 0.5f, globalVolume = 0.5f; //This is needed to initialitzate the value of the sliders
+
+    public AudioClip GetRandomSwiss()
+    {
+        return swissSounds[Random.Range(0, swissSounds.Length)];
+    }
+
     public AudioClip GetAudioClip(MeowType m)
     {
         if (m == MeowType.women)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,7 @@ public class ThreeCardsPlayer : MonoBehaviour
     private int maxCardInHand = 6;
 
     private List<int> discardedCards = new List<int>();
+    private List<int> removedCards = new List<int>();
 
     [SerializeField]
     private GameObject xGO;
@@ -34,12 +36,13 @@ public class ThreeCardsPlayer : MonoBehaviour
 
     private bool _buttonPressed;
 
-    private GameObject canvasGO;
-
     private float _timer;
     [SerializeField]
     private float _timeAfterConfirm = 1.5f;
     private bool _startTimer;
+
+    [SerializeField]
+    private Sprite _spriteBack;
 
     private void OnEnable()
     {
@@ -53,8 +56,6 @@ public class ThreeCardsPlayer : MonoBehaviour
     }
     private void Start()
     {
-        canvasGO = buttons[0].transform.parent.gameObject;
-
         cardInstancePos = new RectTransform[buttons.Length];
         cardsGO = new GameObject[buttons.Length];
 
@@ -67,12 +68,13 @@ public class ThreeCardsPlayer : MonoBehaviour
     }
     private void ThreeCardsEnter(Animator animator)
     {
-        if (Hand.hand.Count < maxCardInHand)
+        if (HandManager.HandPlayer.Count < HandManager.HandLimit)
         {
             threeCardPanel.Show();
             cardCanvas.Show();
             infoManager.Hide();
             discardedCards.Clear();
+            removedCards.Clear();
             randomCards = new Card[buttons.Length];
             RemovePreviousCards();
             ChooseRandomInitial();
@@ -82,6 +84,7 @@ public class ThreeCardsPlayer : MonoBehaviour
         {
             animator.SetBool("CardsDrawn", false);
             TurnManager.ExtraCards = true;
+            TurnManager.CardDrawn = true;
         }
     }
 
@@ -98,12 +101,12 @@ public class ThreeCardsPlayer : MonoBehaviour
     {
         if (_buttonPressed)
         {
-            threeCardPanel.Hide();
-            _buttonPressed = false;
-            _startTimer = true;
-            _timer = 0;
+                threeCardPanel.Hide(); //one hide
+                _buttonPressed = false;
+                _startTimer = true;
+                _timer = 0;
         }
-        //Debug.Log(_timer);
+
         if (_startTimer && _timer >= _timeAfterConfirm)
         {
             animator.SetBool("CardsDrawn", false);
@@ -116,6 +119,7 @@ public class ThreeCardsPlayer : MonoBehaviour
             infoManager.Show();
             _startTimer = false;
         }
+
         _timer += Time.deltaTime;
     }
     private void ShowRandomCards() //muestra las dos cartas random
@@ -128,6 +132,19 @@ public class ThreeCardsPlayer : MonoBehaviour
 
             cardsGO[i].GetComponent<ScriptButton>().enabled = false;
             cardsGO[i].GetComponent<Button>().enabled = false;
+
+            if (HandManager.HandPlayer.Count + i >= HandManager.HandLimit)
+            {
+                cardsGO[i].GetComponent<Image>().sprite = _spriteBack;
+                removedCards.Add(i);
+                discardedCards.Add(i);
+
+                var list = cardsGO[i].GetComponentsInChildren<RectTransform>();
+                for (int j = 1; j < list.Length; j++)
+                {
+                    list[j].gameObject.SetActive(false);
+                }
+            }
 
             CursorUIShower ui = cardsGO[i].GetComponent<CursorUIShower>();
             if (ui)
@@ -180,7 +197,8 @@ public class ThreeCardsPlayer : MonoBehaviour
     {
         for (int i = 0; i < randomCards.Length; i++)
         {
-            Hand.AddCard(randomCards[i]);
+            if (HandManager.HandPlayer.Count < HandManager.HandLimit)
+                Hand.AddCard(randomCards[i], false);
         }
 
         for (int i = 0; i < buttons.Length; i++)
@@ -192,15 +210,18 @@ public class ThreeCardsPlayer : MonoBehaviour
     public void SelectCard(int number)
     {
         Image xImage = buttons[number].transform.GetChild(1).GetChild(buttons[number].transform.GetChild(1).childCount - 1).GetComponent<Image>();
-        if (xImage.enabled == true)
+        if (!removedCards.Contains(number))
         {
-            xImage.enabled = false;
-            discardedCards.Remove(number);
-        }
-        else
-        {
-            xImage.enabled = true;
-            discardedCards.Add(number);
+            if (xImage.enabled == true)
+            {
+                xImage.enabled = false;
+                discardedCards.Remove(number);
+            }
+            else
+            {
+                xImage.enabled = true;
+                discardedCards.Add(number);
+            }
         }
     }
 

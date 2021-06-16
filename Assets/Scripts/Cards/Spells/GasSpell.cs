@@ -24,35 +24,31 @@ public class GasSpell : Spell
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            IAUse();
-        }
         if (activated)
         {
             mouseIntPos = GetNearestCenterPoint();
-                    if (mouseIntPos.x <= fieldRange[0].x && mouseIntPos.x >= fieldRange[1].x && mouseIntPos.y <= fieldRange[0].y && mouseIntPos.y >= fieldRange[1].y && tileManager.FloorTilemap.HasTile(mouseIntPos))
-                    {
-                        tileManager.UITilemap.SetTile(prevPos, null);
-                        tileManager.UITilemap.SetTile(prevPos + new Vector3Int(0, -1, 0), null);
-                        tileManager.UITilemap.SetTile(prevPos + new Vector3Int(-1, 0, 0), null);
-                        tileManager.UITilemap.SetTile(prevPos + new Vector3Int(-1, -1, 0), null);
+            if (mouseIntPos.x <= fieldRange[0].x && mouseIntPos.x >= fieldRange[1].x && mouseIntPos.y <= fieldRange[0].y && mouseIntPos.y >= fieldRange[1].y && tileManager.FloorTilemap.HasTile(mouseIntPos))
+            {
+                tileManager.UITilemap.SetTile(prevPos, null);
+                tileManager.UITilemap.SetTile(prevPos + new Vector3Int(0, -1, 0), null);
+                tileManager.UITilemap.SetTile(prevPos + new Vector3Int(-1, 0, 0), null);
+                tileManager.UITilemap.SetTile(prevPos + new Vector3Int(-1, -1, 0), null);
 
-                        prevPos = mouseIntPos;
+                prevPos = mouseIntPos;
 
-                        tileManager.UITilemap.SetTile(mouseIntPos, tileManager.PointingTile);
-                        tileManager.UITilemap.SetTile(mouseIntPos + new Vector3Int(0, -1, 0), tileManager.PointingTile);
-                        tileManager.UITilemap.SetTile(mouseIntPos + new Vector3Int(-1, 0, 0), tileManager.PointingTile);
-                        tileManager.UITilemap.SetTile(mouseIntPos + new Vector3Int(-1, -1, 0), tileManager.PointingTile);
-                    }
-                    else
-                    {
-                        tileManager.UITilemap.SetTile(prevPos, null);
-                        tileManager.UITilemap.SetTile(prevPos + new Vector3Int(0, -1, 0), null);
-                        tileManager.UITilemap.SetTile(prevPos + new Vector3Int(-1, 0, 0), null);
-                        tileManager.UITilemap.SetTile(prevPos + new Vector3Int(-1, -1, 0), null);
-                    }
-            
+                tileManager.UITilemap.SetTile(mouseIntPos, tileManager.PointingTile);
+                tileManager.UITilemap.SetTile(mouseIntPos + new Vector3Int(0, -1, 0), tileManager.PointingTile);
+                tileManager.UITilemap.SetTile(mouseIntPos + new Vector3Int(-1, 0, 0), tileManager.PointingTile);
+                tileManager.UITilemap.SetTile(mouseIntPos + new Vector3Int(-1, -1, 0), tileManager.PointingTile);
+            }
+            else
+            {
+                tileManager.UITilemap.SetTile(prevPos, null);
+                tileManager.UITilemap.SetTile(prevPos + new Vector3Int(0, -1, 0), null);
+                tileManager.UITilemap.SetTile(prevPos + new Vector3Int(-1, 0, 0), null);
+                tileManager.UITilemap.SetTile(prevPos + new Vector3Int(-1, -1, 0), null);
+            }
+
         }
 
     }
@@ -90,7 +86,7 @@ public class GasSpell : Spell
         Instantiate(GasSpellPrefab, vector, Quaternion.identity);
     }
     private Vector3 GetBestGasPosition()
-    {        
+    {
         int maxPuntuation = puntuationList[0];
         Vector3 maxPosition = positionList[0];
         for (int i = 1; i < puntuationList.Count; i++)
@@ -102,45 +98,6 @@ public class GasSpell : Spell
                 maxPosition = positionList[i];
             }
         }
-        return maxPosition;
-    }
-    private Vector3 GetBestRockPosition()
-    {
-        List<int> puntuationList = new List<int>();
-        List<Vector3> positionList = new List<Vector3>();
-        for (int x = (int)fieldRange[1].x; x <= (int)fieldRange[0].x; x++)
-        {
-            int currentPuntuation = 0;
-            for (int y = (int)fieldRange[1].y; y <= (int)fieldRange[0].y; y++)
-            {
-                Vector3Int vector = new Vector3Int(x, y, 0);
-                Vector3 centerGridPos = vector + TileManager.CellSize;
-
-                if (x == 0)
-                    positionList.Add(centerGridPos);
-
-                var charcter = SelectCharacter(centerGridPos);
-                if (1 == charcter)
-                    currentPuntuation++;
-                else if (2 == charcter)
-                    currentPuntuation--;
-            }
-            puntuationList.Add(currentPuntuation);
-            Debug.Log(currentPuntuation);
-        }
-
-        int maxPuntuation = puntuationList[0];
-        Vector3 maxPosition = positionList[0];
-        for (int i = 1; i < puntuationList.Count; i++)
-        {
-            var currentPuntuation = puntuationList[i];
-            if (currentPuntuation > maxPuntuation)
-            {
-                maxPuntuation = currentPuntuation;
-                maxPosition = positionList[1];
-            }
-        }
-
         return maxPosition;
     }
     protected int SelectCharacter(Vector3 vector) //1 Player / 2 AI / 0 nothing
@@ -174,7 +131,7 @@ public class GasSpell : Spell
     {
         GeneratePuntuationList();
 
-        return Mathf.Max(puntuationList.ToArray()) >= 1;
+        return Mathf.Max(puntuationList.ToArray()) >= 2;
     }
     private void GeneratePuntuationList()
     {
@@ -207,5 +164,5 @@ public class GasSpell : Spell
         }
     }
 }
-   
+
 

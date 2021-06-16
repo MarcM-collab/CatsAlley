@@ -51,30 +51,28 @@ public class MeleeChoosingTileAI : CombatAIBehaviour
                 var OnAttackRange = Mathf.Abs(i) <= counter;
                 if (OnAttackRange)
                 {
-                    if (i != -attackRange && i != attackRange && j != -attackRange && j != attackRange)
+                    var IsAPossiblePositionToAttack = !(_notPossibleTarget.Contains(currentGridPosition));
+                    if (IsAPossiblePositionToAttack)
                     {
-                        var IsAPossiblePositionToAttack = !(_notPossibleTarget.Contains(currentGridPosition));
-                        if (IsAPossiblePositionToAttack)
+                        var HeroOnRange = _enemyHeroAttackableTiles.Contains(currentGridPosition);
+                        if (HeroOnRange)
                         {
-                            var HeroOnRange = _enemyHeroAttackableTiles.Contains(currentGridPosition);
-                            if (HeroOnRange)
-                            {
-                                //Target Hero
-                                _targetGridPosition = currentGridPosition;
-                                _targetOnRange = true;
-                                _isHero = true;
-                                break;
-                            }
-                            var EnemyOnRange = InTile(currentGridCenterPosition) == (int)EntityType.EnemyCharacter;
-                            if (EnemyOnRange)
-                            {
-                                //Take the nearest enemy
-                                attackableCharactersTiles.Add(currentGridPosition);
-                                _targetOnRange = true;
-                            }
+                            //Target Hero
+                            _targetGridPosition = currentGridPosition;
+                            _targetOnRange = true;
+                            _isHero = true;
+                            break;
+                        }
+                        var EnemyOnRange = InTile(currentGridCenterPosition) == (int)EntityType.EnemyCharacter;
+                        if (EnemyOnRange)
+                        {
+                            //Take the nearest enemy
+                            attackableCharactersTiles.Add(currentGridPosition);
+                            _targetOnRange = true;
                         }
                     }
                 }
+
             }
         }
     }

@@ -5,11 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class SpawningAI : CardAIBehaviour
+public class SpawningAI : MonoBehaviour
 {
 
-    //public delegate void IAabilitiesDelegate(int currentMana);
-    //public static IAabilitiesDelegate abilityDelegate_;
+    public delegate void IAabilitiesDelegate(int currentMana);
+    public static IAabilitiesDelegate abilityDelegate_;
 
 
 
@@ -36,6 +36,7 @@ public class SpawningAI : CardAIBehaviour
     private bool inTurn = false;
     public CardSpawner spawner;
     public SpellSpawner spellSpawn;
+    public HandManager HandManager;
     private void OnEnable()
     {
         SpawningBehaviour.OnSpawningEnter += SpawningEnter;
@@ -60,7 +61,7 @@ public class SpawningAI : CardAIBehaviour
         Spell priorSpell = GetPriorSpell();
         if (priorSpell && priorSpell.CanBeUsed() && priorSpell.Whiskas <= TurnManager.currentMana) //Has any spell in hand, spells are only used if there are units of the player ingame
         {
-            SetSelectedHandCard(Random.Range(0, IAHand.Count));
+            SetSelectedHandCard(Random.Range(0, HandManager.HandAI.Count));
             yield return new WaitForSeconds(cardUsageWait);
             spellSpawn.IASpawn(priorSpell);
             RemoveCardHand(priorSpell);
@@ -73,14 +74,14 @@ public class SpawningAI : CardAIBehaviour
             //combinations.Sort(); //First order [3, 1, 2] --> [1,2,3], then iterate reversly --> [3,2,1] so removing will not be out of the range.
             for (int i = 0; i < combinations.Count; i++)
             {
-                SetSelectedHandCard(Random.Range(0, IAHand.Count));
+                SetSelectedHandCard(Random.Range(0, HandManager.HandAI.Count));
 
                 yield return new WaitForSeconds(cardUsageWait + Random.Range(-cardUsageRandomicity, cardUsageRandomicity)); //Adds random to make it feel human.
                 var position = GetValidRandomPos(2, 4, -2, 2);
                 if (!NoPossibleTiles) 
                 {
-                    spawner.SpawnCard(combinations[i], position, Team.TeamAI);
                     RemoveCardHand(combinations[i]);
+                    spawner.SpawnCard(combinations[i], position, Team.TeamAI);
                 }
                 else
                 {
@@ -97,11 +98,11 @@ public class SpawningAI : CardAIBehaviour
     {
         Spell priorSpell = null;
 
-        for (int i = 0; i < IAHand.Count; i++)
+        for (int i = 0; i < HandManager.HandAI.Count; i++)
         {
-            if (IAHand[i] is Spell)
+            if (HandManager.HandAI[i] is Spell)
             {
-                Spell currentSpell = IAHand[i] as Spell;
+                Spell currentSpell = HandManager.HandAI[i] as Spell;
                 if (!priorSpell || currentSpell.Priority > priorSpell.Priority)
                 {
                     priorSpell = currentSpell;
@@ -115,9 +116,9 @@ public class SpawningAI : CardAIBehaviour
     }
     private void RemoveCardHand(Card cardToRemove)
     {
-        IAHand.Remove(cardToRemove);
+        HandManager.RemoveCard(cardToRemove, true);
         TurnManager.SubstractMana(cardToRemove.Whiskas);
-        DestroyImmediate(cardToRemove.gameObject, true); //To make it visible that a card has been used.
+        Destroy(cardToRemove.gameObject); //To make it visible that a card has been used.
     }
     private List<Unit> CombinationCard(List<Card> list)
     {
@@ -201,29 +202,27 @@ public class SpawningAI : CardAIBehaviour
     private void SetSelectedHandCard(int v)
     {
         Image[] cardsDiplays = IAHandCanvas.GetComponentsInChildren<Image>();
-        for (int i = 0; i < cardsDiplays.Length; i++)
+        if (!(cardsDiplays is null))
         {
-            cardsDiplays[i].GetComponent<Image>().color = Color.white;
+            for (int i = 0; i < cardsDiplays.Length; i++)
+            {
+                cardsDiplays[i].GetComponent<Image>().color = Color.white;
+            }
+            if (v != -1)
+                cardsDiplays[v].GetComponent<Image>().color = selectCardColor;
         }
-        if (v != -1)
-            cardsDiplays[v].GetComponent<Image>().color = selectCardColor;
     }
     private void EndTurn()
     {
-        ////comprobar mana
+        //comprobar mana
         //if (TurnManager.currentMana > 0)
         //{
-        //    print("weeeey");
-
         //    abilityDelegate_?.Invoke(TurnManager.currentMana);
         //}
         //else
         //{
         //    TurnManager.Spawned = true;
-
-
         //}
-
         TurnManager.Spawned = true;
         anim.SetBool("IsDragging", false);
 
@@ -234,11 +233,11 @@ public class SpawningAI : CardAIBehaviour
     private List<Card> UnitList()
     {
         List<Card> e = new List<Card>();
-        for (int i = 0; i < IAHand.Count; i++)
+        for (int i = 0; i < HandManager.HandAI.Count; i++)
         {
-            if (IAHand[i] is Unit)
+            if (HandManager.HandAI[i] is Unit)
             {
-                e.Add(IAHand[i]);
+                e.Add(HandManager.HandAI[i]);
             }
         }
         return e;

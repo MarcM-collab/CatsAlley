@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 3657433410771621728}
   - component: {fileID: 3657433410771621729}
   - component: {fileID: 3657433410771621730}
+  - component: {fileID: 965499120}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -178,7 +179,10 @@ MonoBehaviour:
   transitionWait: 0.5
   musicClips:
   - {fileID: 8300000, guid: dc0b2ebfd48fd84478e24f86e9b75bba, type: 3}
+  - {fileID: 8300000, guid: 5a5211ffaa7e9c64183d9ef08d795b16, type: 3}
+  - {fileID: 8300000, guid: dc5277becb8ca224192bb301b7afb665, type: 3}
   transition: {fileID: 3657433410351469921}
+  teleportSFX: {fileID: 8300000, guid: d0ed9d405d8294b4e9d59bedb37b03a6, type: 3}
   meowWomen:
   - {fileID: 8300000, guid: b26c7068b3a313243b4e1efab070a42f, type: 3}
   - {fileID: 8300000, guid: b20d5a0079e34af4da99cb9bd689f188, type: 3}
@@ -192,6 +196,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6e023fdbaff14a94198831450377055e, type: 3}
   - {fileID: 8300000, guid: 5425ed098b2cc234597dbda67e4f6012, type: 3}
   - {fileID: 8300000, guid: 9ffa2ac2ee989014ea0fa1e79d0129eb, type: 3}
+  swissSounds:
+  - {fileID: 8300000, guid: dc50115942832994299aa847beb5a636, type: 3}
+  - {fileID: 8300000, guid: 8b775a31392d4444199f2798d7e7e6a7, type: 3}
+  - {fileID: 8300000, guid: 36908735813f2fa498dbfd11a847705f, type: 3}
   sfxVolume: 0.5
   musicVolume: 0.5
   globalVolume: 0.5
@@ -282,6 +290,31 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!169 &965499120
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3657433410771621731}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.022282856
       inSlope: 0
       outSlope: 0
       tangentMode: 0

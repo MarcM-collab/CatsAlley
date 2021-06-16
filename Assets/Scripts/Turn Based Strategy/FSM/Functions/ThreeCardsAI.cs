@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ThreeCardsAI : CardAIBehaviour
+public class ThreeCardsAI : MonoBehaviour
 {
     private List<Card> _cards = new List<Card>(); //Baraja elegida por el player (8 cartas)
     [SerializeField]
@@ -14,15 +14,13 @@ public class ThreeCardsAI : CardAIBehaviour
     [SerializeField]
     private int numberOfCards;
 
-    [SerializeField]
-    private int maxCardInHand = 6;
-
     private int[] listRandom;
 
     public Transform IAHandCanvas;
 
-    public Sprite cardSprites;
     public float scale = 1f;
+
+    public HandManager HandManager;
 
     private void OnEnable()
     {
@@ -43,20 +41,11 @@ public class ThreeCardsAI : CardAIBehaviour
     }
     private void ThreeCardsEnter(Animator animator)
     {
-        if (IAHand.Count < maxCardInHand)
-        {
-            ChooseRandomInitial();
-            AddCards();
-            animator.SetBool("CardsDrawn", false);
-            TurnManager.ExtraCards = true;
-            TurnManager.CardDrawn = true;
-        }
-
-        else
-        {
-            animator.SetBool("CardsDrawn", false);
-            TurnManager.ExtraCards = true;
-        }
+        ChooseRandomInitial();
+        AddCards();
+        animator.SetBool("CardsDrawn", false);
+        TurnManager.ExtraCards = true;
+        TurnManager.CardDrawn = true;
     }
 
     private void ChooseRandomInitial() //salen dos cartas random y las guarda en una lista.
@@ -98,25 +87,8 @@ public class ThreeCardsAI : CardAIBehaviour
     {
         for (int i = 0; i < randomCards.Length; i++)
         {
-            AddCardHand(randomCards[i]);
+            if (HandManager.HandAI.Count < HandManager.HandLimit)
+                HandManager.AddCard(randomCards[i], true);
         }
-    }
-    private void AddCardHand(Card toSpawn)
-    {
-        var cardInstance = Instantiate(toSpawn, IAHandCanvas.position, Quaternion.identity).transform;
-        IAHand.Add(cardInstance.GetComponent<Card>()); //Avoids modifing the prefab
-        cardInstance.GetComponent<Button>().enabled = false; //Avoids interaction with player
-        cardInstance.GetComponent<ScriptButton>().enabled = false;
-        cardInstance.GetComponent<Image>().sprite = cardSprites;
-
-        Transform[] stats = cardInstance.GetComponentsInChildren<Transform>();
-        foreach (Transform t in stats)
-        {
-            if (t != cardInstance.transform)
-                t.gameObject.SetActive(false);
-        }
-
-        cardInstance.SetParent(IAHandCanvas);
-        cardInstance.localScale = new Vector3(scale, scale, scale);//escalamos las cartas que se ven en la mano.
     }
 }

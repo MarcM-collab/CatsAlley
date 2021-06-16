@@ -42,21 +42,19 @@ public class MeleeChoosingAttackTilePlayer : CombatPlayerBehaviour
         var SelectInput = InputManager.LeftMouseClick;
         if (SelectInput)
         {
-            if (InTile(_currentGridPos + TileManager.CellSize) == (int)EntityType.EnemyHero || InTile(_currentGridPos + TileManager.CellSize) == (int)EntityType.EnemyCharacter)
+            if ((IsExecutorMelee() && _currentGridPos == _targetGridPosition) || (IsHeroMelee() && InTile(_currentGridPos + TileManager.CellSize) == (int)EntityType.EnemyHero))
             {
-                if (IsExecutorMelee() || (IsHeroMelee() && InTile(_currentGridPos + TileManager.CellSize) == (int)EntityType.EnemyHero))
-                {
-                    TeamAILength = EntityManager.GetCharacters(Team.TeamAI).Length;
+                TeamAILength = EntityManager.GetCharacters(Team.TeamAI).Length;
 
-                    _tileChosenGridPosition = _executorGridPosition;
-                    _uITilemap.SetTile(_executorGridPosition, _allyTile);
-                    animator.SetTrigger("TileChosen");
-                    animator.SetBool("Attacking", true);
-                }
+                _tileChosenGridPosition = _executorGridPosition;
+                _uITilemap.SetTile(_executorGridPosition, _allyTile);
+                animator.SetTrigger("TileChosen");
+                animator.SetBool("Attacking", true);
             }
+
             else
             {
-                var AttackTileNotSelcted = _attackingTile != _uITilemap.GetTile(_currentGridPos);
+                var AttackTileNotSelcted = _attackingTile != _uITilemap.GetTile(_currentGridPos) && _floorTilemap.HasTile(_currentGridPos);
                 if (AttackTileNotSelcted)
                 {
                     animator.SetBool("PreparingAttack", false);
