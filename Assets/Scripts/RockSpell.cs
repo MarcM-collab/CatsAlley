@@ -7,13 +7,13 @@ using UnityEngine.Tilemaps;
 public class RockSpell : Spell
 {
     public GameObject RockSpellPrefab;
-    public int damage;
 
     private Vector2[] fieldRange = new Vector2[] { new Vector2(3,1), new Vector2(-4, -2) };
 
     public bool activated;
 
     private List<int> puntuationList = new List<int>();
+    private List<int> yPosList = new List<int>();
 
     private void Start()
     {
@@ -103,7 +103,7 @@ public class RockSpell : Spell
                 maxPosition = i;
             }
         }
-        return maxPosition;
+        return yPosList[maxPosition];
     }
     private void GeneratePuntuationList()
     {
@@ -123,7 +123,7 @@ public class RockSpell : Spell
                 else if (2 == charcter)
                     currentPuntuation--;
             }
-            Debug.Log(currentPuntuation);
+            yPosList.Add(y);
             puntuationList.Add(currentPuntuation);
         }
     }

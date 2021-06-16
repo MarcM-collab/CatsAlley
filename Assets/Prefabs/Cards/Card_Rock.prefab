@@ -306,7 +306,6 @@ MonoBehaviour:
   executed: 0
   Priority: 2
   RockSpellPrefab: {fileID: 2758618109334501071, guid: 05548e4b8d8ceb443b7c7021c151a2f1, type: 3}
-  damage: 2
   activated: 0
 --- !u!1 &5713441574064518238
 GameObject:
