@@ -8,8 +8,8 @@ using Random = UnityEngine.Random;
 public class SpawningAI : CardAIBehaviour
 {
 
-    public delegate void IAabilitiesDelegate(int currentMana);
-    public static IAabilitiesDelegate abilityDelegate_;
+    //public delegate void IAabilitiesDelegate(int currentMana);
+    //public static IAabilitiesDelegate abilityDelegate_;
 
 
 
@@ -210,19 +210,21 @@ public class SpawningAI : CardAIBehaviour
     }
     private void EndTurn()
     {
-        //comprobar mana
-        if (TurnManager.currentMana > 0)
-        {
-            print("weeeey");
-            
-            abilityDelegate_?.Invoke(TurnManager.currentMana);
-        }
-        else
-        {
-            TurnManager.Spawned = true;
-          
-            
-        }
+        ////comprobar mana
+        //if (TurnManager.currentMana > 0)
+        //{
+        //    print("weeeey");
+
+        //    abilityDelegate_?.Invoke(TurnManager.currentMana);
+        //}
+        //else
+        //{
+        //    TurnManager.Spawned = true;
+
+
+        //}
+
+        TurnManager.Spawned = true;
         anim.SetBool("IsDragging", false);
 
 

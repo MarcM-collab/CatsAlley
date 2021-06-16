@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f07fca3ee756a54782f270fcec0a4f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selfChar: {fileID: 0}
   executed: 0
   whiskasCost: 1
   textExplain: spawn a little cat in a random not occupied area
-  littleSkeleton: {fileID: 507745496865460723, guid: faf8bde8db6838d47aecc4e3c24e734b, type: 3}
+  littleSkeleton: {fileID: 507745496865460723, guid: 6c6d4957f64428b4c88c83409e627aec, type: 3}

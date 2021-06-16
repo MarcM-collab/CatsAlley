@@ -24072,6 +24072,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PrepareYourDeck_2
       objectReference: {fileID: 0}
+    - target: {fileID: 6026411713158148388, guid: f968ff4b26264cd4f82f2d06d5071d32, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6207481817074340239, guid: f968ff4b26264cd4f82f2d06d5071d32, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 129.36536
