@@ -7,14 +7,13 @@ public class Reminder : MonoBehaviour //this is used to remember the player to p
 {
     private Animator anim;
     public MenuPanel p;
-    public HandManager hm;
     private void Awake()
     {
         anim = GetComponent<Animator>();
     }
     private void Update()
     {
-        if(TurnManager.TeamTurn == Team.TeamPlayer && !TurnManager.ExtraCards && hm.hand.Count > ChooseDrawableCardsPlayer.GetMaxHand)
+        if(TurnManager.TeamTurn == Team.TeamPlayer && !TurnManager.ExtraCards && HandManager.HandPlayer.Count > HandManager.HandLimit)
         {
             p.Show();
         }
@@ -25,7 +24,7 @@ public class Reminder : MonoBehaviour //this is used to remember the player to p
 
         if (EntityManager.GetActiveCharacters(Team.TeamPlayer).Length <= 0 && EntityManager.GetCharacters(Team.TeamPlayer).Length > 0)
         {
-            if (TurnManager.currentMana <= 0 || hm.GetMaxHandCost() > TurnManager.currentMana)
+            if (TurnManager.currentMana <= 0 || HandManager.GetMaxHandCost() > TurnManager.currentMana)
             {
                 anim.SetBool("HighLight", true);
             }

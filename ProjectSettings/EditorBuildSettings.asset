@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 2316a784c8ebd9e469b91aa8104df6dc
   - enabled: 1
-    path: Assets/Scenes/Marc3 1.unity
-    guid: 93a739d7f59993f4bae7426c932a0347
+    path: Assets/Scenes/Ricard.unity
+    guid: bcc0dfceb40b2eb4c8637f74bf5e3a22
   - enabled: 1
     path: Assets/Scenes/Marc3.unity
     guid: c589fa559716f544a841677948002b37

@@ -16,6 +16,8 @@ public class MeleeShowAttackTilePlayer : CombatPlayerBehaviour
     {
         var cellSize = TileManager.CellSize;
 
+        TileManager.ShowTilesInTilemap(_uITilemap, _uITilemap, _collisionAllyTile, IsPath);
+
         var IsCharacter = !(_targetEntity.GetComponent("Character") as Entity is null);
         if (IsCharacter)
         {
@@ -27,17 +29,16 @@ public class MeleeShowAttackTilePlayer : CombatPlayerBehaviour
                     var currentGridPosition = _targetGridPosition + position;
                     var currentGridCenterPosition = currentGridPosition + cellSize;
 
-                    var IsNothingOrIsEnemyCharacter = (InTile(currentGridCenterPosition) == (int)EntityType.Nothing ||
-                        InTile(currentGridCenterPosition) == (int)EntityType.EnemyCharacter) && !_collisionTilemap.HasTile(currentGridPosition);
                     if (_uITilemap.HasTile(currentGridPosition))
                     {
-                        if (IsNothingOrIsEnemyCharacter)
+                        if (InTile(currentGridCenterPosition) == (int)EntityType.Nothing)
                         {
                             _uITilemap.SetTile(currentGridPosition, _targetTile);
                         }
                     }
                 }
             }
+            HideHeroTiles();
         }
         else
         {
@@ -59,5 +60,9 @@ public class MeleeShowAttackTilePlayer : CombatPlayerBehaviour
             }
             //!(i == 0 && j == 0) && _uITilemap.HasTile(currentGridPosition) && (currentGridPosition == _executorGridPos || !(InTile(currentGridCenterPosition) == (int)EntityType.AllyCharacter)) && !_collisionTilemap.HasTile(currentGridPosition)
         }
+    }
+    private bool IsPath(Vector3Int vector)
+    {
+        return _uITilemap.GetTile(vector) == _targetTile && vector != _targetGridPosition;
     }
 }

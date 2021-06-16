@@ -42,8 +42,10 @@ public class ScriptButton : MonoBehaviour, IPointerExitHandler, IPointerEnterHan
     private bool zooming = false;
     private float clickTimer = 0;
     private bool clicked = false;
+    private HandManager _handManager; 
     private void Start()
     {
+        _handManager = GameObject.Find("HandManager").GetComponent<HandManager>();
         im = GetComponent<Image>();
         
         explanation = GetComponentInChildren<Explanation>();
@@ -213,6 +215,8 @@ public class ScriptButton : MonoBehaviour, IPointerExitHandler, IPointerEnterHan
             explanation.gameObject.SetActive(false);
 
         zooming = false;
+
+        _handManager.Reposition();
     }
     private IEnumerator NotEnough(Image i)
     {

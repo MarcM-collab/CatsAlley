@@ -18,21 +18,12 @@ public class ChooseDrawableCardsPlayer : MonoBehaviour
     private GameObject[] cardsGO = new GameObject[2];
 
     [SerializeField]
-    private HandManager Hand;
-    [SerializeField]
-    private static int maxCardInHand = 6;
-    private bool currentTurn = false;
-
-    private bool PressedFirst;
+    private HandManager HandManager;
 
     private bool cardSelected;
 
     public MenuPanel toShow;
 
-    public static int GetMaxHand
-    {
-        get { return maxCardInHand;  } 
-    }
     private void OnEnable()
     {
         ChooseDrawableCardsBehaviour.OnChooseDrawableCardsEnter += ChooseDrawableCardsEnter;
@@ -57,7 +48,7 @@ public class ChooseDrawableCardsPlayer : MonoBehaviour
     }
     private void ChooseDrawableCardsEnter(Animator animator)
     {
-        if (Hand.hand.Count < maxCardInHand)
+        if (HandManager.HandPlayer.Count < HandManager.HandLimit)
         {
             RemovePreviousCards();
             ChooseRandom();
@@ -125,7 +116,7 @@ public class ChooseDrawableCardsPlayer : MonoBehaviour
     }
     public void ConfirmAddCard(int number) //se pasa información de la carta escogida y se desactivan después.
     {
-        Hand.AddCard(twoCardsRandom[number]);
+        HandManager.AddCard(twoCardsRandom[number], false);
 
         for (int i = 0; i < buttons.Length; i++)
         {
