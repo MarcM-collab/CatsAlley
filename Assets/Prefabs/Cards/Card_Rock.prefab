@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Damage (1) the inner units at the start of the next (3) turns.
+  m_text: Damage (1) the units of a row
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e99ddd5ad326bd9449fe092a1a168b52, type: 2}
   m_sharedMaterial: {fileID: 2977093212589573011, guid: e99ddd5ad326bd9449fe092a1a168b52, type: 2}

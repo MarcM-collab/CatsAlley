@@ -44,6 +44,12 @@ public class ThreeCardsPlayer : MonoBehaviour
     [SerializeField]
     private Sprite _spriteBack;
 
+
+    public delegate void DialogueIA();
+    public static DialogueIA dialogueIA;
+
+    
+
     private void OnEnable()
     {
         ThreeCardsBehaviour.OnThreeCardsEnter += ThreeCardsEnter;
@@ -240,6 +246,8 @@ public class ThreeCardsPlayer : MonoBehaviour
         }
 
         _buttonPressed = true;
+
+        dialogueIA?.Invoke();
     }
     private void ChooseRandomFinal(List<int> canNotRepeatCards) //salen dos cartas random y las guarda en una lista.
     {

@@ -8,6 +8,7 @@ using TMPro;
 public class InfoManager : MonoBehaviour
 {
     public CanvasGroup abilityDiplay;
+    public Sprite heroSprite;
     public Image spriteShower;
     public Image buttonUse;
     public Image whiskasIm;
@@ -50,7 +51,7 @@ public class InfoManager : MonoBehaviour
                     targetChar = rayCast.transform.gameObject.GetComponent<Character>();
                     ActiveAttack();
                     currentAttack = targetChar.AttackPoints;
-                    ShowSprite(targetChar.gameObject);
+                    ShowSprite(targetChar.gameObject.GetComponent<SpriteRenderer>().sprite);
                     ShowBasicInfo();
                     if (targetChar.Team == Team.TeamPlayer)
                     {
@@ -63,7 +64,7 @@ public class InfoManager : MonoBehaviour
                     targetChar = null;
                     targetHero = rayCast.transform.gameObject.GetComponent<Hero>();
 
-                    ShowSprite(targetHero.gameObject);
+                    ShowSprite(heroSprite);
                     ActiveAttack(false);
                     //ShowSprite(targetHero.GetComponentsInChildren<Transform>()[1].gameObject);
 
@@ -129,9 +130,9 @@ public class InfoManager : MonoBehaviour
             spriteShower.color = new Color(spriteShower.color.r, spriteShower.color.g, spriteShower.color.b, 1);
         }
     }
-    private void ShowSprite(GameObject toshow)
+    private void ShowSprite(Sprite toshow)
     {
-        spriteShower.sprite = toshow.GetComponent<SpriteRenderer>().sprite;
+        spriteShower.sprite = toshow;
         InitSpriteShower();
     }
     private void ShowBasicInfo()
