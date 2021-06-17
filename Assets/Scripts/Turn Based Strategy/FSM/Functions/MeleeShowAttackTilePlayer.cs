@@ -31,7 +31,7 @@ public class MeleeShowAttackTilePlayer : CombatPlayerBehaviour
 
                     if (_uITilemap.HasTile(currentGridPosition))
                     {
-                        if (InTile(currentGridCenterPosition) == (int)EntityType.Nothing)
+                        if (InTile(currentGridCenterPosition) == (int)EntityType.Nothing && _uITilemap.GetTile(currentGridPosition) != _collisionAllyTile)
                         {
                             _uITilemap.SetTile(currentGridPosition, _targetTile);
                         }

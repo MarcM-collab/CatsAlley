@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MeleeChoosingAttackTilePlayer : CombatPlayerBehaviour
 {
+    public delegate void MeleeChoosingAttackTileTutorialDelegate(Tilemap tilemap);
+    public static MeleeChoosingAttackTileTutorialDelegate OnMeleeChoosingAttackTileCharacterTutorial;
+    public delegate void MeleeChoosingAttackTileHeroTutorialDelegate(Tilemap tilemap);
+    public static MeleeChoosingAttackTileHeroTutorialDelegate OnMeleeChoosingAttackTileHeroTutorial;
+
     private void OnEnable()
     {
         MeleeChoosingAttackTileBehaviour.OnMeleeChoosingAttackTileUpdate += MeleeChoosingAttackTileUpadate;
@@ -14,6 +20,15 @@ public class MeleeChoosingAttackTilePlayer : CombatPlayerBehaviour
     }
     private void MeleeChoosingAttackTileUpadate(Animator animator)
     {
+        if (_targetEntity.GetComponent<Hero>() is null)
+        {
+            OnMeleeChoosingAttackTileCharacterTutorial?.Invoke(_uITilemap);
+        }
+        else
+        {
+            OnMeleeChoosingAttackTileHeroTutorial?.Invoke(_uITilemap);
+        }
+
         var PointingNewTile = _currentGridPos != _lastGridPos;
         var PointingSpawnableTile = _uITilemap.GetTile(_currentGridPos) == _targetTile && _currentGridPos != _targetGridPosition && !IsEnemy();
         var LeavingSpawnableZone = _uITilemap.GetTile(_lastGridPos) == _attackingTile;
@@ -54,7 +69,7 @@ public class MeleeChoosingAttackTilePlayer : CombatPlayerBehaviour
 
             else
             {
-                var AttackTileNotSelcted = _attackingTile != _uITilemap.GetTile(_currentGridPos) && _floorTilemap.HasTile(_currentGridPos);
+                var AttackTileNotSelcted = _attackingTile != _uITilemap.GetTile(_currentGridPos);
                 if (AttackTileNotSelcted)
                 {
                     animator.SetBool("PreparingAttack", false);

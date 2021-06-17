@@ -23,7 +23,6 @@ public class Spell : Card
     private void Dragging(Spell s) 
     {
         usingSpell = s;
-        Debug.Log(usingSpell);
         usingSpell.Activate();
     }
     public virtual void IAUse() {}

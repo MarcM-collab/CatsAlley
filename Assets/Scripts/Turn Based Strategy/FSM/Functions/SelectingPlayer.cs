@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class SelectingPlayer : CombatPlayerBehaviour
 {
+    public delegate void UseAbilityCharacterTutorialDelegate();
+    public static UseAbilityCharacterTutorialDelegate OnUseAbilityCharacterTutorial;
+    public delegate void OnSelectingTutorialDelegate();
+    public static OnSelectingTutorialDelegate OnSelectingTutorial;
+    public delegate void OnUseAbilityHeroTutorialDelegate();
+    public static OnUseAbilityHeroTutorialDelegate OnUseAbilityHeroTutorial;
+
     private bool _buttonEnabled;
     private void OnEnable()
     {
@@ -39,6 +46,7 @@ public class SelectingPlayer : CombatPlayerBehaviour
                 //TileHighlighting(animator);
 
                 Selected(animator);
+
             }
             else
             {
@@ -87,6 +95,10 @@ public class SelectingPlayer : CombatPlayerBehaviour
     private void Selected(Animator animator)
     {
         var TileSelected = InputManager.LeftMouseClick;
+
+        OnUseAbilityHeroTutorial?.Invoke();
+        OnUseAbilityCharacterTutorial?.Invoke();
+        OnSelectingTutorial?.Invoke();
 
         if (TileSelected)
         {
