@@ -305,7 +305,7 @@ MonoBehaviour:
   Whiskas: 3
   executed: 0
   Priority: 2
-  RockSpellPrefab: {fileID: 2758618109334501071, guid: 05548e4b8d8ceb443b7c7021c151a2f1, type: 3}
+  RockSpellPrefab: {fileID: 376451393481560012, guid: 38d41cc2a8225f040a62685833eef9b2, type: 3}
   activated: 0
 --- !u!1 &5713441574064518238
 GameObject:

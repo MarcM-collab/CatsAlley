@@ -1,9 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MeleeChoosingTilePlayer : CombatPlayerBehaviour
 {
+    public delegate void MeleeChoosingTileTutorialDelegate(Tilemap tilemap);
+    public static MeleeChoosingTileTutorialDelegate OnMeleeChoosingTileCharacterTutorial;
+    public delegate void MeleeChoosingTileHeroTutorialDelegate();
+    public static MeleeChoosingTileHeroTutorialDelegate OnMeleeChoosingTileHeroTutorial;
+    public delegate void UseAbilityCharacterTutorialEndDelegate();
+    public static UseAbilityCharacterTutorialEndDelegate OnUseAbilityCharacterTutorialEnd;
+
     private void OnEnable()
     {
         MeleeChoosingTileBehaviour.OnMeleeChoosingTileUpdate += MeleeChoosingTileUpdate;
@@ -15,6 +23,13 @@ public class MeleeChoosingTilePlayer : CombatPlayerBehaviour
     private void MeleeChoosingTileUpdate(Animator animator)
     {
         //ChangeCursorIfEnemy();
+
+        OnUseAbilityCharacterTutorialEnd.Invoke();
+
+        if (_aIHeroTile.activeSelf)
+            OnMeleeChoosingTileHeroTutorial?.Invoke();
+
+        OnMeleeChoosingTileCharacterTutorial?.Invoke(_uITilemap);
 
         var PointingNewTile = _currentGridPos != _lastGridPos;
         var PointingSpawnableTile = _uITilemap.GetTile(_currentGridPos) == _allyTile && _currentGridPos != _executorGridPosition;

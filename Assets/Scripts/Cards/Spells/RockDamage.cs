@@ -16,12 +16,11 @@ public class RockDamage : MonoBehaviour
     }
     private void Update()
     {
-            //Destroy(gameObject);
+        Destroy(gameObject, 2f);
     }
     private void Execute()
     {
         Collider2D[] inTrigger = Physics2D.OverlapBoxAll(transform.position, tileSize, 360);
-        print(inTrigger.Length);
         Damage(inTrigger);
     }
     private void Damage(Collider2D[] inTrigger)

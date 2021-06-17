@@ -1,9 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class RangedChoosingTilePlayer : CombatPlayerBehaviour
 {
+    public delegate void RangedChoosingTileCharacterTutorialDelegate(Tilemap tilemap);
+    public static RangedChoosingTileCharacterTutorialDelegate OnRangedChoosingTileCharacterTutorial;
+    public delegate void CanNotAttackHeroTutorialDelegate();
+    public static CanNotAttackHeroTutorialDelegate OnCanNotAttackHeroTutorial;
+    public delegate void UseAbilityCharacterTutorialEndDelegate();
+    public static UseAbilityCharacterTutorialEndDelegate OnUseAbilityCharacterTutorialEnd;
+
     private void OnEnable()
     {
         RangedChoosingTileBehaviour.OnRangedChoosingTileUpdate += RangedChoosingTileUpdate;
@@ -15,6 +23,13 @@ public class RangedChoosingTilePlayer : CombatPlayerBehaviour
     private void RangedChoosingTileUpdate(Animator animator)
     {
         //ChangeCursorIfEnemy();
+
+        OnUseAbilityCharacterTutorialEnd.Invoke();
+
+        if (InTile(_currentGridPos + TileManager.CellSize) == (int)EntityType.EnemyHero)
+            OnCanNotAttackHeroTutorial?.Invoke();
+
+        OnRangedChoosingTileCharacterTutorial?.Invoke(_uITilemap);
 
         var PointingNewTile = _currentGridPos != _lastGridPos;
         var PointingSpawnableTile = _uITilemap.GetTile(_currentGridPos) == _allyTile && _currentGridPos != _executorGridPosition;

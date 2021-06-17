@@ -15,17 +15,15 @@ public class RockSpell : Spell
     private List<int> puntuationList = new List<int>();
     private List<int> yPosList = new List<int>();
 
+    public RockSpawner rockSpawner;
+
     private void Start()
     {
         prevPos = new Vector3Int(-5, -2, 0);
+        rockSpawner = GameObject.Find("RockSpawner").GetComponent<RockSpawner>();
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (CanBeUsed())
-                IAUse();
-        }
         if (activated)
         {
             var mousePosInt = GetNearestCenterPoint();
@@ -65,31 +63,26 @@ public class RockSpell : Spell
     public override void ExecuteSpell()
     {
         activated = false;
-        Vector2 mousePos = GetMousePosition;
-        Vector3Int mousePosInt = new Vector3Int((int)mousePos.x, (int)mousePos.y, 0);
+        Vector3Int mousePosInt = GetNearestCenterPoint();
 
         if (tileManager.FloorTilemap.HasTile(mousePosInt))
         {
-            for (int i = (int)fieldRange[1].x; i <= fieldRange[0].x; i++)
-            {
-                Instantiate(RockSpellPrefab, new Vector3(i + 0.5f, mousePos.y + 0.5f, 0), Quaternion.identity);
-            }
+            rockSpawner.StartSpawning(RockSpellPrefab, (int)mousePosInt.y);
             executed = true;
         }
 
         for (int i = (int)fieldRange[1].x; i <= fieldRange[0].x; i++)
         {
             tileManager.UITilemap.SetTile(new Vector3Int(i, mousePosInt.y, 0), null);
+            tileManager.UITilemap.SetTile(new Vector3Int(i, prevPos.y, 0), null);
         }
     }
     public override void IAUse()
     {
         var yPos = GetBestGasPosition();
-        for (int i = (int)fieldRange[1].x; i <= fieldRange[0].x; i++)
-        {
-            Instantiate(RockSpellPrefab, new Vector3(i + 0.5f, yPos + 0.5f, 0), Quaternion.identity);
-        }
+        rockSpawner.StartSpawning(RockSpellPrefab, yPos);
     }
+
     private int GetBestGasPosition()
     {
         int maxPuntuation = puntuationList[0];
@@ -110,7 +103,6 @@ public class RockSpell : Spell
         puntuationList = new List<int>();
         for (int y = (int)fieldRange[1].y; y <= (int)fieldRange[0].y; y++)
         {
-            Debug.Log(y);
             int currentPuntuation = 0;
             for (int x = (int)fieldRange[1].x; x <= (int)fieldRange[0].x; x++)
             {
@@ -158,7 +150,6 @@ public class RockSpell : Spell
     {
         GeneratePuntuationList();
 
-        Debug.Log(Mathf.Max(puntuationList.ToArray()));
         return Mathf.Max(puntuationList.ToArray()) >= 2;
     }
 }
