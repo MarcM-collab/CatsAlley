@@ -2845,7 +2845,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 44766590ef0dd5846b9875b7adcf9f9d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 48fd3ab28e2af594c8637db51da98f9d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -20194,8 +20194,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1506348310}
   m_HandleRect: {fileID: 1506348309}
   m_Direction: 2
-  m_Value: -0.00000042503726
-  m_Size: 0.27381152
+  m_Value: -0.00000023613181
+  m_Size: 0.24907924
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -20772,6 +20772,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4032094701795759550, guid: 2baafd37d94ac5a4693ec97a8fe87b06, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e5ea2d9dac7412f468c278b598b5ac03, type: 3}
+    - target: {fileID: 4032094701992335693, guid: 2baafd37d94ac5a4693ec97a8fe87b06, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e5ea2d9dac7412f468c278b598b5ac03, type: 3}
     - target: {fileID: 4032094702252595787, guid: 2baafd37d94ac5a4693ec97a8fe87b06, type: 3}
       propertyPath: m_Name
       value: Loose
@@ -31392,7 +31400,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1292.3965}
+  m_AnchoredPosition: {x: 0, y: 1292.3962}
   m_SizeDelta: {x: 0, y: 1802.8423}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5251911850294597468
@@ -32402,7 +32410,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 719a05ffe5e6ee743a1224eb68a85979, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e5ea2d9dac7412f468c278b598b5ac03, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -33301,7 +33309,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5964836483217865802}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
@@ -36208,7 +36216,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 48a8c0df186349c469833c6fc0d76882, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 73d97c9e218318841adccfcd1b8e4ad2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -37668,7 +37676,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 44766590ef0dd5846b9875b7adcf9f9d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 48fd3ab28e2af594c8637db51da98f9d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -39001,6 +39009,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5964836483217865798}
     m_Modifications:
+    - target: {fileID: 3495892721071091719, guid: 39888e566fbcb624f9dd880f35793ea8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 73d97c9e218318841adccfcd1b8e4ad2, type: 3}
     - target: {fileID: 7566374281364856513, guid: 39888e566fbcb624f9dd880f35793ea8, type: 3}
       propertyPath: m_SizeDelta.y
       value: 137.114
