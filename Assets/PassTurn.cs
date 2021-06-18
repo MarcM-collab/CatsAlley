@@ -8,6 +8,17 @@ public class PassTurn : MonoBehaviour
     private HandManager h;
     public MenuPanel checkSteal;
     private bool hided = false;
+
+    private void Awake()
+    {
+        TurnManager.manaLimit = 9;
+        TurnManager.maxMana = 1;
+        TurnManager.currentTurn = 0;
+        TurnManager.currentMana = 0;
+        TurnManager.CardDrawn = false;
+        TurnManager.ExtraCards = false;
+        TurnManager.Spawned = false;
+    }
     private void Start()
     {
         h = FindObjectOfType<HandManager>();
@@ -15,6 +26,7 @@ public class PassTurn : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log(TurnManager.currentTurn);
         if (TurnManager.TeamTurn != Team.TeamPlayer && !p.isHided)
         {
             p.Hide();
@@ -27,7 +39,6 @@ public class PassTurn : MonoBehaviour
     private IEnumerator ReCheck()
     {
         yield return new WaitForSeconds(0.5f);
-
         if (checkSteal.isHided)
             p.Show();
     }

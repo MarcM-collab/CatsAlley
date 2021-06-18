@@ -6,6 +6,11 @@ public class CheckUnlocked : MonoBehaviour
 {
     static int prevLevelsUnlocked = 0;
     public PathCreator[] paths;
+
+    private void Awake()
+    {
+        prevLevelsUnlocked = 0;
+    }
     void Start()
     {
         LevelChecker[] levels = GetComponentsInChildren<LevelChecker>();

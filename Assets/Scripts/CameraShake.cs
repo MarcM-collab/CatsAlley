@@ -8,7 +8,13 @@ public class CameraShake : MonoBehaviour
     public float strength = 0.7f;
     public float duration = 1.0f;
 
+    
     Vector3 pos;
+
+    private void Awake()
+    {
+        shakeDuration = 0f;
+    }
     void OnEnable()
     {
         pos = transform.localPosition;

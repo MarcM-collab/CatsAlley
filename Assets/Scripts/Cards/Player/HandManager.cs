@@ -26,6 +26,12 @@ public class HandManager : MonoBehaviour
     public float DivisionAngle;
     public float AngleScale;
 
+    private void Awake()
+    {
+        HandLimit = 8;
+        HandAI = new List<Card>();
+        HandPlayer = new List<Card>();
+    }
     public static int GetMaxHandCost()
     {
         int max = 0;

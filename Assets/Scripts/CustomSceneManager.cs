@@ -13,6 +13,7 @@ public class CustomSceneManager : MonoBehaviour
     public delegate void Unlocked(int index);
     public static Unlocked OnUnlock;
     private static bool hasUnlocked = false;
+
     public int currentBuildIndex
     {
         get { return SceneManager.GetActiveScene().buildIndex; }
@@ -29,7 +30,6 @@ public class CustomSceneManager : MonoBehaviour
     }
     private void Awake()
     {
-     
 
         if (SceneManagerCustom != null)
         {
@@ -92,7 +92,6 @@ public class CustomSceneManager : MonoBehaviour
     {
         EntityManager.InitEntities();
         TurnManager.NextTurn();
-       
     }
     public void UnlockNextLevel()
     {

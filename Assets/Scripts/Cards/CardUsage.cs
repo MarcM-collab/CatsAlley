@@ -30,6 +30,12 @@ public class CardUsage : MonoBehaviour
 
     public CardSpawner spawner;
     private Camera mainCamera;
+
+    private void Awake()
+    {
+        isDragging = false;
+
+    }
     private Vector2 GetMouseTilePos
     {
         get 
