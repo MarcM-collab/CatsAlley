@@ -438,8 +438,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\n\n\nAriel Chac\xF3n Valera\n\n\n\n\n\n\n\nMarc Mas Vidal\n\n\n\n\nMarc
-    Mas Vidal\n\n\n\n\n\n\n\n\n\n\nMarc Mas Vidal"
+  m_text: "\n\n\nAriel Chac\xF3n Valera\n\n\nAinoa Tabares Amaya \n\n\n\n\nMarc Mas
+    Vidal\n\n\n\n\nMarc Mas Vidal\n\n\n\n\n\nRicard Pel\xE1ez Corber\xF3\nAinoa Tabares
+    Amaya \n\n\n\nMarc Mas Vidal"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e99ddd5ad326bd9449fe092a1a168b52, type: 2}
   m_sharedMaterial: {fileID: 2977093212589573011, guid: e99ddd5ad326bd9449fe092a1a168b52, type: 2}
@@ -727,6 +728,7 @@ MonoBehaviour:
     Lead artist
 
 
+    Artist
 
 
 
@@ -739,7 +741,8 @@ MonoBehaviour:
 
 
 
-    Lead Programmer
+    Lead
+    Programmer
 
 
 
