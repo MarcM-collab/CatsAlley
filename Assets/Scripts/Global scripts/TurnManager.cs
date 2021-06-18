@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public static class TurnManager
 {
     public static int manaLimit = 9;
-    private static int maxMana = 1;
-    private static int currentTurn = 0;
+    public static int maxMana = 1;
+    public static int currentTurn = 0;
 
-    public static int currentMana { get; private set; } = 0;
+    public static int currentMana { get; set; } = 0;
 
     public delegate void SetDisplayValue(int currentAmount, int maxMana);
     public static SetDisplayValue setDisplay;
@@ -21,7 +21,7 @@ public static class TurnManager
     public static bool CardDrawn = false;
     public static bool ExtraCards = false;
     public static bool Spawned;
-
+    
     public static Team TeamTurn
     {
         get 
