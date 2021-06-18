@@ -54,39 +54,10 @@ public class PrepareDeck : MonoBehaviour
             Slots[i].sprite = emptyImage;
         }
 
-        for (int i = 0; i < GetCardsUnlocked(); i++)
-        {
-            if (i >= cardDisplays.Count)
-            {
-                Debug.LogWarning("Not enought cards");
-                break;
-            }
-            cardDisplays[i].gameObject.SetActive(true);
-
-            if (i > 8)
-            {
-                CheckLock(2);
-            }
-            else if (i > 10)
-            {
-                CheckLock(4);
-            }
-        }
-
 
         canvas = GetComponent<CanvasGroup>();
         cardDisplays = FindObjectsOfType<SelectableCardButton>().ToList();
-    }
-
-    private int GetCardsUnlocked()
-    {
-        return (CustomSceneManager.SceneManagerCustom.GetLevelsUnlocked()) switch
-        {
-            0 => 8,
-            1 => 10,
-            _ => 12,
-        };
-    }
+    } 
 
     private void Enter()
     {

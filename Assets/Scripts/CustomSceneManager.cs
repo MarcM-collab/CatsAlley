@@ -95,7 +95,7 @@ public class CustomSceneManager : MonoBehaviour
     public void UnlockNextLevel()
     {
         hasUnlocked = true;
-        int buildIndex = SceneManager.GetActiveScene().buildIndex+1;
+        int buildIndex = SceneManager.GetActiveScene().buildIndex-1;
         if (buildIndex > levelsUnlocked)
         {
             levelsUnlocked = buildIndex; //1 level 1 2 level 2 and so on...
