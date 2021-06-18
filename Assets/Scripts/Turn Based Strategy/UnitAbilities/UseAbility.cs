@@ -35,7 +35,8 @@ public class UseAbility : MonoBehaviour
             }
             else
             {
-                EntityManager.ExecutorCharacter.Exhausted = true;
+               // EntityManager.ExecutorCharacter.Exhausted = true;
+                ability.selfChar.Exhausted = true;
             }
             TurnManager.SubstractMana(ability.whiskasCost);
             ability.executed = false;

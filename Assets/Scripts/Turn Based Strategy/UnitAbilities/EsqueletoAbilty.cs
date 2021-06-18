@@ -30,8 +30,8 @@ public class EsqueletoAbilty : Abilty
         {
             if (i > nSpawn)
                 return;
-            positions.Add(positionSpawn);
             Spawn();
+            positions.Add(positionSpawn);
             i++;
         }
 
@@ -50,7 +50,7 @@ public class EsqueletoAbilty : Abilty
     }
     private Vector2 GetTilePosition(Vector2 pos)
     {
-        return new Vector2(pos.x - 0.5f, pos.y - 0.5f);
+        return new Vector2(pos.x, pos.y);
     }
 
     //private void GetTilePosition(Transform toPosition, Vector2 pos)
@@ -68,7 +68,7 @@ public class EsqueletoAbilty : Abilty
     {
         do
         {
-            positionSpawn = new Vector2(Random.Range(-3, 5), Random.Range(1, 3));
+            positionSpawn = new Vector2(Random.Range(-4,3), Random.Range(1,-2));
         }
         while (positions.Contains(positionSpawn));
        
@@ -96,10 +96,5 @@ public class EsqueletoAbilty : Abilty
             print("puede spawnear");
             CanSpawn = true;
         }
-
-
-       
-
     }
-
 }

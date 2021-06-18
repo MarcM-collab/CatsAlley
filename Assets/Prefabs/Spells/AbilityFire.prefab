@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ability: {fileID: 6190143185490438149}
   isHero: 1
+  hasBeenUsed: 0
 --- !u!1001 &6916705023971256683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53,6 +54,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6916705024393199193}
     m_Modifications:
+    - target: {fileID: 728137267314491758, guid: 7f0e0bb9b9a2d2b4e94283d19deeb9e2, type: 3}
+      propertyPath: whiskasCost
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 731975429046353666, guid: 7f0e0bb9b9a2d2b4e94283d19deeb9e2, type: 3}
       propertyPath: m_RootOrder
       value: 0
