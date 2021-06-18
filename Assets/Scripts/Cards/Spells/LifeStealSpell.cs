@@ -22,7 +22,6 @@ public class LifeStealSpell : Spell
                     tileManager.UITilemap.SetTile(prevPos, null);
                     prevPos = mouseIntPos;
                     tileManager.UITilemap.SetTile(mouseIntPos, tileManager.PointingTile);
-
                 }
             }
         }
@@ -45,7 +44,7 @@ public class LifeStealSpell : Spell
                 chars = FindObjectsOfType<Character>();
 
                 if (FX)
-                    Instantiate(FX, hit2D.transform.position, Quaternion.identity);
+                    Instantiate(FX, Vector3.zero, Quaternion.identity);
 
                 for (int i = 0; i < chars.Length; i++)
                 {
@@ -61,6 +60,7 @@ public class LifeStealSpell : Spell
     }
     public override void IAUse()
     {
+        Instantiate(FX, Vector3.zero, Quaternion.identity);
         chars = FindObjectsOfType<Character>();
         IAUsingSpell(chars);
     }
