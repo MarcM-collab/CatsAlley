@@ -12491,7 +12491,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081912528}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.41, z: 0}
   m_LocalScale: {x: 0.7692308, y: 0.7692308, z: 0.7692308}
   m_Children: []
   m_Father: {fileID: 2570498069593033042}
@@ -20251,8 +20251,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1506348310}
   m_HandleRect: {fileID: 1506348309}
   m_Direction: 2
-  m_Value: -0.00000004722636
-  m_Size: 0.28312624
+  m_Value: 0.00000014167908
+  m_Size: 0.28312907
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -26545,6 +26545,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 32668345, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 43929563, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
       propertyPath: answers.Array.data[0]
       value: You don't defeat me so easy.
@@ -26560,6 +26564,18 @@ PrefabInstance:
     - target: {fileID: 43929563, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
       propertyPath: answers.Array.data[3]
       value: You are boring me...
+      objectReference: {fileID: 0}
+    - target: {fileID: 1081912529, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716915571, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2422644652448709159, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2570498070284532330, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
       propertyPath: color.a
@@ -26651,7 +26667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2570498070707466391, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.53
       objectReference: {fileID: 0}
     - target: {fileID: 2570498070707466391, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -26694,12 +26710,16 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2570498070707466393, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570498070707466393, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.28
+      value: 1.1636363
       objectReference: {fileID: 0}
     - target: {fileID: 2570498070707466393, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.28
+      value: 1.1636363
       objectReference: {fileID: 0}
     - target: {fileID: 2570498070707466395, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
       propertyPath: m_Size.x
@@ -26731,7 +26751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2570498070966953210, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2570498070966953215, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
       propertyPath: m_Camera
@@ -31457,7 +31477,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1292.396}
+  m_AnchoredPosition: {x: 0, y: 1292.3958}
   m_SizeDelta: {x: 0, y: 1802.8423}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5251911850294597468
@@ -32604,7 +32624,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!114 &5719729144442968222
 MonoBehaviour:
