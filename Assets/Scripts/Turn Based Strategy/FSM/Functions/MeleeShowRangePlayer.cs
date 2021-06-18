@@ -39,12 +39,12 @@ public class MeleeShowRangePlayer : CombatPlayerBehaviour
 
                 if (IsMovementRange)
                 {
+                    var ThereIsAnEnemyHero = InTile(currentGridCenterPosition) == (int)EntityType.EnemyHero;
                     if (_floorTilemap.HasTile(currentGridPosition))
                     {
                         var ThereIsAnEnemyCharacter = InTile(currentGridCenterPosition) == (int)EntityType.EnemyCharacter;
                         var ThereIsNothing = CanMove(currentGridPosition) && InTile(currentGridCenterPosition) == (int)EntityType.Nothing;
                         var ThereIsAnAlly = InTile(currentGridCenterPosition) == (int)EntityType.AllyCharacter;
-                        var ThereIsAnEnemyHero = InTile(currentGridCenterPosition) == (int)EntityType.EnemyHero;
                         var ThereIsACollider = _collisionTilemap.HasTile(currentGridPosition);
 
                         if (ThereIsAnEnemyCharacter)
@@ -56,14 +56,13 @@ public class MeleeShowRangePlayer : CombatPlayerBehaviour
                         else if (ThereIsNothing)
                             _uITilemap.SetTile(currentGridPosition, _allyTile);
 
-                        else if (ThereIsAnEnemyHero)
-                            enemyHeroOnRange = true;
-
                         else if (ThereIsACollider || ThereIsAnAlly)
                         {
                             _uITilemap.SetTile(currentGridPosition, _collisionAllyTile);
                         }
                     }
+                    else if (ThereIsAnEnemyHero)
+                        enemyHeroOnRange = true;
                 }
 
                 else if (IsAttackRange)
