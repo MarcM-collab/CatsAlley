@@ -106,7 +106,11 @@ public class ScriptButton : MonoBehaviour, IPointerExitHandler, IPointerEnterHan
         }
 
         if (holding)
+        {
+            print("holding");
             Dragging();
+        }
+  
 
         if (Input.GetMouseButtonUp(0) && holding)
         {

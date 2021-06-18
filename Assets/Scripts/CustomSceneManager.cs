@@ -75,7 +75,6 @@ public class CustomSceneManager : MonoBehaviour
     }
     private void OnLevelWasLoaded(int level)
     {
-        print(level);
         if (level == 1 && hasUnlocked) //menu
         {
             OnUnlock?.Invoke(levelsUnlocked);
@@ -90,6 +89,7 @@ public class CustomSceneManager : MonoBehaviour
 
     public void Init()
     {
+        print("wtff");
         EntityManager.InitEntities();
         TurnManager.NextTurn();
        
