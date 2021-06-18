@@ -26720,6 +26720,50 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.41
       objectReference: {fileID: 0}
+    - target: {fileID: 2570498069593033044, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
+      propertyPath: IADeck.Array.data[0].card
+      value: 
+      objectReference: {fileID: 1912205611453271048, guid: 11e3ece87326c404580bcb9651d80101, type: 3}
+    - target: {fileID: 2570498069593033044, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
+      propertyPath: IADeck.Array.data[2].card
+      value: 
+      objectReference: {fileID: 4526846348483723782, guid: 64af944539373e34683703445702201a, type: 3}
+    - target: {fileID: 2570498069593033044, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
+      propertyPath: IADeck.Array.data[3].card
+      value: 
+      objectReference: {fileID: 5914572085188139823, guid: beb1eab388626cb47b2351e590cc7614, type: 3}
+    - target: {fileID: 2570498069593033044, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
+      propertyPath: IADeck.Array.data[7].card
+      value: 
+      objectReference: {fileID: 1912205611453271048, guid: e3ab8a363afbb57499e4ba91e8202daa, type: 3}
+    - target: {fileID: 2570498069593033044, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
+      propertyPath: IADeck.Array.data[0].priority
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570498069593033044, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
+      propertyPath: IADeck.Array.data[1].priority
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570498069593033044, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
+      propertyPath: IADeck.Array.data[2].priority
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570498069593033044, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
+      propertyPath: IADeck.Array.data[3].priority
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570498069593033044, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
+      propertyPath: IADeck.Array.data[4].priority
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570498069593033044, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
+      propertyPath: IADeck.Array.data[5].priority
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570498069593033044, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
+      propertyPath: IADeck.Array.data[7].priority
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2570498070707466388, guid: 36b5aca45c673754faef3e2b763bda4e, type: 3}
       propertyPath: m_Name
       value: AIHero
@@ -42315,7 +42359,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 719a05ffe5e6ee743a1224eb68a85979, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e5ea2d9dac7412f468c278b598b5ac03, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

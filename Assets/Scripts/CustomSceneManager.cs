@@ -56,6 +56,7 @@ public class CustomSceneManager : MonoBehaviour
     }
     public void LoadScene(int buildIndex)
     {
+
         if (buildIndex == 0)
             buildIndex = 1;
         Fade();
@@ -74,13 +75,13 @@ public class CustomSceneManager : MonoBehaviour
     }
     private void OnLevelWasLoaded(int level)
     {
-
+        print(level);
         if (level == 1 && hasUnlocked) //menu
         {
             OnUnlock?.Invoke(levelsUnlocked);
             hasUnlocked = false;
         }
-        else
+        else if(level!=1)
         {
             Init();
         }
@@ -91,6 +92,7 @@ public class CustomSceneManager : MonoBehaviour
     {
         EntityManager.InitEntities();
         TurnManager.NextTurn();
+       
     }
     public void UnlockNextLevel()
     {
