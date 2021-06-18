@@ -12,6 +12,7 @@ public class CustomSceneManager : MonoBehaviour
 
     public delegate void Unlocked(int index);
     public static Unlocked OnUnlock;
+    private static bool hasUnlocked = false;
     public int currentBuildIndex
     {
         get { return SceneManager.GetActiveScene().buildIndex; }
@@ -74,9 +75,10 @@ public class CustomSceneManager : MonoBehaviour
     private void OnLevelWasLoaded(int level)
     {
 
-        if (level == 1) //menu
+        if (level == 1 && hasUnlocked) //menu
         {
             OnUnlock?.Invoke(levelsUnlocked);
+            hasUnlocked = false;
         }
         else
         {
@@ -92,6 +94,7 @@ public class CustomSceneManager : MonoBehaviour
     }
     public void UnlockNextLevel()
     {
+        hasUnlocked = true;
         int buildIndex = SceneManager.GetActiveScene().buildIndex+1;
         if (buildIndex > levelsUnlocked)
         {
