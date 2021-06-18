@@ -86,7 +86,7 @@ public class Tutorial : MonoBehaviour
         {
             if (IsCharacterAbility())
             {
-                _arrowList.Add(Instantiate(_arrow, EntityManager.ExecutorCharacter.transform.position, Quaternion.identity));
+                _arrowList.Add(Instantiate(_arrow, CharacterWithAbility().transform.position, Quaternion.identity));
                 _doneOnLoop = true;
             }
         }
@@ -117,6 +117,18 @@ public class Tutorial : MonoBehaviour
             }
         }
         return false;
+    }
+    private Character CharacterWithAbility()
+    {
+        var list = EntityManager.GetActiveCharacters(Team.TeamPlayer);
+        foreach (Character character in list)
+        {
+            if (!(character.GetComponent<UseAbility>() is null))
+            {
+                return character;
+            }
+        }
+        return null;
     }
     private void UseAbilityHeroTutorial()
     {
