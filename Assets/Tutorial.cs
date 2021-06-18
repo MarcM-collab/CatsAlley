@@ -18,7 +18,7 @@ public class Tutorial : MonoBehaviour
     [SerializeField]
     private MenuPanel _abilityPanel;
     [SerializeField]
-    private MenuPanel _rangedHeroPanel;
+    private Animator _rangedHeroPanel;
     private int _currentState => _animator.GetCurrentAnimatorStateInfo(0).fullPathHash;
     private int _prevState = -1;
 
@@ -82,11 +82,12 @@ public class Tutorial : MonoBehaviour
 
     private void UseAbilityCharacterTutorial()
     {
-        if (!UseAbilityCharacterTutorialDone)
+        if (!UseAbilityCharacterTutorialDone && !_doneOnLoop)
         {
             if (IsCharacterAbility())
             {
                 _arrowList.Add(Instantiate(_arrow, EntityManager.ExecutorCharacter.transform.position, Quaternion.identity));
+                _doneOnLoop = true;
             }
         }
     }
@@ -107,7 +108,7 @@ public class Tutorial : MonoBehaviour
     }
     private bool IsCharacterAbility()
     {
-        var list = EntityManager.GetActiveCharacters(Team.TeamAI);
+        var list = EntityManager.GetActiveCharacters(Team.TeamPlayer);
         foreach(Character character in list)
         {
             if (!(character.GetComponent<UseAbility>() is null))
@@ -253,7 +254,8 @@ public class Tutorial : MonoBehaviour
     {
         if (InputManager.LeftMouseClick)
         {
-            _rangedHeroPanel.Show();
+            Debug.Log("Ranged");
+            _rangedHeroPanel.SetTrigger("Triggered");
         }
     }
 }
