@@ -24,7 +24,7 @@ public class MeleeChoosingTilePlayer : CombatPlayerBehaviour
     {
         //ChangeCursorIfEnemy();
 
-        OnUseAbilityCharacterTutorialEnd.Invoke();
+        OnUseAbilityCharacterTutorialEnd?.Invoke();
 
         if (_aIHeroTile.activeSelf)
             OnMeleeChoosingTileHeroTutorial?.Invoke();

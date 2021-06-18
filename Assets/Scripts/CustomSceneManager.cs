@@ -55,6 +55,8 @@ public class CustomSceneManager : MonoBehaviour
     }
     public void LoadScene(int buildIndex)
     {
+        if (buildIndex == 0)
+            buildIndex = 1;
         Fade();
         StartCoroutine(Load(buildIndex));
     }
@@ -72,7 +74,7 @@ public class CustomSceneManager : MonoBehaviour
     private void OnLevelWasLoaded(int level)
     {
 
-        if (level == 0) //menu
+        if (level == 1) //menu
         {
             OnUnlock?.Invoke(levelsUnlocked);
         }
@@ -90,7 +92,7 @@ public class CustomSceneManager : MonoBehaviour
     }
     public void UnlockNextLevel()
     {
-        int buildIndex = SceneManager.GetActiveScene().buildIndex;
+        int buildIndex = SceneManager.GetActiveScene().buildIndex+1;
         if (buildIndex > levelsUnlocked)
         {
             levelsUnlocked = buildIndex; //1 level 1 2 level 2 and so on...

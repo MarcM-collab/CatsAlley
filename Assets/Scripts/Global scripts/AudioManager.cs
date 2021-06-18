@@ -178,7 +178,7 @@ public class AudioManager : MonoBehaviour
     private void OnLevelWasLoaded(int level)
     {
         StopFilter();
-        if (level == 0)
+        if (level == 1)
         {
             if (music)
             {

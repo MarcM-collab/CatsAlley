@@ -24,7 +24,7 @@ public class RangedChoosingTilePlayer : CombatPlayerBehaviour
     {
         //ChangeCursorIfEnemy();
 
-        OnUseAbilityCharacterTutorialEnd.Invoke();
+        OnUseAbilityCharacterTutorialEnd?.Invoke();
 
         if (InTile(_currentGridPos + TileManager.CellSize) == (int)EntityType.EnemyHero)
             OnCanNotAttackHeroTutorial?.Invoke();

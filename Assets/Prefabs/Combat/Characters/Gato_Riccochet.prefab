@@ -589,12 +589,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d30a958c7f71b246b5af1c8c66ddc90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 6
+  HP: 5
   Team: 0
   Exhausted: 0
   Hit: 0
   Dead: 0
-  MaxHP: 6
+  MaxHP: 5
   Class: 1
   AttackPoints: 3
   Range: 2
