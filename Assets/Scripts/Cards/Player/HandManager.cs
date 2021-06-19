@@ -25,7 +25,6 @@ public class HandManager : MonoBehaviour
 
     public float DivisionAngle;
     public float AngleScale;
-
     private void Awake()
     {
         HandLimit = 8;
@@ -42,11 +41,7 @@ public class HandManager : MonoBehaviour
         }
         return max;
     }
-    private void Awake()
-    {
-        HandAI.Clear();
-        HandPlayer.Clear();
-    }
+    
     public void AddCard(Card newCard, bool isAI)
     {
         var hand = isAI ? HandAI : HandPlayer;
