@@ -89,7 +89,6 @@ public class CustomSceneManager : MonoBehaviour
 
     public void Init()
     {
-        print("wtff");
         EntityManager.InitEntities();
         TurnManager.NextTurn();
     }

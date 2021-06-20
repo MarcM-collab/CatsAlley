@@ -26,7 +26,6 @@ public class PassTurn : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(TurnManager.currentTurn);
         if (TurnManager.TeamTurn != Team.TeamPlayer && !p.isHided)
         {
             p.Hide();

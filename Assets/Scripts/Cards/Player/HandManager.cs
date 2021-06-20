@@ -42,11 +42,6 @@ public class HandManager : MonoBehaviour
         }
         return max;
     }
-    private void Awake()
-    {
-        HandAI.Clear();
-        HandPlayer.Clear();
-    }
     public void AddCard(Card newCard, bool isAI)
     {
         var hand = isAI ? HandAI : HandPlayer;

@@ -67,42 +67,54 @@ public class Tutorial : MonoBehaviour
         //always
         RangedChoosingTilePlayer.OnCanNotAttackHeroTutorial -= CanNotAttackHeroTutorial;
     }
-
+    private void Start()
+    {
+        OnEnable();
+    }
     private void Update()
     {
-        if (_currentState != _prevState)
+        if (_abilityPanel != null)
         {
-            RemoveTutorialArrows();
-            _doneOnLoop = false;
-            _prevState = _currentState;
+            if (_currentState != _prevState)
+            {
+                RemoveTutorialArrows();
+                _doneOnLoop = false;
+                _prevState = _currentState;
 
-            _abilityPanel.Hide();
+                _abilityPanel.Hide();
+            }
         }
     }
 
     private void UseAbilityCharacterTutorial()
     {
-        if (!UseAbilityCharacterTutorialDone && !_doneOnLoop)
+        if (_abilityPanel != null)
         {
-            if (IsCharacterAbility())
+            if (!UseAbilityCharacterTutorialDone && !_doneOnLoop)
             {
-                _arrowList.Add(Instantiate(_arrow, CharacterWithAbility().transform.position, Quaternion.identity));
-                _doneOnLoop = true;
+                if (IsCharacterAbility())
+                {
+                    _arrowList.Add(Instantiate(_arrow, CharacterWithAbility().transform.position, Quaternion.identity));
+                    _doneOnLoop = true;
+                }
             }
         }
     }
     private void UseAbilityCharacterTutorialEnd()
     {
-        if (!UseAbilityCharacterTutorialDone)
+        if (_abilityPanel != null)
         {
-            if (!(EntityManager.ExecutorCharacter.GetComponent<UseAbility>() is null))
+            if (!UseAbilityCharacterTutorialDone)
             {
-                _abilityPanel.Show();
-                UseAbilityCharacterTutorialDone = true;
-            }
-            else if (InputManager.LeftMouseClick)
-            {
-                _abilityPanel.Hide();
+                if (!(EntityManager.ExecutorCharacter.GetComponent<UseAbility>() is null))
+                {
+                    _abilityPanel.Show();
+                    UseAbilityCharacterTutorialDone = true;
+                }
+                else if (InputManager.LeftMouseClick)
+                {
+                    _abilityPanel.Hide();
+                }
             }
         }
     }
@@ -132,46 +144,52 @@ public class Tutorial : MonoBehaviour
     }
     private void UseAbilityHeroTutorial()
     {
-        if (!UseAbilityHeroTutorialDone)
+        if (_abilityPanel != null)
         {
-            if (EntityManager.GetCharacters(Team.TeamAI).Length > 0)
+            if (!UseAbilityHeroTutorialDone)
             {
-                if (!_abiltyArrow)
+                if (EntityManager.GetCharacters(Team.TeamAI).Length > 0)
                 {
-                    _arrowList.Add(Instantiate(_arrow, _allyHero.transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity));
-                    _abiltyArrow = true;
-                }
-                else if (InputManager.LeftMouseClick && !_doneOnLoop)
-                {
-                    _abilityPanel.Show();
-                    _doneOnLoop = true;
-                }
-                else if (InputManager.LeftMouseClick)
-                {
-                    _abilityPanel.Hide();
-                    UseAbilityHeroTutorialDone = true;
+                    if (!_abiltyArrow)
+                    {
+                        _arrowList.Add(Instantiate(_arrow, _allyHero.transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity));
+                        _abiltyArrow = true;
+                    }
+                    else if (InputManager.LeftMouseClick && !_doneOnLoop)
+                    {
+                        _abilityPanel.Show();
+                        _doneOnLoop = true;
+                    }
+                    else if (InputManager.LeftMouseClick)
+                    {
+                        _abilityPanel.Hide();
+                        UseAbilityHeroTutorialDone = true;
+                    }
                 }
             }
         }
     }
     private void MeleeChoosingTileCharacterTutorial(Tilemap tilemap)
     {
-        if (!MeleeChoosingAttackTileCharacterTutorialDone && tilemap.ContainsTile(_tileManager.TargetTile) && !_doneOnLoop)
+        if (_abilityPanel != null)
         {
-            for (int x = tilemap.cellBounds.min.x; x <= tilemap.cellBounds.max.x; x++)
+            if (!MeleeChoosingAttackTileCharacterTutorialDone && tilemap.ContainsTile(_tileManager.TargetTile) && !_doneOnLoop)
             {
-                for (int y = tilemap.cellBounds.min.y; y <= tilemap.cellBounds.max.y; y++)
+                for (int x = tilemap.cellBounds.min.x; x <= tilemap.cellBounds.max.x; x++)
                 {
-                    Vector3Int vector = new Vector3Int(x, y, 0);
-                    Vector3 vectorPos = vector + TileManager.CellSize;
-
-                    if (tilemap.GetTile(vector) == _tileManager.TargetTile)
+                    for (int y = tilemap.cellBounds.min.y; y <= tilemap.cellBounds.max.y; y++)
                     {
-                        _arrowList.Add(Instantiate(_arrow, vectorPos, Quaternion.identity));
+                        Vector3Int vector = new Vector3Int(x, y, 0);
+                        Vector3 vectorPos = vector + TileManager.CellSize;
+
+                        if (tilemap.GetTile(vector) == _tileManager.TargetTile)
+                        {
+                            _arrowList.Add(Instantiate(_arrow, vectorPos, Quaternion.identity));
+                        }
                     }
                 }
+                _doneOnLoop = true;
             }
-            _doneOnLoop = true;
         }
     }
     private void RemoveTutorialArrows()
@@ -184,7 +202,9 @@ public class Tutorial : MonoBehaviour
     }
     private void MeleeChoosingAttackTileCharacterTutorial(Tilemap tilemap)
     {
-        if (!MeleeChoosingAttackTileCharacterTutorialDone)
+        if (_abilityPanel != null)
+        {
+            if (!MeleeChoosingAttackTileCharacterTutorialDone)
             {
                 for (int x = tilemap.cellBounds.min.x; x <= tilemap.cellBounds.max.x; x++)
                 {
@@ -201,73 +221,89 @@ public class Tutorial : MonoBehaviour
                 }
                 MeleeChoosingAttackTileCharacterTutorialDone = true;
             }
+        }
     }
     private void MeleeChoosingTileHeroTutorial()
     {
-        if (!MeleeChoosingAttackTileHeroTutorialDone && !_doneOnLoop)
+        if (_abilityPanel != null)
         {
-            var go = Instantiate(_arrow, _enemyHero.transform);
-            go.transform.position += new Vector3(0, 0.5f, 0);
-            _arrowList.Add(go);
-            _doneOnLoop = true;
+            if (!MeleeChoosingAttackTileHeroTutorialDone && !_doneOnLoop)
+            {
+                var go = Instantiate(_arrow, _enemyHero.transform);
+                go.transform.position += new Vector3(0, 0.5f, 0);
+                _arrowList.Add(go);
+                _doneOnLoop = true;
+            }
         }
     }
     private void MeleeChoosingAttackTileHeroTutorial(Tilemap tilemap)
     {
-        if (!MeleeChoosingAttackTileHeroTutorialDone)
+        if (_abilityPanel != null)
         {
-            for (int x = tilemap.cellBounds.min.x; x <= tilemap.cellBounds.max.x; x++)
+            if (!MeleeChoosingAttackTileHeroTutorialDone)
             {
-                for (int y = tilemap.cellBounds.min.y; y <= tilemap.cellBounds.max.y; y++)
+                for (int x = tilemap.cellBounds.min.x; x <= tilemap.cellBounds.max.x; x++)
                 {
-                    Vector3Int vector = new Vector3Int(x, y, 0);
-                    Vector3 vectorPos = vector + TileManager.CellSize;
-
-                    if (tilemap.GetTile(vector) == _tileManager.TargetTile)
+                    for (int y = tilemap.cellBounds.min.y; y <= tilemap.cellBounds.max.y; y++)
                     {
-                        _arrowList.Add(Instantiate(_arrow, vectorPos, Quaternion.identity));
+                        Vector3Int vector = new Vector3Int(x, y, 0);
+                        Vector3 vectorPos = vector + TileManager.CellSize;
+
+                        if (tilemap.GetTile(vector) == _tileManager.TargetTile)
+                        {
+                            _arrowList.Add(Instantiate(_arrow, vectorPos, Quaternion.identity));
+                        }
                     }
                 }
+                MeleeChoosingAttackTileHeroTutorialDone = true;
             }
-            MeleeChoosingAttackTileHeroTutorialDone = true;
         }
     }
 
     private void RangedChoosingTileCharacterTutorial (Tilemap tilemap)
     {
-        if (!RangedChoosingTileCharacterTutorialDone && tilemap.ContainsTile(_tileManager.TargetTile))
+        if (_abilityPanel != null)
         {
-            for (int x = tilemap.cellBounds.min.x; x <= tilemap.cellBounds.max.x; x++)
+            if (!RangedChoosingTileCharacterTutorialDone && tilemap.ContainsTile(_tileManager.TargetTile))
             {
-                for (int y = tilemap.cellBounds.min.y; y <= tilemap.cellBounds.max.y; y++)
+                for (int x = tilemap.cellBounds.min.x; x <= tilemap.cellBounds.max.x; x++)
                 {
-                    Vector3Int vector = new Vector3Int(x, y, 0);
-                    Vector3 vectorPos = vector + TileManager.CellSize;
-
-                    if (tilemap.GetTile(vector) == _tileManager.TargetTile)
+                    for (int y = tilemap.cellBounds.min.y; y <= tilemap.cellBounds.max.y; y++)
                     {
-                        _arrowList.Add(Instantiate(_arrow, vectorPos, Quaternion.identity));
+                        Vector3Int vector = new Vector3Int(x, y, 0);
+                        Vector3 vectorPos = vector + TileManager.CellSize;
+
+                        if (tilemap.GetTile(vector) == _tileManager.TargetTile)
+                        {
+                            _arrowList.Add(Instantiate(_arrow, vectorPos, Quaternion.identity));
+                        }
                     }
                 }
+                RangedChoosingTileCharacterTutorialDone = true;
             }
-            RangedChoosingTileCharacterTutorialDone = true;
         }
     }
     private void SelectingTutorial()
     {
-        var characterList = EntityManager.GetActiveCharacters(Team.TeamPlayer);
-        if (characterList.Length > 0 && !SelectingTutorialDone)
+        if (_abilityPanel != null)
         {
-            _arrowList.Add(Instantiate(_arrow, characterList[0].transform.position, Quaternion.identity));
-            SelectingTutorialDone = true;
+            var characterList = EntityManager.GetActiveCharacters(Team.TeamPlayer);
+            if (characterList.Length > 0 && !SelectingTutorialDone)
+            {
+                _arrowList.Add(Instantiate(_arrow, characterList[0].transform.position, Quaternion.identity));
+                SelectingTutorialDone = true;
+            }
         }
     }
     private void CanNotAttackHeroTutorial()
     {
-        if (InputManager.LeftMouseClick)
+        if (_abilityPanel != null)
         {
-            Debug.Log("Ranged");
-            _rangedHeroPanel.SetTrigger("Triggered");
+            if (InputManager.LeftMouseClick)
+            {
+                Debug.Log("Ranged");
+                _rangedHeroPanel.SetTrigger("Triggered");
+            }
         }
     }
 }

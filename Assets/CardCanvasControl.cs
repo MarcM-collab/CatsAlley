@@ -69,6 +69,9 @@ public class CardCanvasControl : MonoBehaviour
         MeleeShowRangeBehaviour.OnMeleeShowRangeEnter -= HidePlayer;
         MeleeShowRangeBehaviour.OnMeleeShowRangeEnter -= HideIA;
 
+        RangedShowRangeBehaviour.OnRangedShowRangeEnter -= HidePlayer;
+        RangedShowRangeBehaviour.OnRangedShowRangeEnter -= HideIA;
+
         HideRangeBehaviour.OnHideRangeEnter -= ShowPlayerAnim;
         HideRangeBehaviour.OnHideRangeEnter -= ShowIAAniamtor;
 
