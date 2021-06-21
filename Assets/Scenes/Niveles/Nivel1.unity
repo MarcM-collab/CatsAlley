@@ -36934,7 +36934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityDiplay: {fileID: 6693800164750869297}
-  heroSprite: {fileID: 21300000, guid: 26aaf5a6342a3f34bafe95a6301eebaa, type: 3}
+  heroSprite: {fileID: 21300000, guid: 9d93901ad5af5a74eb458b1ab6c7c755, type: 3}
   spriteShower: {fileID: 6693800164458922938}
   buttonUse: {fileID: 6693800165378306996}
   whiskasIm: {fileID: 6693800163631334874}
